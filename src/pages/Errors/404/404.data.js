@@ -1,0 +1,8 @@
+export const ErrorData = {
+    title: '404',
+    subtitle: 'Не туда попали',
+    link: {
+        label: 'Назад к чатам',
+        href: '/src/pages/Main/Main.html'
+    }
+}

@@ -1,0 +1,33 @@
+@import '/index.css';
+
+.goBack {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    width: 64px;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+
+    border-right: 1px solid var(--color-grey-light);
+
+    background: var(--color-white);
+}
+
+.goBackButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    color: var(--color-white);
+    background: var(--color-blue);
+}
