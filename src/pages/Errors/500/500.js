@@ -1,8 +1,7 @@
 import {ErrorData} from "./500.data";
 import {ErrorTemplate} from "../components/Error/Error.template";
 import {ErrorPageTemplate} from "../ErrorPage.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.error');
 

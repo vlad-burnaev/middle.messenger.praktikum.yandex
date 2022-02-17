@@ -4,8 +4,7 @@ import {MessageTemplate} from "./components/DialogActive/Message/Message.templat
 import {MessageGroupTemplate} from "./components/DialogActive/MessageGroup/MessageGroup.template";
 import {ChatTemplate} from "./components/Chat/Chat.template";
 import {DialogActiveTemplate} from "./components/DialogActive/DialogActive.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.MainPage');
 

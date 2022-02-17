@@ -3,8 +3,7 @@ import {ButtonTemplate} from "../../components/Button/Button.template";
 import {SignUpData} from "./SignUp.data";
 import {signUpTemplate} from "./SignUp.template";
 import {FormTemplate} from "../../components/Form/Form.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.signUp');
 

@@ -4,8 +4,7 @@ import {ProfileDataFieldEditableTemplate} from "../components/ProfileDataFieldEd
 import {ProfileChangePasswordPageTemplate} from "./ProfileChangePassword.template";
 import {ButtonTemplate} from "../../../components/Button/Button.template";
 import {ProfileChangePasswordPageData} from "./ProfileChangePassword.data";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.ProfileChangePasswordPage');
 

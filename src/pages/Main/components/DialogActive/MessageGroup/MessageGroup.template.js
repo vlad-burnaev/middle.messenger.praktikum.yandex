@@ -1,4 +1,4 @@
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 Handlebars.registerHelper('isMyMessages', function (value) {
     return value === 'my';

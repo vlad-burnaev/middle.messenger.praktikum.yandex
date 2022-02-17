@@ -4,8 +4,7 @@ import {ProfileActionButtonTemplate} from "../components/ProfileActionButton/Pro
 import {ProfilePageTemplate} from "./Profile.template";
 import {ProfilePageData} from "./Profile.data";
 import {ProfileGoBackTemplate} from "../components/ProfileGoBack/ProfileGoBack.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.ProfilePage');
 

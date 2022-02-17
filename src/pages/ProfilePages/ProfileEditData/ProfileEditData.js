@@ -4,8 +4,7 @@ import {ProfileDataFieldEditableTemplate} from "../components/ProfileDataFieldEd
 import {ProfileEditDataPageTemplate} from "./ProfileEditData.template";
 import {ProfileEditDataPageData} from "./ProfileEditData.data";
 import {ButtonTemplate} from "../../../components/Button/Button.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.ProfileEditData');
 

@@ -3,8 +3,7 @@ import {SignInData} from './SignIn.data';
 import {FormTemplate} from "../../components/Form/Form.template";
 import {FormFieldTemplate} from "../../components/Form/FormField/FormField.template";
 import {ButtonTemplate} from "../../components/Button/Button.template";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 const container = document.querySelector('.signIn');
 

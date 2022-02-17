@@ -1,6 +1,5 @@
 import {CheckMarkIcon} from "/static/icons/checkMarkIcon";
-
-const Handlebars = require("handlebars");
+import Handlebars from "handlebars";
 
 Handlebars.registerHelper('isSent', function (value) {
     return value === 'sent';
