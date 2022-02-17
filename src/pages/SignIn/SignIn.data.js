@@ -1,8 +1,8 @@
 export const SignInData = {
     form: {
-        title: 'Вход',
+        title: "Вход",
         formfields: [
-            { id: 'login', label: 'Логин', type: 'email', isRequired: true },
+            { id: "login", label: 'Логин', type: 'email', isRequired: true },
             { id: 'password', label: 'Пароль', type: 'password', isRequired: true },
         ],
         submitButton: {

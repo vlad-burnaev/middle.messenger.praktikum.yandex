@@ -1,13 +1,13 @@
 export const MainPageData = {
     chats: [
         {
-            name: 'Андрей',
-            lastMessage: { text: 'Изображение', prefix: '' },
-            meta: { time: '10:49', newMessagesCount: 2 },
+            name: "Андрей",
+            lastMessage: { text: "Изображение", prefix: "" },
+            meta: { time: "10:49", newMessagesCount: 2 },
         },
         {
-            name: 'Киноклуб',
-            lastMessage: { text: 'Стикер', prefix: 'Вы:' },
+            name: "Киноклуб",
+            lastMessage: { text: "Стикер", prefix: "Вы:" },
             meta: { time: '12:00', newMessagesCount: 0 },
         },
         {   name: 'Илья',
