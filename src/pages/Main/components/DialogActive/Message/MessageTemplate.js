@@ -5,7 +5,7 @@ Handlebars.registerHelper('isSent', function (value) {
     return value === 'sent';
 });
 
-export const MessageTemplate = `
+export const messageTemplate = `
     <li class="message">
         <span class="messageText">{{text}}</span>
         <div class="messageMeta">
@@ -16,3 +16,5 @@ export const MessageTemplate = `
         </div>
     </li>
 `
+
+export const message = Handlebars.compile(messageTemplate);

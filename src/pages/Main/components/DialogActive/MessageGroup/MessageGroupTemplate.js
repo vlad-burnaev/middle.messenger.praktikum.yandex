@@ -8,7 +8,7 @@ Handlebars.registerHelper('isCompanionMessages', function (value) {
     return value === 'companion';
 });
 
-export const MessageGroupTemplate = `
+export const messageGroupTemplate = `
     {{#if (isMyMessages type) }}
         <li>
             <ul class="messageGroup myMessages">
@@ -30,3 +30,5 @@ export const MessageGroupTemplate = `
         </li>
     {{/if}}
 `
+
+export const messageGroup = Handlebars.compile(messageGroupTemplate);

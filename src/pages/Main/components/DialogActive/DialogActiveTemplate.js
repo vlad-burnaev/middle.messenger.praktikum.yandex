@@ -1,8 +1,9 @@
 import {ClipIcon} from "/static/icons/clipIcon";
 import {ArrowRight2Icon} from "/static/icons/arrowRight2Icon";
 import {MenuIcon} from "/static/icons/MenuIcon";
+import Handlebars from "handlebars";
 
-export const DialogActiveTemplate = `
+export const dialogActiveTemplate = `
     <article class="dialogActive">
         <section class="dialogHeader">
             <div class="dialogHeaderLeftBlock">
@@ -29,3 +30,5 @@ export const DialogActiveTemplate = `
         </section>
     </article>
 `
+
+export const dialogActive = Handlebars.compile(dialogActiveTemplate);

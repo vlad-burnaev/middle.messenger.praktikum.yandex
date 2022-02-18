@@ -1,4 +1,6 @@
-export const ChatTemplate = `
+import Handlebars from "handlebars";
+
+export const chatTemplate = `
     <li class="chat">
         <div class="chatAvatar"></div>
         <div class="chatTextBlock">
@@ -20,3 +22,5 @@ export const ChatTemplate = `
         </div>
     </li>
 `
+
+export const chat = Handlebars.compile(chatTemplate);

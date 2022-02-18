@@ -1,9 +1,11 @@
+import Handlebars from "handlebars";
+
 export const formTemplate = `
     <form class="form">
         <ul>
             <h1 class="title">{{title}}</h1>
             {{#formfields}}
-                {{> FormField}}
+                {{> formField}}
             {{/formfields}}
         </ul>
         <div class="actionButtons">
@@ -12,3 +14,5 @@ export const formTemplate = `
         </div>
     </form>
 `
+
+export const form = Handlebars.compile(formTemplate);
