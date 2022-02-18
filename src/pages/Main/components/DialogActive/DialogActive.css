@@ -1,0 +1,120 @@
+@import "/index.css";
+@import "/reset.css";
+
+:root {
+    --dialog-header-height: 55px;
+    --dialog-footer-height: 55px;
+}
+
+.dialogActive {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dialogHeader {
+    display: flex;
+    justify-content: space-between;
+
+    height: var(--dialog-header-height);
+
+    padding: 10px 0;
+    margin: 0 20px;
+
+    border-bottom: 1px solid var(--color-grey-light);
+}
+
+.dialogHeaderLeftBlock {
+    display: flex;
+    align-items: center;
+}
+
+.dialogHeaderAvatar {
+    width: 34px;
+    height: 34px;
+
+    flex-shrink: 0;
+
+    margin-right: 10px;
+
+    border-radius: 50%;
+    background: var(--color-grey-light);
+}
+
+.dialogHeaderName {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+}
+
+.dialogHeaderRightBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15px;
+
+    margin-right: 11px;
+
+    cursor: pointer;
+}
+
+.dialogMain {
+    display: flex;
+    flex-direction: column-reverse;
+
+    height: calc(100vh - (var(--dialog-header-height) + var(--dialog-footer-height)));
+
+    padding: 30px 20px;
+
+    overflow-y: auto;
+}
+
+.dialogFooter {
+    display: flex;
+    align-items: center;
+
+    height: var(--dialog-footer-height);
+
+    padding: 10px 0;
+    margin: 0 20px;
+
+    border-top: 1px solid var(--color-grey-light);
+}
+
+.dialogAttach {
+    margin-right: 10px;
+}
+
+.dialogInput {
+    width: 100%;
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    color: var(--color-grey);
+    background: var(--color-grey-light);
+    outline: none;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+}
+
+.dialogEnterButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+
+    margin-left: 10px;
+
+    color: var(--color-white);
+    background: var(--color-blue);
+}

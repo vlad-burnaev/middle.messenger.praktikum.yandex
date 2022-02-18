@@ -1,0 +1,30 @@
+@import "/reset.css";
+
+:root {
+    --color-black: #000000;
+    --color-white: #FFFFFF;
+    --color-black-light: #1E1E1E;
+    --color-blue: #3369F3;
+    --color-red: #FF0000;
+    --color-blue-light: #698EE9;
+    --color-grey: #999999;
+    --color-beige: #BFB6B6;
+    --color-grey-light: #E4EDFD;
+
+    --box-shadow-medium: 0 0 6px #00000014;
+}
+
+html {
+    font-family: "Inter", sans-serif;
+
+    color: var(--color-black-light);
+}
+
+.centeredFullScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+}
