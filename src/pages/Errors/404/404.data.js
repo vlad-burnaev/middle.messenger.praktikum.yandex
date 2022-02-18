@@ -1,4 +1,4 @@
-export const ErrorData = {
+export const errorData = {
     title: "404",
     subtitle: 'Не туда попали',
     link: {

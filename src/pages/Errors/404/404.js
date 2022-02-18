@@ -1,12 +1,11 @@
-import {ErrorData} from "./404.data";
-import {ErrorTemplate} from "../components/Error/Error.template";
-import {ErrorPageTemplate} from "../ErrorPage.template";
+import {errorData} from "./404.data";
+import {error} from "../components/Error/ErrorTemplate";
+import {errorPageTemplate} from "../ErrorPageTemplate";
 import Handlebars from "handlebars";
 
 const container = document.querySelector('.error');
 
-const Error = Handlebars.compile(ErrorTemplate);
-const Error404Page = Handlebars.compile(ErrorPageTemplate);
-Handlebars.registerPartial({ Error })
+const Error404Page = Handlebars.compile(errorPageTemplate);
+Handlebars.registerPartial({ error })
 
-container.innerHTML = Error404Page(ErrorData)
+container.innerHTML = Error404Page(errorData)

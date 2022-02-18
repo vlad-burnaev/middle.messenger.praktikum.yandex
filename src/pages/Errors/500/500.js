@@ -1,12 +1,11 @@
-import {ErrorData} from "./500.data";
-import {ErrorTemplate} from "../components/Error/Error.template";
-import {ErrorPageTemplate} from "../ErrorPage.template";
+import {errorData} from "./500.data";
+import {error} from "../components/Error/ErrorTemplate";
+import {errorPageTemplate} from "../ErrorPageTemplate";
 import Handlebars from "handlebars";
 
 const container = document.querySelector('.error');
 
-const Error = Handlebars.compile(ErrorTemplate);
-const Error500Page = Handlebars.compile(ErrorPageTemplate);
-Handlebars.registerPartial({ Error })
+const Error500Page = Handlebars.compile(errorPageTemplate);
+Handlebars.registerPartial({ error })
 
-container.innerHTML = Error500Page(ErrorData)
+container.innerHTML = Error500Page(errorData)

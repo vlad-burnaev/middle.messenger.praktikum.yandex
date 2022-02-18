@@ -1,4 +1,4 @@
-export const SignInData = {
+export const signInData = {
     form: {
         title: "Вход",
         formfields: [

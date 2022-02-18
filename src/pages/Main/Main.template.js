@@ -1,6 +1,6 @@
 import {ArrowRight1Icon} from "/static/icons/arrowRight1Icon";
 
-export const MainPageTemplate = `
+export const mainPageTemplate = `
     <article class="chatsBlock">
         <nav class="chatsBlockHeader">
             <a href="/src/pages/ProfilePages/Profile/Profile.html" class="settingsLink">

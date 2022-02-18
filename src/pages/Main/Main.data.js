@@ -1,4 +1,4 @@
-export const MainPageData = {
+export const mainPageData = {
     chats: [
         {
             name: "Андрей",

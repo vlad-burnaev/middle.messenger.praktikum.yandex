@@ -2,7 +2,7 @@ import {profileAvatar} from "../components/ProfileAvatar/ProfileAvatarTemplate";
 import {profileGoBack} from "../components/ProfileGoBack/ProfileGoBackTemplate";
 import {profileDataFieldEditable} from "../components/ProfileDataFieldEditable/ProfileDataFieldEditableTemplate";
 import {profileEditDataPageTemplate} from "./ProfileEditData.template";
-import {ProfileEditDataPageData} from "./ProfileEditData.data";
+import {profileEditDataPageData} from "./ProfileEditData.data";
 import {button} from "../../../components/Button/ButtonTemplate";
 import Handlebars from "handlebars";
 
@@ -12,4 +12,4 @@ Handlebars.registerPartial({ profileAvatar, profileDataFieldEditable, button, pr
 
 const ProfileEditDataPage = Handlebars.compile(profileEditDataPageTemplate);
 
-container.innerHTML = ProfileEditDataPage(ProfileEditDataPageData);
+container.innerHTML = ProfileEditDataPage(profileEditDataPageData);

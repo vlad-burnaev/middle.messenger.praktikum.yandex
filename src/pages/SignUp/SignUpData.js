@@ -1,4 +1,4 @@
-export const SignUpData = {
+export const signUpData = {
     form: {
         title: 'Регистрация',
         formfields: [

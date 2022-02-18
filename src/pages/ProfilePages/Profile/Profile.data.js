@@ -1,4 +1,4 @@
-export const ProfilePageData = {
+export const profilePageData = {
     data: [
         { category: "Почта", data: "pochta@yandex.ru" },
         { category: "Логин", data: "ivanivanov" },

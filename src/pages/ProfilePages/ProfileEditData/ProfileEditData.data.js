@@ -1,4 +1,4 @@
-export const ProfileEditDataPageData = {
+export const profileEditDataPageData = {
     data: [
         { id: 'email', category: "Почта", type: 'email', placeholder: "pochta@yandex.ru" },
         { id: 'login', category: "Логин", type: 'text', placeholder: "ivanivanov" },

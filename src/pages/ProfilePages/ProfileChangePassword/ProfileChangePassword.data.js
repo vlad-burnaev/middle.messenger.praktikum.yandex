@@ -1,4 +1,4 @@
-export const ProfileChangePasswordPageData = {
+export const profileChangePasswordPageData = {
     data: [
         { id: 'oldPassword', category: "Старый пароль", type: 'password', placeholder: "•••••••••" },
         { id: 'newPassword', category: "Новый пароль", type: 'password', placeholder: "•••••••••••" },

@@ -1,5 +1,5 @@
-import {MainPageTemplate} from "./Main.template";
-import {MainPageData} from "./Main.data";
+import {mainPageTemplate} from "./Main.template";
+import {mainPageData} from "./Main.data";
 import {messageGroup} from "./components/DialogActive/MessageGroup/MessageGroupTemplate";
 import {chat} from "./components/Chat/ChatTemplate";
 import {dialogActive} from "./components/DialogActive/DialogActiveTemplate";
@@ -9,6 +9,6 @@ const container = document.querySelector('.MainPage');
 
 Handlebars.registerPartial({ chat, messageGroup, message, dialogActive });
 
-const MainPage = Handlebars.compile(MainPageTemplate);
+const MainPage = Handlebars.compile(mainPageTemplate);
 
-container.innerHTML = MainPage(MainPageData);
+container.innerHTML = MainPage(mainPageData);
