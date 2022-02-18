@@ -1,6 +1,6 @@
 @import "/index.css";
 
-.actionButton {
+.action_button {
     display: block;
 
     width: 100%;
@@ -13,10 +13,10 @@
     line-height: 13px;
 }
 
-.actionButton:not(:last-child) {
+.action_button:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-light);
 }
 
-.actionButton:last-child {
+.action_button:last-child {
     color: var(--color-red);
 }

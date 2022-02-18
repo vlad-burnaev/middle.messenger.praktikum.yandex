@@ -1,6 +1,6 @@
 @import "/index.css";
 
-.goBack {
+.go_back_block {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,7 +19,7 @@
     background: var(--color-white);
 }
 
-.goBackButton {
+.go_back_button {
     display: flex;
     justify-content: center;
     align-items: center;

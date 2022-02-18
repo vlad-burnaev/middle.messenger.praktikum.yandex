@@ -4,8 +4,8 @@ import Handlebars from "handlebars";
 export const profileAvatarTemplate = `
     <div class="avatar">
         ${imageIcon}
-        <div class="avatarOverlay">
-            <div class="avatarOverlayText">
+        <div class="avatar_overlay">
+            <div class="avatar_overlay_text">
                 Поменять аватар
             </div>
         </div>

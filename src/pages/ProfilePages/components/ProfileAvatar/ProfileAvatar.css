@@ -19,7 +19,7 @@
     background: var(--color-grey-light);
 }
 
-.avatarOverlay {
+.avatar_overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -42,11 +42,11 @@
     transition: all 0.3s ease;
 }
 
-.avatarOverlay:hover {
+.avatar_overlay:hover {
     opacity: 0.5;
 }
 
-.avatarOverlayText {
+.avatar_overlay_text {
     color: var(--color-white);
 
     font-weight: 500;

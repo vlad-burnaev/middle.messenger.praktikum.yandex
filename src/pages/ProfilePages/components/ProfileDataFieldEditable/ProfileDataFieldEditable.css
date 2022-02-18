@@ -1,6 +1,6 @@
 @import '/index.css';
 
-.profileDataFieldEditable {
+.profile_data_field_editable {
     display: flex;
     justify-content: space-between;
 
@@ -8,7 +8,7 @@
     padding: 10px 0;
 }
 
-.profileDataFieldEditable:not(:last-child) {
+.profile_data_field_editable:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-light);
 }
 

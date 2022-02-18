@@ -1,6 +1,6 @@
 @import "/index.css";
 
-.profileDataField {
+.profile_data_field {
     display: flex;
     justify-content: space-between;
 
@@ -8,7 +8,7 @@
     padding: 10px 0;
 }
 
-.profileDataField:not(:last-child) {
+.profile_data_field:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-light);
 }
 

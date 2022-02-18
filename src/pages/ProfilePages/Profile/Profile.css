@@ -4,14 +4,6 @@
 @import "../components/ProfileActionButton/ProfileActionButton.css";
 @import "../components/ProfileGoBack/ProfileGoBack.css";
 
-.ProfilePage {
-    display: flex;
-    justify-content: center;
-
-    width: 100%;
-    height: 100vh;
-}
-
 .content {
     width: 510px;
 
