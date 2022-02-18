@@ -1,15 +1,15 @@
-import {FormFieldTemplate} from "../../components/Form/FormField/FormField.template";
-import {ButtonTemplate} from "../../components/Button/Button.template";
+import {formFieldTemplate} from "../../components/Form/FormField/FormFieldTemplate";
+import {buttonTemplate} from "../../components/Button/ButtonTemplate";
 import {SignUpData} from "./SignUp.data";
 import {signUpTemplate} from "./SignUp.template";
-import {FormTemplate} from "../../components/Form/Form.template";
+import {formTemplate} from "../../components/Form/FormTemplate";
 import Handlebars from "handlebars";
 
 const container = document.querySelector('.signUp');
 
-const FormField = Handlebars.compile(FormFieldTemplate);
-const Button = Handlebars.compile(ButtonTemplate);
-const Form = Handlebars.compile(FormTemplate);
+const FormField = Handlebars.compile(formFieldTemplate);
+const Button = Handlebars.compile(buttonTemplate);
+const Form = Handlebars.compile(formTemplate);
 Handlebars.registerPartial({ Form, FormField, Button });
 
 const SignUpPage = Handlebars.compile(signUpTemplate);

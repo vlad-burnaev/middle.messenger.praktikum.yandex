@@ -1,3 +1,3 @@
-export const ProfileActionButtonTemplate = `
+export const profileActionButtonTemplate = `
     <a href={{href}} class="actionButton">{{label}}</a>
 `

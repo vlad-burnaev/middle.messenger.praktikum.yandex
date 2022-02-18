@@ -1,4 +1,4 @@
-export const ProfileChangePasswordPageTemplate = `
+export const profileChangePasswordPageTemplate = `
     <div class="content">
         {{> ProfileAvatar }}
         <div class="name">Иван</div>

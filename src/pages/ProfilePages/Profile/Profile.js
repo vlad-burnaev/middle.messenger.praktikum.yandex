@@ -1,19 +1,19 @@
-import {ProfileAvatarTemplate} from "../components/ProfileAvatar/ProfileAvatar.template";
-import {ProfileDataFieldTemplate} from "../components/ProfileDataField/ProfileDataField.template";
-import {ProfileActionButtonTemplate} from "../components/ProfileActionButton/ProfileActionButton.template";
-import {ProfilePageTemplate} from "./Profile.template";
+import {profileAvatarTemplate} from "../components/ProfileAvatar/ProfileAvatarTemplate";
+import {profileDataFieldTemplate} from "../components/ProfileDataField/ProfileDataFieldTemplate";
+import {profileActionButtonTemplate} from "../components/ProfileActionButton/ProfileActionButtonTemplate";
+import {profilePageTemplate} from "./Profile.template";
 import {ProfilePageData} from "./Profile.data";
-import {ProfileGoBackTemplate} from "../components/ProfileGoBack/ProfileGoBack.template";
+import {profileGoBackTemplate} from "../components/ProfileGoBack/ProfileGoBackTemplate";
 import Handlebars from "handlebars";
 
 const container = document.querySelector('.ProfilePage');
 
-const ProfileAvatar = Handlebars.compile(ProfileAvatarTemplate);
-const ProfileDataField = Handlebars.compile(ProfileDataFieldTemplate);
-const ProfileActionButton = Handlebars.compile(ProfileActionButtonTemplate);
-const ProfileGoBack = Handlebars.compile(ProfileGoBackTemplate);
+const ProfileAvatar = Handlebars.compile(profileAvatarTemplate);
+const ProfileDataField = Handlebars.compile(profileDataFieldTemplate);
+const ProfileActionButton = Handlebars.compile(profileActionButtonTemplate);
+const ProfileGoBack = Handlebars.compile(profileGoBackTemplate);
 Handlebars.registerPartial({ ProfileAvatar, ProfileDataField, ProfileActionButton, ProfileGoBack });
 
-const ProfilePage = Handlebars.compile(ProfilePageTemplate);
+const ProfilePage = Handlebars.compile(profilePageTemplate);
 
 container.innerHTML = ProfilePage(ProfilePageData);

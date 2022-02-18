@@ -1,4 +1,4 @@
-export const ProfileEditDataPageTemplate = `
+export const profileEditDataPageTemplate = `
     <div class="content">
         {{> ProfileAvatar }}
         <div class="name">Иван</div>

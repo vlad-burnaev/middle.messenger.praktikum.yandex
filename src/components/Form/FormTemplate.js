@@ -1,4 +1,4 @@
-export const FormTemplate = `
+export const formTemplate = `
     <form class="form">
         <ul>
             <h1 class="title">{{title}}</h1>

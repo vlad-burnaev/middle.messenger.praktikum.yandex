@@ -1,6 +1,6 @@
 import {imageIcon} from '/static/icons/imageIcon';
 
-export const ProfileAvatarTemplate = `
+export const profileAvatarTemplate = `
     <div class="avatar">
         ${imageIcon}
         <div class="avatarOverlay">

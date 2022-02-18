@@ -1,4 +1,4 @@
-export const ProfilePageTemplate = `
+export const profilePageTemplate = `
     <div class="content">
         {{> ProfileAvatar }}
         <div class="name">Иван</div>
