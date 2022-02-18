@@ -5,7 +5,7 @@ import Handlebars from "handlebars";
 
 const container = document.querySelector('.error');
 
-const Error500Page = Handlebars.compile(errorPageTemplate);
+const error500Page = Handlebars.compile(errorPageTemplate);
 Handlebars.registerPartial({ error })
 
-container.innerHTML = Error500Page(errorData)
+container.innerHTML = error500Page(errorData)

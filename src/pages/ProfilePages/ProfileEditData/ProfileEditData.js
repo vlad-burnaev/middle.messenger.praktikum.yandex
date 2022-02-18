@@ -10,6 +10,6 @@ const container = document.querySelector('.ProfileEditData');
 
 Handlebars.registerPartial({ profileAvatar, profileDataFieldEditable, button, profileGoBack });
 
-const ProfileEditDataPage = Handlebars.compile(profileEditDataPageTemplate);
+const profileEditDataPage = Handlebars.compile(profileEditDataPageTemplate);
 
-container.innerHTML = ProfileEditDataPage(profileEditDataPageData);
+container.innerHTML = profileEditDataPage(profileEditDataPageData);

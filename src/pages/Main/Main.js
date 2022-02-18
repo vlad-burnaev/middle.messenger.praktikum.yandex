@@ -9,6 +9,6 @@ const container = document.querySelector('.MainPage');
 
 Handlebars.registerPartial({ chat, messageGroup, message, dialogActive });
 
-const MainPage = Handlebars.compile(mainPageTemplate);
+const mainPage = Handlebars.compile(mainPageTemplate);
 
-container.innerHTML = MainPage(mainPageData);
+container.innerHTML = mainPage(mainPageData);

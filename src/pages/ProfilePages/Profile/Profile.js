@@ -10,6 +10,6 @@ const container = document.querySelector('.ProfilePage');
 
 Handlebars.registerPartial({ profileAvatar, profileDataField, profileActionButton, profileGoBack });
 
-const ProfilePage = Handlebars.compile(profilePageTemplate);
+const profilePage = Handlebars.compile(profilePageTemplate);
 
-container.innerHTML = ProfilePage(profilePageData);
+container.innerHTML = profilePage(profilePageData);

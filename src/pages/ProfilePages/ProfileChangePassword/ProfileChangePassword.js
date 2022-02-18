@@ -10,6 +10,6 @@ const container = document.querySelector('.ProfileChangePasswordPage');
 
 Handlebars.registerPartial({ profileAvatar, profileDataFieldEditable, button, profileGoBack });
 
-const ProfileChangePasswordPage = Handlebars.compile(profileChangePasswordPageTemplate);
+const profileChangePasswordPage = Handlebars.compile(profileChangePasswordPageTemplate);
 
-container.innerHTML = ProfileChangePasswordPage(profileChangePasswordPageData);
+container.innerHTML = profileChangePasswordPage(profileChangePasswordPageData);

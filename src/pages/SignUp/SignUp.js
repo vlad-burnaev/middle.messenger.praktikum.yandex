@@ -9,5 +9,5 @@ const container = document.querySelector('.signUp');
 
 Handlebars.registerPartial({ form, formField, button });
 
-const SignUpPage = Handlebars.compile(signUpTemplate);
-container.innerHTML = SignUpPage(signUpData);
+const signUpPage = Handlebars.compile(signUpTemplate);
+container.innerHTML = signUpPage(signUpData);

@@ -5,7 +5,7 @@ import Handlebars from "handlebars";
 
 const container = document.querySelector('.error');
 
-const Error404Page = Handlebars.compile(errorPageTemplate);
+const error404Page = Handlebars.compile(errorPageTemplate);
 Handlebars.registerPartial({ error })
 
-container.innerHTML = Error404Page(errorData)
+container.innerHTML = error404Page(errorData)
