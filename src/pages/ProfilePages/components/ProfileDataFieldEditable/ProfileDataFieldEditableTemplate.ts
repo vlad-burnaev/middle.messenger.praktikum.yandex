@@ -7,4 +7,5 @@ const profileDataFieldEditableTemplate = `
     </li>
 `
 
-export const profileDataFieldEditable = Handlebars.compile(profileDataFieldEditableTemplate);
+export const ProfileDataFieldEditable = Handlebars.compile(profileDataFieldEditableTemplate);
+Handlebars.registerPartial({ ProfileDataFieldEditable });

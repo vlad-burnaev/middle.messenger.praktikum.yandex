@@ -1,6 +1,6 @@
 export const profilePageTemplate = `
     <div class="content">
-<!--        {{> ProfileAvatar }}-->
+        {{> ProfileAvatar }}
         <div class="name">Иван</div>
         <ul class="info">
             {{#data}}

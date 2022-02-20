@@ -1,5 +1,5 @@
 import Handlebars from "handlebars";
-import { ArrowLeftIcon } from "../../../../../static/icons/arrowLeftIcon";
+import {ArrowLeftIcon} from "../../../../../static/icons/arrowLeftIcon";
 
 const profileGoBackTemplate = `
     <a href={{href}} class="go_back_block">
@@ -9,4 +9,5 @@ const profileGoBackTemplate = `
     </a>
 `
 
-export const profileGoBack = Handlebars.compile(profileGoBackTemplate);
+export const ProfileGoBack = Handlebars.compile(profileGoBackTemplate);
+Handlebars.registerPartial({ ProfileGoBack });

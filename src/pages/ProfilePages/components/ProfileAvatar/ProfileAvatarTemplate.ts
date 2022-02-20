@@ -12,4 +12,5 @@ const profileAvatarTemplate = `
     </div>
 `
 
-export const profileAvatar = Handlebars.compile(profileAvatarTemplate);
+export const ProfileAvatar = Handlebars.compile(profileAvatarTemplate);
+Handlebars.registerPartial({ ProfileAvatar });

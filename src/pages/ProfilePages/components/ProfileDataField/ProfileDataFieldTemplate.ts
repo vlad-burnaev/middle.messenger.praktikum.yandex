@@ -7,4 +7,5 @@ const profileDataFieldTemplate = `
     </li>
 `
 
-export const profileDataField = Handlebars.compile(profileDataFieldTemplate);
+export const ProfileDataField = Handlebars.compile(profileDataFieldTemplate);
+Handlebars.registerPartial({ ProfileDataField });
