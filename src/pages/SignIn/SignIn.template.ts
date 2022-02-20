@@ -1,3 +1,5 @@
 export const signInTemplate = `
-    {{> Form form}}
+    <article>
+        {{> Form form}}
+    </article>
 `

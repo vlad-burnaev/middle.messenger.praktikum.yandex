@@ -4,6 +4,6 @@ import {mainPageData} from "./Main.data";
 
 const container = document.querySelector('.MainPage');
 
-const mainPage = Handlebars.compile(mainPageTemplate);
+const MainPage = Handlebars.compile(mainPageTemplate);
 
-container.innerHTML = mainPage(mainPageData);
+container.innerHTML = MainPage(mainPageData);

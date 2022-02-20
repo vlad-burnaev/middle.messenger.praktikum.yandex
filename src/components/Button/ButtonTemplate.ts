@@ -1,7 +1,8 @@
 import Handlebars from "handlebars";
 
-export const buttonTemplate = `
+const buttonTemplate = `
     <button onclick="window.location.href = 'http://localhost:3000{{href}}'" class="button">{{label}}</button>
 `
 
-export const button = Handlebars.compile(buttonTemplate);
+export const Button = Handlebars.compile(buttonTemplate);
+Handlebars.registerPartial({ Button });
