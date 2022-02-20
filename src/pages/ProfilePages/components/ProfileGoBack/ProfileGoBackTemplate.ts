@@ -1,7 +1,7 @@
-import {ArrowLeftIcon} from "/static/icons/arrowLeftIcon";
 import Handlebars from "handlebars";
+import { ArrowLeftIcon } from "../../../../../static/icons/arrowLeftIcon";
 
-export const profileGoBackTemplate = `
+const profileGoBackTemplate = `
     <a href={{href}} class="go_back_block">
         <div class="go_back_button">
             ${ArrowLeftIcon}

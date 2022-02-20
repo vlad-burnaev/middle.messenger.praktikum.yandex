@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 
-export const profileActionButtonTemplate = `
+const profileActionButtonTemplate = `
     <a href={{href}} class="action_button">{{label}}</a>
 `
 

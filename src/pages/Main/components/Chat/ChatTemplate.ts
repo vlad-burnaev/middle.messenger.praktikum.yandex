@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 
-export const chatTemplate = `
+const chatTemplate = `
     <li class="chat">
         <div class="chatAvatar"></div>
         <div class="chatTextBlock">
@@ -23,4 +23,5 @@ export const chatTemplate = `
     </li>
 `
 
-export const chat = Handlebars.compile(chatTemplate);
+export const Chat = Handlebars.compile(chatTemplate);
+Handlebars.registerPartial({ Chat });

@@ -1,11 +1,11 @@
-import {CheckMarkIcon} from "/static/icons/checkMarkIcon";
 import Handlebars from "handlebars";
+import {CheckMarkIcon} from "../../../../../../static/icons/checkMarkIcon";
 
 Handlebars.registerHelper('isSent', function (value) {
     return value === 'sent';
 });
 
-export const messageTemplate = `
+const messageTemplate = `
     <li class="message">
         <span class="messageText">{{text}}</span>
         <div class="messageMeta">
@@ -17,4 +17,5 @@ export const messageTemplate = `
     </li>
 `
 
-export const message = Handlebars.compile(messageTemplate);
+export const Message = Handlebars.compile(messageTemplate);
+Handlebars.registerPartial({ Message });

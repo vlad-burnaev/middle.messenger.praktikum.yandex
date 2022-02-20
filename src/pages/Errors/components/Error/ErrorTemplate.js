@@ -1,6 +1,6 @@
 import Handlebars from "handlebars";
 
-export const errorTemplate = `
+const errorTemplate = `
     <div class="content">
         <h1 class="title">{{title}}</h1>
         <h2 class="subtitle">{{subtitle}}</h2>
@@ -8,4 +8,5 @@ export const errorTemplate = `
     </div>
 `
 
-export const error = Handlebars.compile(errorTemplate);
+export const Error = Handlebars.compile(errorTemplate);
+Handlebars.registerPartial({ Error })

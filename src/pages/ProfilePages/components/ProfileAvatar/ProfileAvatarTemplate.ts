@@ -1,7 +1,7 @@
-import {imageIcon} from '/static/icons/imageIcon';
 import Handlebars from "handlebars";
+import {imageIcon} from "../../../../../static/icons/imageIcon";
 
-export const profileAvatarTemplate = `
+const profileAvatarTemplate = `
     <div class="avatar">
         ${imageIcon}
         <div class="avatar_overlay">
