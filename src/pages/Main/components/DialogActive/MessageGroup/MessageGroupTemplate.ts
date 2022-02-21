@@ -32,4 +32,3 @@ const messageGroupTemplate = `
 `
 
 export const MessageGroup = Handlebars.compile(messageGroupTemplate);
-Handlebars.registerPartial({ MessageGroup });

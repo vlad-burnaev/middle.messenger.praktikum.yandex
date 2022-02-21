@@ -10,4 +10,3 @@ const profileGoBackTemplate = `
 `
 
 export const ProfileGoBack = Handlebars.compile(profileGoBackTemplate);
-Handlebars.registerPartial({ ProfileGoBack });

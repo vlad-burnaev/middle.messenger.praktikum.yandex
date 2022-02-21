@@ -9,4 +9,3 @@ const errorTemplate = `
 `
 
 export const Error = Handlebars.compile(errorTemplate);
-Handlebars.registerPartial({ Error })

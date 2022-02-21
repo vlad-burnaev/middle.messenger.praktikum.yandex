@@ -8,4 +8,3 @@ const profileDataFieldEditableTemplate = `
 `
 
 export const ProfileDataFieldEditable = Handlebars.compile(profileDataFieldEditableTemplate);
-Handlebars.registerPartial({ ProfileDataFieldEditable });

@@ -5,4 +5,3 @@ const profileActionButtonTemplate = `
 `
 
 export const ProfileActionButton = Handlebars.compile(profileActionButtonTemplate);
-Handlebars.registerPartial({ ProfileActionButton });

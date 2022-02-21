@@ -32,4 +32,3 @@ const dialogActiveTemplate = `
 `
 
 export const DialogActive = Handlebars.compile(dialogActiveTemplate);
-Handlebars.registerPartial({ DialogActive });

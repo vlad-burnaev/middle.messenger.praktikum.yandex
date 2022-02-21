@@ -8,4 +8,3 @@ const profileDataFieldTemplate = `
 `
 
 export const ProfileDataField = Handlebars.compile(profileDataFieldTemplate);
-Handlebars.registerPartial({ ProfileDataField });

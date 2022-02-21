@@ -18,4 +18,3 @@ const messageTemplate = `
 `
 
 export const Message = Handlebars.compile(messageTemplate);
-Handlebars.registerPartial({ Message });

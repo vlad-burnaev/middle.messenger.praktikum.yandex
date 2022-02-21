@@ -8,4 +8,3 @@ const formFieldTemplate = `
 `
 
 export const FormField = Handlebars.compile(formFieldTemplate);
-Handlebars.registerPartial({ FormField });

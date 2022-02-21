@@ -24,4 +24,3 @@ const chatTemplate = `
 `
 
 export const Chat = Handlebars.compile(chatTemplate);
-Handlebars.registerPartial({ Chat });

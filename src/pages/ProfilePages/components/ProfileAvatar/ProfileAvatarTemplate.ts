@@ -13,4 +13,3 @@ const profileAvatarTemplate = `
 `
 
 export const ProfileAvatar = Handlebars.compile(profileAvatarTemplate);
-Handlebars.registerPartial({ ProfileAvatar });
