@@ -19,6 +19,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "parcel": "*",
+    "stylelint": "^14.5.1",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   },
