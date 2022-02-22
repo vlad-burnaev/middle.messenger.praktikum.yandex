@@ -5,30 +5,30 @@
 @import "/src/components/Button/Button.css";
 
 .content {
-    width: 510px;
+  width: 510px;
 
-    margin: 60px auto;
+  margin: 60px auto;
 }
 
 .name {
-    width: 100%;
-    text-align: center;
+  width: 100%;
 
-    margin-top: 20px;
+  margin-top: 20px;
+  text-align: center;
 
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 16px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 16px;
 }
 
 .info {
-    width: 100%;
+  width: 100%;
 
-    margin-top: 60px;
+  margin-top: 60px;
 }
 
 .actions {
-    width: 100%;
+  width: 100%;
 
-    margin-top: 50px;
+  margin-top: 50px;
 }

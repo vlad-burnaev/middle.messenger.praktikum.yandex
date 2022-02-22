@@ -1,12 +1,8 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
-Handlebars.registerHelper('isMyMessages', function (value) {
-    return value === 'my';
-});
+Handlebars.registerHelper('isMyMessages', (value) => value === 'my');
 
-Handlebars.registerHelper('isCompanionMessages', function (value) {
-    return value === 'companion';
-});
+Handlebars.registerHelper('isCompanionMessages', (value) => value === 'companion');
 
 const messageGroupTemplate = `
     {{#if (isMyMessages type) }}
@@ -29,6 +25,6 @@ const messageGroupTemplate = `
             </ul>
         </li>
     {{/if}}
-`
+`;
 
 export const MessageGroup = Handlebars.compile(messageGroupTemplate);

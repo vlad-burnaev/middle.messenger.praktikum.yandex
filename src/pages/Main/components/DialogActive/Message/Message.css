@@ -2,37 +2,39 @@
 @import "/reset.css";
 
 .message {
-    display: flex;
-    justify-content: flex-end;
+  display: flex;
 
-    white-space: pre-line;
+  padding: 11px;
 
-    padding: 11px;
+  justify-content: flex-end;
+
+  white-space: pre-line;
 }
 
 .messageText {
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 15px;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
 }
 
 .messageMeta {
-    display: flex;
-    align-items: flex-end;
+  display: flex;
 
-    margin-left: 14px;
+  margin-left: 14px;
 
-    color: var(--color-blue);
+  align-items: flex-end;
+
+  color: var(--color-blue);
 }
 
 .messageMeta svg {
-        height: 8px;
+  height: 8px;
 
-        margin-right: 4px;
+  margin-right: 4px;
 }
 
 .messageMetaText {
-    font-weight: 500;
-    font-size: 9px;
-    line-height: 9px;
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 9px;
 }

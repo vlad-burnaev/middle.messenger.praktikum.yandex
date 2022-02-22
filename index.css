@@ -1,30 +1,30 @@
 @import "/reset.css";
 
 :root {
-    --color-black: #000000;
-    --color-white: #FFFFFF;
-    --color-black-light: #1E1E1E;
-    --color-blue: #3369F3;
-    --color-red: #FF0000;
-    --color-blue-light: #698EE9;
-    --color-grey: #999999;
-    --color-beige: #BFB6B6;
-    --color-grey-light: #E4EDFD;
-
-    --box-shadow-medium: 0 0 6px #00000014;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-black-light: #1e1e1e;
+  --color-blue: #3369f3;
+  --color-red: #f00;
+  --color-blue-light: #698ee9;
+  --color-grey: #999;
+  --color-beige: #bfb6b6;
+  --color-grey-light: #e4edfd;
+  --box-shadow-medium: 0 0 6px #00000014;
 }
 
 html {
-    font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 
-    color: var(--color-black-light);
+  color: var(--color-black-light);
 }
 
 .centeredFullScreen {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
 
-    width: 100%;
-    height: 100vh;
+  width: 100%;
+  height: 100vh;
+
+  justify-content: center;
+  align-items: center;
 }

@@ -1,33 +1,36 @@
 @import "/index.css";
 
 .go_back_block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    cursor: pointer;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
 
-    width: 64px;
+  display: flex;
 
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+  width: 64px;
 
-    border-right: 1px solid var(--color-grey-light);
+  justify-content: center;
+  align-items: center;
 
-    background: var(--color-white);
+  cursor: pointer;
+
+  border-right: 1px solid var(--color-grey-light);
+
+  background: var(--color-white);
 }
 
 .go_back_button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
 
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+  width: 28px;
+  height: 28px;
 
-    color: var(--color-white);
-    background: var(--color-blue);
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+
+  color: var(--color-white);
+  background: var(--color-blue);
 }

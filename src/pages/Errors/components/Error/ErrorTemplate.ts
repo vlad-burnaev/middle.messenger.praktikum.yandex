@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 const errorTemplate = `
     <div class="content">
@@ -6,6 +6,6 @@ const errorTemplate = `
         <h2 class="subtitle">{{subtitle}}</h2>
         <a href={{link.href}} class="link">{{link.label}}</a>
     </div>
-`
+`;
 
 export const Error = Handlebars.compile(errorTemplate);

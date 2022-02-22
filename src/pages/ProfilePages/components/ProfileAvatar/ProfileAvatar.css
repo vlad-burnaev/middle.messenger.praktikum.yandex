@@ -1,55 +1,58 @@
 @import "/index.css";
 
 .avatar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-    cursor: pointer;
+  position: relative;
 
-    position: relative;
+  display: flex;
 
-    width: 130px;
-    height: 130px;
+  width: 130px;
+  height: 130px;
 
-    margin: 0 auto;
+  margin: 0 auto;
 
-    border-radius: 50%;
+  justify-content: center;
+  align-items: center;
 
-    background: var(--color-grey-light);
+  cursor: pointer;
+
+  border-radius: 50%;
+
+  background: var(--color-grey-light);
 }
 
 .avatar_overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 
 
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
+  display: flex;
 
-    width: 130px;
-    height: 130px;
-    padding: 0 33px;
+  width: 130px;
+  height: 130px;
+  padding: 0 33px;
 
-    border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
-    background: var(--color-black);
+  border-radius: 50%;
 
-    opacity: 0;
-    transition: all 0.3s ease;
+  background: var(--color-black);
+
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
 .avatar_overlay:hover {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .avatar_overlay_text {
-    color: var(--color-white);
+  color: var(--color-white);
 
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 14px;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 14px;
 }
