@@ -14,4 +14,4 @@ export const profilePageTemplate = `
         </ul>
         {{> ProfileGoBack goBack }}
     </div>
-`
+`;

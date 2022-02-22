@@ -12,4 +12,4 @@ export const profileChangePasswordPageTemplate = `
         </ul>
         {{> ProfileGoBack goBack }}
     </div>
-`
+`;

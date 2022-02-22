@@ -1,4 +1,4 @@
-import { ArrowRight1Icon } from "../../../static/icons/arrowRight1Icon";
+import { ArrowRight1Icon } from '../../../static/icons/arrowRight1Icon';
 
 export const mainPageTemplate = `
     <article class="chatsBlock">
@@ -23,4 +23,4 @@ export const mainPageTemplate = `
 <!--                Выберите чат чтобы отправить сообщение-->
 <!--            </div>-->
     </div>
-`
+`;

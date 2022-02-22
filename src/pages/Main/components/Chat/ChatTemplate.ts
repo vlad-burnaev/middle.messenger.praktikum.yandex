@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 const chatTemplate = `
     <li class="chat">
@@ -21,6 +21,6 @@ const chatTemplate = `
             {{/if}}
         </div>
     </li>
-`
+`;
 
 export const Chat = Handlebars.compile(chatTemplate);

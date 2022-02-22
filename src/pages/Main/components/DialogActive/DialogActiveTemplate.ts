@@ -1,7 +1,7 @@
-import Handlebars from "handlebars";
-import {MenuIcon} from "../../../../../static/icons/menuIcon";
-import {ClipIcon} from "../../../../../static/icons/clipIcon";
-import {ArrowRight2Icon} from "../../../../../static/icons/arrowRight2Icon";
+import Handlebars from 'handlebars';
+import { MenuIcon } from '../../../../../static/icons/menuIcon';
+import { ClipIcon } from '../../../../../static/icons/clipIcon';
+import { ArrowRight2Icon } from '../../../../../static/icons/arrowRight2Icon';
 
 const dialogActiveTemplate = `
     <article class="dialogActive">
@@ -29,6 +29,6 @@ const dialogActiveTemplate = `
             </button>
         </section>
     </article>
-`
+`;
 
 export const DialogActive = Handlebars.compile(dialogActiveTemplate);

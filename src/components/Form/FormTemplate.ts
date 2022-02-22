@@ -1,4 +1,4 @@
-import Handlebars from "handlebars";
+import Handlebars from 'handlebars';
 
 const formTemplate = `
     <form class="form">
@@ -13,6 +13,6 @@ const formTemplate = `
             <a href={{secondaryButton.href}} class="secondaryButton">{{secondaryButton.label}}</a>
         </div>
     </form>
-`
+`;
 
 export const Form = Handlebars.compile(formTemplate);

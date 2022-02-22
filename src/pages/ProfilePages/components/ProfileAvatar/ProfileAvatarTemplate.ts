@@ -1,5 +1,5 @@
-import Handlebars from "handlebars";
-import {imageIcon} from "../../../../../static/icons/imageIcon";
+import Handlebars from 'handlebars';
+import { imageIcon } from '../../../../../static/icons/imageIcon';
 
 const profileAvatarTemplate = `
     <div class="avatar">
@@ -10,6 +10,6 @@ const profileAvatarTemplate = `
             </div>
         </div>
     </div>
-`
+`;
 
 export const ProfileAvatar = Handlebars.compile(profileAvatarTemplate);

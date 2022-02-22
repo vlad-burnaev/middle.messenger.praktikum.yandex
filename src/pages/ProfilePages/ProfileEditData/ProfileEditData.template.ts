@@ -12,4 +12,4 @@ export const profileEditDataPageTemplate = `
         </ul>
         {{> ProfileGoBack goBack }}
     </div>
-`
+`;
