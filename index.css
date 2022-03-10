@@ -15,13 +15,11 @@
 
 html {
   font-family: "Inter", sans-serif;
-
   color: var(--color-black-light);
 }
 
 .centeredFullScreen {
   display: flex;
-
   width: 100%;
   height: 100vh;
 
