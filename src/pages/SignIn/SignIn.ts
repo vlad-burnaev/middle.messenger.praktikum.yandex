@@ -10,4 +10,4 @@ const container = document.querySelector('.signIn');
 Handlebars.registerPartial({ Form, FormField, Button });
 const SignInPage = Handlebars.compile(signInTemplate);
 
-container.innerHTML = SignInPage(signInData);
+container!.innerHTML = SignInPage(signInData);

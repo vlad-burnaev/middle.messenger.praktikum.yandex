@@ -3,4 +3,4 @@ export const ArrowLeftIcon = `
         <rect x="13" y="6.80005" width="11" height="1.6" transform="rotate(-180 13 6.80005)" fill="white"/>
         <path d="M6 11L2 6L6 1" stroke="white" stroke-width="1.6"/>
     </svg>
-`
+`;

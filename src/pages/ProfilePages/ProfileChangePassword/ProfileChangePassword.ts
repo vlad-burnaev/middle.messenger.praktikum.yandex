@@ -13,4 +13,4 @@ Handlebars.registerPartial({
 });
 const ProfileChangePasswordPage = Handlebars.compile(profileChangePasswordPageTemplate);
 
-container.innerHTML = ProfileChangePasswordPage(profileChangePasswordPageData);
+container!.innerHTML = ProfileChangePasswordPage(profileChangePasswordPageData);

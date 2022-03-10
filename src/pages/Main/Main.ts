@@ -14,4 +14,4 @@ Handlebars.registerPartial({
 });
 const MainPage = Handlebars.compile(mainPageTemplate);
 
-container.innerHTML = MainPage(mainPageData);
+container!.innerHTML = MainPage(mainPageData);

@@ -8,4 +8,4 @@ const container = document.querySelector('.error');
 Handlebars.registerPartial({ Error });
 const Error500Page = Handlebars.compile(errorPageTemplate);
 
-container.innerHTML = Error500Page(errorData);
+container!.innerHTML = Error500Page(errorData);

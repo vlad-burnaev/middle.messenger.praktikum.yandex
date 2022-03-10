@@ -13,4 +13,4 @@ Handlebars.registerPartial({
 });
 const ProfileEditDataPage = Handlebars.compile(profileEditDataPageTemplate);
 
-container.innerHTML = ProfileEditDataPage(profileEditDataPageData);
+container!.innerHTML = ProfileEditDataPage(profileEditDataPageData);

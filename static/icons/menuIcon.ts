@@ -4,4 +4,4 @@ export const MenuIcon = `
         <circle cx="1.5" cy="8" r="1.5" fill="#1E1E1E"/>
         <circle cx="1.5" cy="14" r="1.5" fill="#1E1E1E"/>
     </svg>
-`
+`;

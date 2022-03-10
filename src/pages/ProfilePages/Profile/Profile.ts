@@ -15,4 +15,4 @@ Handlebars.registerPartial({
 });
 const ProfilePage = Handlebars.compile(profilePageTemplate);
 
-container.innerHTML = ProfilePage(profilePageData);
+container!.innerHTML = ProfilePage(profilePageData);
