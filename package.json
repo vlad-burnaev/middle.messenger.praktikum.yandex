@@ -3,11 +3,11 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "parcel index.html",
+    "dev": "parcel src/index.html",
     "build": "parcel build index.html",
     "start": "node server.js",
-    "lint:css": "stylelint **/*.css",
-    "lint:css:fix": "stylelint **/*.css --fix",
+    "lint:css": "stylelint **/*.pcss",
+    "lint:css:fix": "stylelint **/*.pcss --fix",
     "lint:js": "eslint --ext .js,.ts,.tsx src/",
     "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
     "lint": "yarn lint:css && yarn lint:js",
@@ -17,6 +17,7 @@
   "author": "Vlad Burnaev <vlad.burn325@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "eslint": "^5.16.0",
@@ -25,6 +26,8 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "parcel": "*",
+    "postcss-modules": "^4.3.1",
+    "postcss-nested": "^5.0.6",
     "stylelint": "^14.5.1",
     "stylelint-config-standard": "^17.0.0",
     "stylelint-order": "^0.7.0",
@@ -33,6 +36,7 @@
   },
   "dependencies": {
     "express": "^4.17.2",
-    "handlebars": "^4.7.7"
+    "handlebars": "^4.7.7",
+    "nanoid": "^3.3.1"
   }
 }

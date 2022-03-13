@@ -25,6 +25,7 @@
         "hasBlock": true
       }
     ],
+    "selector-pseudo-class-no-unknown": null,
     "order/properties-order": [[
       {
         "emptyLineBefore": "always",

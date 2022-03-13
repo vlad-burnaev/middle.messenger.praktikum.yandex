@@ -2,7 +2,7 @@
 @import "../components/ProfileAvatar/ProfileAvatar.css";
 @import "../components/ProfileDataFieldEditable/ProfileDataFieldEditable.css";
 @import "../components/ProfileGoBack/ProfileGoBack.css";
-@import "/src/components/Button/Button.css";
+@import "/src/components/Button/button.pcss";
 
 .content {
   width: 510px;

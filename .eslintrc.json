@@ -32,7 +32,12 @@
         "no-useless-backreference": false,
         "function-call-argument-newline": "off",
         "prefer-exponentiation-operator": false,
-        "no-restricted-exports": false
+        "no-restricted-exports": false,
+        "no-underscore-dangle": "off",
+        "prefer-destructuring": "off",
+        "no-param-reassign": "off",
+        "no-useless-constructor": "off",
+        "array-callback-return": "off"
     },
     "settings": {
         "import/resolver": {
