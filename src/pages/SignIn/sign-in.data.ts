@@ -1,4 +1,4 @@
-export const loginData = {
+export const signInData = {
   title: 'Вход',
   formFields: [
     {
@@ -13,5 +13,6 @@ export const loginData = {
   },
   secondaryButton: {
     label: 'Нет аккаунта?',
+    href: '#',
   },
 };

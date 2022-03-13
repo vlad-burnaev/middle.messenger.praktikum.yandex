@@ -1,9 +1,11 @@
 import { renderDOM } from './utils/renderDOM';
-import LoginPage from './pages/Login';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import './styles/index.pcss';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const loginPage = new LoginPage();
+  const signIn = new SignIn();
+  const signUp = new SignUp();
 
-  renderDOM('#app', loginPage);
+  renderDOM('#app', signUp);
 });
