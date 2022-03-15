@@ -7,6 +7,7 @@ import './styles/index.pcss';
 import ProfileMain from './pages/Profile/Main';
 import ProfileEditData from './pages/Profile/EditData';
 import ProfileChangePassword from './pages/Profile/ChangePassword';
+import '../static/icons/index';
 
 document.addEventListener('DOMContentLoaded', () => {
   const signIn = new SignIn();

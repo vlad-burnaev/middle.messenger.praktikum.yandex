@@ -1,4 +1,4 @@
-import { ArrowRight1Icon } from '../../../static/icons/arrowRight1Icon';
+import { ArrowRight1Icon } from '../../../static/icons_deprecated/arrowRight1Icon';
 
 export const mainPageTemplate = `
     <article class="chatsBlock">

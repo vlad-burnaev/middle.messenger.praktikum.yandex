@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars';
-import { CheckMarkIcon } from '../../../../../../static/icons/checkMarkIcon';
+import { CheckMarkIcon } from '../../../../../../static/icons_deprecated/checkMarkIcon';
 
 Handlebars.registerHelper('isSent', (value) => value === 'sent');
 

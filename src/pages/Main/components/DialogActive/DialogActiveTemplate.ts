@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars';
-import { MenuIcon } from '../../../../../static/icons/menuIcon';
-import { ClipIcon } from '../../../../../static/icons/clipIcon';
-import { ArrowRight2Icon } from '../../../../../static/icons/arrowRight2Icon';
+import { MenuIcon } from '../../../../../static/icons_deprecated/menuIcon';
+import { ClipIcon } from '../../../../../static/icons_deprecated/clipIcon';
+import { ArrowRight2Icon } from '../../../../../static/icons_deprecated/arrowRight2Icon';
 
 const dialogActiveTemplate = `
     <article class="dialogActive">
