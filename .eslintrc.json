@@ -37,7 +37,8 @@
         "prefer-destructuring": "off",
         "no-param-reassign": "off",
         "no-useless-constructor": "off",
-        "array-callback-return": "off"
+        "array-callback-return": "off",
+        "max-len": ["error", { "code": 120 }]
     },
     "settings": {
         "import/resolver": {

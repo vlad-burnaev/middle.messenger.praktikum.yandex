@@ -3,7 +3,7 @@ import { ArrowRight1Icon } from '../../../static/icons/arrowRight1Icon';
 export const mainPageTemplate = `
     <article class="chatsBlock">
         <nav class="chatsBlockHeader">
-            <a href="/src/pages/ProfilePages/Profile/Profile.html" class="settingsLink">
+            <a href="/src/pages/ProfilePages_deprecated/Profile/Profile.html" class="settingsLink">
                 Профиль
                 <div class="settingsLinkIcon">
                     ${ArrowRight1Icon}

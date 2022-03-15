@@ -1,5 +1,6 @@
 import Block from '../../utils/Block';
 import template from './error-component.hbs';
+import styles from './error-component.pcss';
 
 interface ErrorProps {
   title: string;
@@ -12,7 +13,7 @@ interface ErrorProps {
 
 export class ErrorComponent extends Block {
   constructor(props: ErrorProps) {
-    super(props);
+    super({ ...props, styles });
   }
 
   render() {
