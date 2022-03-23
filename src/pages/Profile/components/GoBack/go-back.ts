@@ -1,6 +1,7 @@
 import Block from '../../../../utils/Block';
 import template from './go-back.hbs';
 import styles from './go-back.pcss';
+import { ArrowLeft } from '../../../../../static/icons/arrow-left';
 
 interface ProfileGoBackProps {
   href: string
@@ -8,7 +9,7 @@ interface ProfileGoBackProps {
 
 export class ProfileGoBack extends Block {
   constructor(props: ProfileGoBackProps) {
-    super({ ...props, styles });
+    super({ ...props, styles, ArrowLeft });
   }
 
   render() {

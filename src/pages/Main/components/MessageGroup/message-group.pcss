@@ -1,0 +1,61 @@
+.message-group {
+  display: flex;
+
+  flex-direction: column;
+
+  &_my {
+    align-items: flex-end;
+
+    .message {
+      background: var(--color-grey-light);
+
+      border-radius: 12px 12px 0;
+    }
+  }
+
+  &_companion {
+    align-items: flex-start;
+
+    .message {
+      background: var(--color-grey-light);
+
+      border-radius: 0 12px 12px;
+    }
+
+    svg {
+      display: none;
+
+      color: var(--color-grey);
+    }
+  }
+
+  &__date {
+    width: 100%;
+
+    margin-bottom: 20px;
+
+    text-align: center;
+
+    color: var(--color-grey);
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}
+
+.message {
+  display: flex;
+
+  max-width: 40%;
+
+  padding: 11px;
+
+  justify-content: flex-end;
+
+  white-space: pre-line;
+
+  &:not(:first-child) {
+    margin-top: 10px;
+  }
+}

@@ -1,0 +1,27 @@
+<article class="{{styles.chat}}">
+    <section class="{{styles.chat-header}}">
+        <div class="{{styles.chat-header__left-block}}">
+            <div class="{{styles.chat-header__avatar}}">
+                <img src="{{avatarSrc}}" alt="avatar">
+            </div>
+            <div class="{{styles.chat-header__name}}">{{name}}</div>
+        </div>
+        <div class="{{styles.chat-header__right-block}}">
+            {{{ Menu }}}
+        </div>
+    </section>
+    <ul class="{{styles.chat-main}}">
+        {{{ messageGroup1 }}}
+        {{{ messageGroup2 }}}
+        {{{ messageGroup3 }}}
+    </ul>
+    <section class="{{styles.chat-footer}}">
+        <button class="{{styles.chat-footer__attach}}">
+            {{{ Clip }}}
+        </button>
+        <input type="text" placeholder="Сообщение" class="{{styles.chat-footer__input}}">
+        <button class="{{styles.chat-footer__enter-button}}">
+            {{{ ArrowRight2 }}}
+        </button>
+    </section>
+</article>

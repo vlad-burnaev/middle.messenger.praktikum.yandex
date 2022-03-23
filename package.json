@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build index.html",
+    "dev": "parcel src/index.html --no-cache",
+    "build": "parcel build src/index.html",
     "start": "node server.js",
     "lint:css": "stylelint **/*.pcss",
     "lint:css:fix": "stylelint **/*.pcss --fix",

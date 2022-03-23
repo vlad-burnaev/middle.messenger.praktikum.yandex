@@ -1,15 +1,8 @@
-@import '/reset.css';
-@import '/index.css';
-@import "components/Chat/Chat.css";
-@import "components/DialogActive/DialogActive.css";
-@import "components/DialogActive/Message/Message.css";
-@import "components/DialogActive/MessageGroup/MessageGroup.css";
-
 :root {
   --chats-block-header-height: 106px;
 }
 
-.chatsBlock {
+.chats-preview-block {
   width: 310px;
   height: 100vh;
 
@@ -20,7 +13,7 @@
   border-right: 1px solid var(--color-grey-light);
 }
 
-.chatsBlockHeader {
+.chats-preview-block-header {
   display: flex;
   height: var(--chats-block-header-height);
 
@@ -30,7 +23,7 @@
   border-bottom: 1px solid var(--color-grey-light);
 }
 
-.settingsLink {
+.settings-link {
   display: flex;
 
   width: 100%;
@@ -43,16 +36,16 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
-}
 
-@media (hover: hover) {
-  .settingsLink:hover {
-    color: var(--color-beige);
+  @media (hover: hover) {
+    &:hover {
+      color: var(--color-beige);
+    }
   }
-}
 
-.settingsLinkIcon {
-  margin-left: 8px;
+  &__icon {
+    margin-left: 8px;
+  }
 }
 
 .search {
@@ -68,12 +61,12 @@
   background: var(--color-grey-light);
 }
 
-.chatsBlockChats {
+.chats-preview {
   height: calc(100vh - var(--chats-block-header-height));
   overflow-y: auto;
 }
 
-.dialog {
+.chat {
   width: 100%;
 }
 

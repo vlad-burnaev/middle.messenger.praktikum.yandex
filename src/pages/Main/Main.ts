@@ -1,17 +1,54 @@
-import Handlebars from 'handlebars';
+import Block from '../../utils/Block';
+import template from './main.hbs';
+import ChatPreview from './components/ChatPreview';
+import { ArrowRight1 } from '../../../static/icons/arrow-right-1';
+import Chat from './components/Chat';
+import styles from './main.pcss';
 
-import { mainPageTemplate } from './Main.template';
-import { mainPageData } from './Main.data';
-import { Chat } from './components/Chat/ChatTemplate';
-import { Message } from './components/DialogActive/Message/MessageTemplate';
-import { MessageGroup } from './components/DialogActive/MessageGroup/MessageGroupTemplate';
-import { DialogActive } from './components/DialogActive/DialogActiveTemplate';
+export class Main extends Block {
+  constructor() {
+    super({ styles });
+  }
 
-const container = document.querySelector('.MainPage');
+  initChildren() {
+    this.children.ChatPreview1 = new ChatPreview({
+      avatarSrc: '',
+      name: 'Петя',
+      lastMessage: {
+        text: 'some text',
+        prefix: 'Вы: ',
+      },
+      meta: {
+        time: '15:00',
+        newMessagesCount: 2,
+      },
+    });
+    this.children.ChatPreview2 = new ChatPreview({
+      avatarSrc: '',
+      name: 'Оля',
+      lastMessage: {
+        text: 'some text 2',
+      },
+      meta: {
+        time: '16:00',
+        newMessagesCount: 2,
+      },
+    });
+    this.children.ChatPreview3 = new ChatPreview({
+      avatarSrc: '',
+      name: 'Вася',
+      lastMessage: {
+        text: 'some text 3',
+        prefix: 'Он: ',
+      },
+      meta: {
+        time: '17:00',
+      },
+    });
+    this.children.Chat = new Chat();
+  }
 
-Handlebars.registerPartial({
-  Chat, Message, MessageGroup, DialogActive,
-});
-const MainPage = Handlebars.compile(mainPageTemplate);
-
-container!.innerHTML = MainPage(mainPageData);
+  render() {
+    return this.compile(template, { ...this.props, ArrowRight1 });
+  }
+}
