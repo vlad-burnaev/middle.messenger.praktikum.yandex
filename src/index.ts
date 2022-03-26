@@ -19,5 +19,5 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileChangePassword = new ProfileChangePassword();
   const main = new Main();
 
-  renderDOM('#app', signIn);
+  renderDOM('#app', main);
 });

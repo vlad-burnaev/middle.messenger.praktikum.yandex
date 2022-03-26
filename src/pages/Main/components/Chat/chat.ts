@@ -5,26 +5,26 @@ import { Menu } from '../../../../../static/icons/menu';
 import { ArrowRight2 } from '../../../../../static/icons/arrow-right-2';
 import { Clip } from '../../../../../static/icons/clip';
 import MessageGroup from '../MessageGroup';
+import { MessageGroupProps } from '../MessageGroup/message-group';
 
-// interface ChatProps {
-//   avatarSrc: string,
-//   name: string,
-//   messageGroups: {
-//
-//   }[]
-// }
+export interface ChatProps {
+  avatarSrc: string,
+  name: string,
+  messageGroups: MessageGroupProps[]
+}
 
 export class Chat extends Block {
-  constructor() {
+  constructor(props: ChatProps) {
     super({
-      styles, Menu, ArrowRight2, Clip,
+      ...props, styles, Menu, ArrowRight2, Clip,
     });
   }
 
   initChildren() {
-    this.children.messageGroup1 = new MessageGroup();
-    this.children.messageGroup2 = new MessageGroup();
-    this.children.messageGroup3 = new MessageGroup();
+    const messageGroups = this.props.messageGroups;
+    this.children.messageGroup1 = new MessageGroup(messageGroups[0]);
+    this.children.messageGroup2 = new MessageGroup(messageGroups[1]);
+    this.children.messageGroup3 = new MessageGroup(messageGroups[2]);
   }
 
   render() {

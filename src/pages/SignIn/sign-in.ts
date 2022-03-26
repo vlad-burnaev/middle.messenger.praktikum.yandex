@@ -9,7 +9,7 @@ export class SignIn extends Block {
     super({ ...signInData });
   }
 
-  protected initChildren() {
+  initChildren() {
     this.children.formFieldLogin = new FormField(signInData.formFields[0]);
     this.children.formFieldPassword = new FormField(signInData.formFields[1]);
     this.children.submitButton = new Button(signInData.submitButton);

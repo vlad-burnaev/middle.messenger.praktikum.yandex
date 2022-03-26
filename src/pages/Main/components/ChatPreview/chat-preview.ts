@@ -2,7 +2,7 @@ import Block from '../../../../utils/Block';
 import template from './chat-preview.hbs';
 import styles from './chat-preview.pcss';
 
-interface ChatPreviewProps {
+export interface ChatPreviewProps {
   avatarSrc: string,
   name: string,
   lastMessage: {
