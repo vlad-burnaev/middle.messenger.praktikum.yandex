@@ -1,12 +1,16 @@
+/* eslint-disable no-unused-vars */
 import Block from '../../../../utils/Block';
 import template from './data-field-editable.hbs';
 import styles from './data-field-editable.pcss';
 
-interface ProfileDataFieldEditableProps {
+export interface ProfileDataFieldEditableProps {
   id: string,
   type: string,
   placeholder: string,
   category: string,
+  events: {
+    change: (e: any) => void
+  }
 }
 
 export class ProfileDataFieldEditable extends Block {

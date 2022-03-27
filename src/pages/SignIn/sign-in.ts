@@ -16,19 +16,15 @@ export class SignIn extends Block {
 
   initChildren() {
     this.children.formFieldLogin = new FormField({
-      ...signInData.formFields[0],
+      ...signInData.formFields.login,
       events: {
-        change: (e) => {
-          this.formData.login = e.target.value;
-        },
+        change: (e) => this.formData.login = e.target.value,
       },
     });
     this.children.formFieldPassword = new FormField({
-      ...signInData.formFields[1],
+      ...signInData.formFields.password,
       events: {
-        change: (e) => {
-          this.formData.password = e.target.value;
-        },
+        change: (e) => this.formData.password = e.target.value,
       },
     });
     this.children.submitButton = new Button({

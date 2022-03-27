@@ -12,14 +12,39 @@ export class ProfileChangePassword extends Block {
     super({ styles });
   }
 
+  private formData = {
+    old_password: '',
+    new_password: '',
+  }
+
   initChildren() {
     this.children.avatar = new ProfileAvatar();
 
-    this.children.dataFieldOldPassword = new ProfileDataFieldEditable(profileChangePasswordPageData.data[0]);
-    this.children.dataFieldNewPassword = new ProfileDataFieldEditable(profileChangePasswordPageData.data[1]);
-    this.children.dataFieldNewPasswordRepeat = new ProfileDataFieldEditable(profileChangePasswordPageData.data[2]);
+    this.children.dataFieldOldPassword = new ProfileDataFieldEditable({
+      ...profileChangePasswordPageData.data.old_password,
+      events: {
+        change: (e) => this.formData.old_password = e.target.value,
+      },
+    });
+    this.children.dataFieldNewPassword = new ProfileDataFieldEditable({
+      ...profileChangePasswordPageData.data.new_password,
+      events: {
+        change: (e) => this.formData.new_password = e.target.value,
+      },
+    });
+    this.children.dataFieldNewPasswordRepeat = new ProfileDataFieldEditable({
+      ...profileChangePasswordPageData.data.new_password_2,
+      events: {
+        change: (e) => this.formData.new_password = e.target.value,
+      },
+    });
 
-    this.children.submitButton = new Button(profileChangePasswordPageData.submitButton);
+    this.children.submitButton = new Button({
+      ...profileChangePasswordPageData.submitButton,
+      events: {
+        click: () => console.log(this.formData),
+      },
+    });
 
     this.children.goBack = new ProfileGoBack(profileChangePasswordPageData.goBack);
   }

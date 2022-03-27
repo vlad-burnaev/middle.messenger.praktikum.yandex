@@ -38,7 +38,8 @@
         "no-param-reassign": "off",
         "no-useless-constructor": "off",
         "array-callback-return": "off",
-        "max-len": ["error", { "code": 120 }]
+        "max-len": ["error", { "code": 120 }],
+        "no-return-assign": "off"
     },
     "settings": {
         "import/resolver": {

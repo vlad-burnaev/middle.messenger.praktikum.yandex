@@ -20,59 +20,45 @@ export class SignUp extends Block {
 
   protected initChildren() {
     this.children.formfieldEmail = new FormField({
-      ...signUpData.formfields[0],
+      ...signUpData.formfields.email,
       events: {
-        change: (e) => {
-          this.formData.email = e.target.value;
-        },
+        change: (e) => this.formData.email = e.target.value,
       },
     });
     this.children.formfieldLogin = new FormField({
-      ...signUpData.formfields[1],
+      ...signUpData.formfields.login,
       events: {
-        change: (e) => {
-          this.formData.login = e.target.value;
-        },
+        change: (e) => this.formData.login = e.target.value,
       },
     });
     this.children.formfieldFirstName = new FormField({
-      ...signUpData.formfields[2],
+      ...signUpData.formfields.first_name,
       events: {
-        change: (e) => {
-          this.formData.first_name = e.target.value;
-        },
+        change: (e) => this.formData.first_name = e.target.value,
       },
     });
     this.children.formfieldSecondName = new FormField({
-      ...signUpData.formfields[3],
+      ...signUpData.formfields.second_name,
       events: {
-        change: (e) => {
-          this.formData.second_name = e.target.value;
-        },
+        change: (e) => this.formData.second_name = e.target.value,
       },
     });
     this.children.formfieldPhone = new FormField({
-      ...signUpData.formfields[4],
+      ...signUpData.formfields.phone,
       events: {
-        change: (e) => {
-          this.formData.phone = e.target.value;
-        },
+        change: (e) => this.formData.phone = e.target.value,
       },
     });
     this.children.formfieldPassword = new FormField({
-      ...signUpData.formfields[5],
+      ...signUpData.formfields.password,
       events: {
-        change: (e) => {
-          this.formData.password = e.target.value;
-        },
+        change: (e) => this.formData.password = e.target.value,
       },
     });
     this.children.formfieldPassword2 = new FormField({
-      ...signUpData.formfields[6],
+      ...signUpData.formfields.password_2,
       events: {
-        change: (e) => {
-          this.formData.password = e.target.value;
-        },
+        change: (e) => this.formData.password = e.target.value,
       },
     });
     this.children.submitButton = new Button({
