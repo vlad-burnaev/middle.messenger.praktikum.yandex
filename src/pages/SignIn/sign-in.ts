@@ -9,10 +9,36 @@ export class SignIn extends Block {
     super({ ...signInData });
   }
 
+  private formData = {
+    login: '',
+    password: '',
+  }
+
   initChildren() {
-    this.children.formFieldLogin = new FormField(signInData.formFields[0]);
-    this.children.formFieldPassword = new FormField(signInData.formFields[1]);
-    this.children.submitButton = new Button(signInData.submitButton);
+    this.children.formFieldLogin = new FormField({
+      ...signInData.formFields[0],
+      events: {
+        change: (e) => {
+          this.formData.login = e.target.value;
+        },
+      },
+    });
+    this.children.formFieldPassword = new FormField({
+      ...signInData.formFields[1],
+      events: {
+        change: (e) => {
+          this.formData.password = e.target.value;
+        },
+      },
+    });
+    this.children.submitButton = new Button({
+      ...signInData.submitButton,
+      events: {
+        click: () => {
+          console.log(this.formData);
+        },
+      },
+    });
   }
 
   render() {
