@@ -2,15 +2,20 @@
 import Block from '../../utils/Block';
 import template from './form-field.hbs';
 import styles from './form-field.pcss';
+import { ValidationScheme } from '../../utils/validation.v2';
 
 export interface FormFieldProps {
-  id: string,
+  name: string,
   label: string,
   type: string,
-  isRequired: boolean,
-  events: {
-    change: (event: any) => void
-  }
+  validationScheme?: ValidationScheme,
+  setValidationStatus?: (name:string, isValid:boolean) => void,
+  errorMessage?: string,
+  events?: {
+    input: (e: any) => void,
+    focus: (e: any) => void,
+    blur: (e: any) => void,
+  },
 }
 
 export class FormField extends Block {

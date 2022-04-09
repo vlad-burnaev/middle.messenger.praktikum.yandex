@@ -1,18 +1,21 @@
-export const signInData = {
+import { FormProps } from '../../components/Form/form';
+
+export const signInData: FormProps = {
   title: 'Вход',
-  formFields: {
-    login: {
-      id: 'login', label: 'Логин', type: 'email', isRequired: true,
+  formFields: [
+    {
+      name: 'login', label: 'Логин', type: 'email', errorMessage: 'Неверный логин',
     },
-    password: {
-      id: 'password', label: 'Пароль', type: 'password', isRequired: true,
+    {
+      name: 'password', label: 'Пароль', type: 'password', errorMessage: 'Неверный пароль',
     },
-  },
+  ],
   submitButton: {
     label: 'Авторизироваться',
+    onClick: () => console.log('submit'),
   },
   secondaryButton: {
     label: 'Нет аккаунта?',
-    href: '#',
+    onClick: () => console.log('secondaryButton clicked'),
   },
 };
