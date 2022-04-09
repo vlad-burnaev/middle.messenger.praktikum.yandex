@@ -12,9 +12,10 @@ export interface FormFieldProps {
   setValidationStatus?: (name:string, isValid:boolean) => void,
   errorMessage?: string,
   events?: {
-    input: (e: any) => void,
-    focus: (e: any) => void,
-    blur: (e: any) => void,
+    change?: (e: any) => void,
+    input?: (e: any) => void,
+    focus?: (e: any) => void,
+    blur?: (e: any) => void,
   },
 }
 
