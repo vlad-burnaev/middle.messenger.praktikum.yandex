@@ -1,6 +1,6 @@
 import { renderDOM } from './utils/renderDOM';
 import './styles/index.pcss';
-import { Navigation } from './pages/Navigation/navigation';
+import Navigation from './pages/Navigation';
 
 document.addEventListener('DOMContentLoaded', () => {
   const navigation = new Navigation();
