@@ -11,11 +11,7 @@ export class SignIn extends Block {
 
   private inputsValidationState = new Map<string, boolean>([['login', false], ['password', false]]);
 
-  setValidationStatus = (name: string, status: boolean) => {
-    this.inputsValidationState.set(name, status);
-    const isValid = Object.values(this.inputsValidationState).every((v) => v);
-    this.children.submitButton.setProps({ isActive: isValid });
-  }
+  private setValidationStatus: any;
 
   initChildren() {
     this.setValidationStatus = (name: string, status: boolean) => {

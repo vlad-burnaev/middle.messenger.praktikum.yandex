@@ -1,26 +1,63 @@
-export const signUpData = {
+import { FormData } from '../SignIn/sign-in.data';
+
+export const signUpData: FormData = {
   title: 'Регистрация',
-  formfields: {
+  formFields: {
     email: {
-      name: 'email', label: 'Почта', type: 'email', isRequired: true,
+      id: 'email',
+      label: 'Почта',
+      type: 'email',
+      isRequired: true,
+      validationScheme: 'email',
+      errorMessage: 'Неверный email',
     },
     login: {
-      name: 'login', label: 'Логин', type: 'text', isRequired: true,
+      id: 'login',
+      label: 'Логин',
+      type: 'text',
+      isRequired: true,
+      validationScheme: 'login',
+      errorMessage: 'Неверный логин',
     },
     first_name: {
-      name: 'first_name', label: 'Имя', type: 'text', isRequired: true,
+      id: 'first_name',
+      label: 'Имя',
+      type: 'text',
+      isRequired: true,
+      validationScheme: 'name',
+      errorMessage: 'Неверный формат имени',
     },
     second_name: {
-      name: 'second_name', label: 'Фамилия', type: 'text', isRequired: true,
+      id: 'second_name',
+      label: 'Фамилия',
+      type: 'text',
+      isRequired: true,
+      validationScheme: 'name',
+      errorMessage: 'Неверный формат фамилии',
     },
     phone: {
-      name: 'phone', label: 'Телефон', type: 'tel', isRequired: true,
+      id: 'phone',
+      label: 'Телефон',
+      type: 'tel',
+      isRequired: true,
+      validationScheme: 'phone',
+      errorMessage: 'Неверный формат номера телефона',
     },
     password: {
-      name: 'password', label: 'Пароль', type: 'password', isRequired: true,
+      id: 'password',
+      label: 'Пароль',
+      type: 'password',
+      isRequired: true,
+      validationScheme: 'password',
+      errorMessage: 'Неверный формат пароля',
     },
     password_2: {
-      name: 'password_2', label: 'Пароль (еще раз)', type: 'password', isRequired: true,
+      id: 'password_2',
+      label: 'Пароль (еще раз)',
+      type: 'password',
+      isRequired: true,
+      validationScheme: 'password',
+      errorMessage: 'Неверный формат пароля',
     },
   },
   submitButton: {

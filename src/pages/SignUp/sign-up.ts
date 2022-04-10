@@ -9,62 +9,63 @@ export class SignUp extends Block {
     super({ ...signUpData });
   }
 
-  private formData = {
-    email: '',
-    login: '',
-    first_name: '',
-    second_name: '',
-    phone: '',
-    password: '',
-  }
+  private inputsValidationState = new Map<string, boolean>([
+    ['email', false],
+    ['login', false],
+    ['first_name', false],
+    ['second_name', false],
+    ['phone', false],
+    ['password', false],
+    ['password_2', false],
+  ]);
+
+  private setValidationStatus: any;
 
   protected initChildren() {
+    this.setValidationStatus = (name: string, status: boolean) => {
+      this.inputsValidationState.set(name, status);
+      const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
+      this.children.submitButton.setProps({ isDisabled: !isValid });
+    };
     this.children.formfieldEmail = new FormField({
-      ...signUpData.formfields.email,
-      events: {
-        change: (e) => this.formData.email = e.target.value,
-      },
+      ...signUpData.formFields.email,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldLogin = new FormField({
-      ...signUpData.formfields.login,
-      events: {
-        change: (e) => this.formData.login = e.target.value,
-      },
+      ...signUpData.formFields.login,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldFirstName = new FormField({
-      ...signUpData.formfields.first_name,
-      events: {
-        change: (e) => this.formData.first_name = e.target.value,
-      },
+      ...signUpData.formFields.first_name,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldSecondName = new FormField({
-      ...signUpData.formfields.second_name,
-      events: {
-        change: (e) => this.formData.second_name = e.target.value,
-      },
+      ...signUpData.formFields.second_name,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldPhone = new FormField({
-      ...signUpData.formfields.phone,
-      events: {
-        change: (e) => this.formData.phone = e.target.value,
-      },
+      ...signUpData.formFields.phone,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldPassword = new FormField({
-      ...signUpData.formfields.password,
-      events: {
-        change: (e) => this.formData.password = e.target.value,
-      },
+      ...signUpData.formFields.password,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formfieldPassword2 = new FormField({
-      ...signUpData.formfields.password_2,
-      events: {
-        change: (e) => this.formData.password = e.target.value,
-      },
+      ...signUpData.formFields.password_2,
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.submitButton = new Button({
       ...signUpData.submitButton,
       events: {
-        click: () => console.log(this.formData),
+        click: () => {
+          const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
+          if (isValid) {
+            console.log('Форма заполнена верно');
+          } else {
+            console.error('Форма заполнена неверно');
+          }
+        },
       },
     });
   }

@@ -4,6 +4,7 @@ export type ValidationScheme =
   | 'email'
   | 'name'
   | 'phone'
+  | 'message'
 
 export const validate = (type: ValidationScheme, input: string) => {
   if (!type || !input) {
@@ -16,6 +17,7 @@ export const validate = (type: ValidationScheme, input: string) => {
     email: /^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i,
     name: /^[A-ZА-Я][a-zа-я-]*$/,
     phone: /^(\+)?\d{5,15}$/,
+    message: /^$|\s+/,
   };
 
   return new RegExp(validationType[type]).test(input);
