@@ -1,8 +1,5 @@
 <li class="{{styles.form-field}}">
-    <label for={{name}} class="{{styles.form-field__label}}">{{label}}</label>
-    <input type={{type}} id={{name}} class="{{styles.form-field__input}}" />
-    {{#if isValid}}
-    {{else}}
-        <div class="{{styles.form-field__error}}">{{errorMessage}}</div>
-    {{/if}}
+    <label for={{id}} class="{{styles.form-field__input-label}}">{{label}}</label>
+    {{{ input }}}
+    {{{ error }}}
 </li>

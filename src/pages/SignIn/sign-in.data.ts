@@ -1,11 +1,35 @@
-export const signInData = {
+import { FormFieldProps } from '../../components/FormField/form-field';
+
+export type FormData = {
+  title: string,
+  formFields: Record<string, FormFieldProps>,
+  submitButton: {
+    label: string
+  },
+  secondaryButton: {
+    label: string,
+    href: string
+  }
+}
+
+export const signInData: FormData = {
   title: 'Вход',
   formFields: {
     login: {
-      name: 'login', label: 'Логин', type: 'email', isRequired: true,
+      id: 'login',
+      label: 'Логин',
+      type: 'text',
+      isRequired: true,
+      validationScheme: 'login',
+      errorMessage: 'Неверный логин',
     },
     password: {
-      name: 'password', label: 'Пароль', type: 'password', isRequired: true,
+      id: 'password',
+      label: 'Пароль',
+      type: 'password',
+      isRequired: true,
+      validationScheme: 'password',
+      errorMessage: 'Неверный пароль',
     },
   },
   submitButton: {

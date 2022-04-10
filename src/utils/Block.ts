@@ -125,8 +125,7 @@ class Block {
       }
 
       Object.entries(events).forEach(([event, handler]) => {
-        const useCapture = ['focus', 'blur'].includes(event);
-        this._element!.addEventListener(event, handler, useCapture);
+        this._element!.addEventListener(event, handler);
       });
     }
 

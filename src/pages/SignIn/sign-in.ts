@@ -9,29 +9,38 @@ export class SignIn extends Block {
     super({ ...signInData });
   }
 
-  private formData = {
-    login: '',
-    password: '',
+  private inputsValidationState = new Map<string, boolean>([['login', false], ['password', false]]);
+
+  setValidationStatus = (name: string, status: boolean) => {
+    this.inputsValidationState.set(name, status);
+    const isValid = Object.values(this.inputsValidationState).every((v) => v);
+    this.children.submitButton.setProps({ isActive: isValid });
   }
 
   initChildren() {
+    this.setValidationStatus = (name: string, status: boolean) => {
+      this.inputsValidationState.set(name, status);
+      const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
+      this.children.submitButton.setProps({ isDisabled: !isValid });
+    };
     this.children.formFieldLogin = new FormField({
       ...signInData.formFields.login,
-      events: {
-        change: (e) => this.formData.login = e.target.value,
-      },
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.formFieldPassword = new FormField({
       ...signInData.formFields.password,
-      events: {
-        change: (e) => this.formData.password = e.target.value,
-      },
+      setValidationStatus: this.setValidationStatus,
     });
     this.children.submitButton = new Button({
       ...signInData.submitButton,
       events: {
         click: () => {
-          console.log(this.formData);
+          const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
+          if (isValid) {
+            console.log('Форма заполнена верно');
+          } else {
+            console.error('Форма заполнена неверно');
+          }
         },
       },
     });

@@ -4,8 +4,9 @@ import styles from './button.pcss';
 
 export interface ButtonProps {
     label: string;
+    isDisabled?: boolean;
     events?: {
-      click: () => void;
+      click?: () => void;
     },
 }
 
