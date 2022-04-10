@@ -6,6 +6,7 @@ import { ArrowRight2 } from '../../../../../static/icons/arrow-right-2';
 import { Clip } from '../../../../../static/icons/clip';
 import MessageGroup from '../MessageGroup';
 import { MessageGroupProps } from '../MessageGroup/message-group';
+import NewMessagePanel from './NewMessagePanel';
 
 export interface ChatProps {
   avatarSrc: string,
@@ -25,6 +26,7 @@ export class Chat extends Block {
     this.children.messageGroup1 = new MessageGroup(messageGroups[0]);
     this.children.messageGroup2 = new MessageGroup(messageGroups[1]);
     this.children.messageGroup3 = new MessageGroup(messageGroups[2]);
+    this.children.newMessagePanel = new NewMessagePanel();
   }
 
   render() {
