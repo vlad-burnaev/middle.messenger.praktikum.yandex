@@ -1,6 +1,5 @@
 {
     "extends": "@parcel/config-default",
-    "resolvers": ["..."],
     "transformers": {
         "*.hbs": ["@anikin/parcel-transformer-handlebars-precompile"]
     }
