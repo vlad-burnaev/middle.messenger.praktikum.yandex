@@ -10,7 +10,7 @@ import Error500 from '../500';
 import ProfileMain from '../Profile/Main';
 import ProfileEditData from '../Profile/EditData';
 import ProfileChangePassword from '../Profile/ChangePassword';
-import styles from './navigation.pcss';
+import * as styles from './navigation.pcss';
 
 export class Navigation extends Block {
   constructor() {

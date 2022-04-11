@@ -3,7 +3,7 @@ import template from './main.hbs';
 import ChatPreview from './components/ChatPreview';
 import { ArrowRight1 } from '../../../static/icons/arrow-right-1';
 import Chat from './components/Chat';
-import styles from './main.pcss';
+import * as styles from './main.pcss';
 import { mainPageData } from './main.data';
 
 export class Main extends Block {
