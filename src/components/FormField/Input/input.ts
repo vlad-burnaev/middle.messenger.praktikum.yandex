@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Block from '../../../utils/Block';
 import template from './input.hbs';
-import styles from './input.pcss';
+import * as styles from './input.pcss';
 
 export interface InputProps {
   id: string,

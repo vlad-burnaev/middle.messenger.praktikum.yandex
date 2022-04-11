@@ -1,6 +1,6 @@
 import Block from '../../utils/Block';
 import template from './error-component.hbs';
-import styles from './error-component.pcss';
+import * as styles from './error-component.pcss';
 
 interface ErrorProps {
   title: string;

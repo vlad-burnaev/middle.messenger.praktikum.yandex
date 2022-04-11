@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 import Block from '../../../../utils/Block';
 import template from './message.hbs';
-import styles from './message.pcss';
+import * as styles from './message.pcss';
 import { Checkmark } from '../../../../../static/icons/checkmark';
 
 type MessageStatus = 'sent' | 'delivered';

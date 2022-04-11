@@ -1,5 +1,5 @@
 import template from './profile-main.hbs';
-import styles from '../profile.pcss';
+import * as styles from '../profile.pcss';
 import Block from '../../../utils/Block';
 import { profileMainData } from './profile-main.data';
 import ProfileDataField from '../components/DataField';

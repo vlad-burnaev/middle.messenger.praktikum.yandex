@@ -1,6 +1,6 @@
 import Block from '../../../../utils/Block';
 import template from './data-field.hbs';
-import styles from './data-field.pcss';
+import * as styles from './data-field.pcss';
 
 interface ProfileDataFieldProps {
   category: string,

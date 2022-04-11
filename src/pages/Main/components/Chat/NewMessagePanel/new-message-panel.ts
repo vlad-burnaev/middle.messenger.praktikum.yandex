@@ -1,5 +1,5 @@
 import template from './new-message-panel.hbs';
-import styles from './new-message-panel.pcss';
+import * as styles from './new-message-panel.pcss';
 import { Clip } from '../../../../../../static/icons/clip';
 import { ArrowRight2 } from '../../../../../../static/icons/arrow-right-2';
 import Block from '../../../../../utils/Block';

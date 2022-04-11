@@ -1,6 +1,6 @@
 import Block from '../../../../utils/Block';
 import template from './chat-preview.hbs';
-import styles from './chat-preview.pcss';
+import * as styles from './chat-preview.pcss';
 
 export interface ChatPreviewProps {
   avatarSrc: string,
