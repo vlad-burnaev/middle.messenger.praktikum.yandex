@@ -1,10 +1,11 @@
 # Месседжер
+[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/3) на PR Sprint 2
 
 ## Общая информация
 
 Статус: в разработке 👨🏻‍💻
 
-Проект на [Netlify](https://mystifying-roentgen-09081c.netlify.app) 🖥
+Проект на [Netlify](https://neon-quokka-new.netlify.app/) 🖥
 
 Макет в [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1) 🖼
 
