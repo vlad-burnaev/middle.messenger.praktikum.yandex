@@ -1,5 +1,5 @@
 import template from './profile-change-password.hbs';
-import styles from '../profile.pcss';
+import * as styles from '../profile.pcss';
 import Block from '../../../utils/Block';
 import { profileChangePasswordPageData } from './profile-change-password.data';
 import ProfileGoBack from '../components/GoBack';

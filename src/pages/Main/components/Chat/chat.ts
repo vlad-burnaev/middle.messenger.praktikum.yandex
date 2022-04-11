@@ -1,6 +1,6 @@
 import Block from '../../../../utils/Block';
 import template from './chat.hbs';
-import styles from './chat.pcss';
+import * as styles from './chat.pcss';
 import { Menu } from '../../../../../static/icons/menu';
 import { ArrowRight2 } from '../../../../../static/icons/arrow-right-2';
 import { Clip } from '../../../../../static/icons/clip';

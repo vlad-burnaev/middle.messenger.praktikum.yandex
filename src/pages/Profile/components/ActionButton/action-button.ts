@@ -1,6 +1,6 @@
 import Block from '../../../../utils/Block';
 import template from './action-button.hbs';
-import styles from './action-button.pcss';
+import * as styles from './action-button.pcss';
 
 interface ProfileActionButtonProps {
   label: string,

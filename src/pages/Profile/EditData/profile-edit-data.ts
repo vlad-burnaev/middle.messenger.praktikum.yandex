@@ -1,5 +1,5 @@
 import template from './profile-edit-data.hbs';
-import styles from '../profile.pcss';
+import * as styles from '../profile.pcss';
 import Block from '../../../utils/Block';
 import { profileEditDataPageData } from './profile-edit-data.data';
 import ProfileGoBack from '../components/GoBack';

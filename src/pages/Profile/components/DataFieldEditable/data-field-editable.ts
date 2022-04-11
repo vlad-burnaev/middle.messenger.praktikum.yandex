@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import Block from '../../../../utils/Block';
 import template from './data-field-editable.hbs';
-import styles from './data-field-editable.pcss';
+import * as styles from './data-field-editable.pcss';
 
 export interface ProfileDataFieldEditableProps {
   id: string,

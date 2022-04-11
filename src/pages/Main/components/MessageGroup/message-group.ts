@@ -1,7 +1,7 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
 import Block from '../../../../utils/Block';
 import template from './message-group.hbs';
-import styles from './message-group.pcss';
+import * as styles from './message-group.pcss';
 import { Message, MessageProps } from '../Message/message';
 
 type MessageGroupTypes = 'my' | 'companion';
