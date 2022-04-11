@@ -1,1 +1,1 @@
-export { Main as default } from './main';
+export { Main as default } from './main-file';
