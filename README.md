@@ -1,5 +1,7 @@
 # Месседжер
 
+[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/3) на PR Sprint 2
+
 ## Общая информация
 
 Статус: в разработке 👨🏻‍💻
