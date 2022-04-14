@@ -2,6 +2,11 @@ import Block from '../../../../utils/Block';
 import template from './chat-preview.hbs';
 import * as styles from './chat-preview.pcss';
 
+type Meta = {
+  time: string,
+  newMessagesCount?: number
+}
+
 export interface ChatPreviewProps {
   avatarSrc: string,
   name: string,
@@ -9,10 +14,7 @@ export interface ChatPreviewProps {
     text: string,
     prefix?: string
   },
-  meta: {
-    time: string,
-    newMessagesCount?: number
-  }
+  meta: Meta
 }
 
 export class ChatPreview extends Block {
