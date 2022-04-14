@@ -6,10 +6,10 @@ declare class SafeString {
 }
 
 interface Logger {
-  DEBUG: number;
-  INFO: number;
-  WARN: number;
-  ERROR: number;
+  Debug: number;
+  Info: number;
+  Warn: number;
+  Error: number;
   level: number;
 
   methodMap: { [level: number]: string };
