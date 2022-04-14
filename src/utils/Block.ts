@@ -61,7 +61,7 @@ class Block {
 
     protected initChildren() {}
 
-    _registerEvents(eventBus: EventBus) {
+    private _registerEvents(eventBus: EventBus) {
       eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -72,7 +72,7 @@ class Block {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    _componentDidMount() {
+    private _componentDidMount() {
       this.componentDidMount();
     }
 
@@ -82,7 +82,7 @@ class Block {
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    _componentDidUpdate(oldProps: any, newProps: any) {
+    private _componentDidUpdate(oldProps: any, newProps: any) {
       if (this.componentDidUpdate(oldProps, newProps)) {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
       }
@@ -105,7 +105,7 @@ class Block {
       return this._element;
     }
 
-    _removeEvents() {
+    private _removeEvents() {
       const events: Record<string, () => void> = (this.props as any).events;
 
       if (!events || !this._element) {
@@ -117,7 +117,7 @@ class Block {
       });
     }
 
-    _addEvents() {
+    private _addEvents() {
       const events: Record<string, () => void> = (this.props as any).events;
 
       if (!events || !this._element) {
@@ -129,7 +129,7 @@ class Block {
       });
     }
 
-    _render() {
+    private _render() {
       const fragment = this.render();
 
       const newElement = fragment.firstElementChild as HTMLElement;
@@ -153,7 +153,7 @@ class Block {
       return this.element;
     }
 
-    _makePropsProxy(props: any) {
+    private _makePropsProxy(props: any) {
       const self = this;
 
       return new Proxy(props as unknown as object, {
@@ -177,7 +177,7 @@ class Block {
       });
     }
 
-    _createDocumentElement(tagName: string) {
+    private _createDocumentElement(tagName: string) {
       // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
       return document.createElement(tagName);
     }
