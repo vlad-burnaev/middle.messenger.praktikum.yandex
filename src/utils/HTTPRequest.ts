@@ -47,11 +47,10 @@ export class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest();
-      const isGet = method === Methods.GET;
 
       xhr.open(
         method,
-        isGet && !!data
+        data
           ? `${url}${queryStringify(data)}`
           : url,
       );
@@ -70,11 +69,11 @@ export class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 
-      if (isGet || !data) {
-        xhr.send();
-      } else {
+      if (data) {
         // @ts-ignore
         xhr.send(data);
+      } else {
+        xhr.send();
       }
     }));
   };
