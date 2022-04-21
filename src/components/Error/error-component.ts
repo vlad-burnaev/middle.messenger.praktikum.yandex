@@ -1,3 +1,4 @@
+/* eslint-disable space-infix-ops */
 import Block from '../../core/Block';
 import template from './error-component.hbs';
 import * as styles from './error-component.pcss';
@@ -21,6 +22,7 @@ export class ErrorComponent extends Block {
     this.children.goBackLink = new Link({
       label: this.props.link.label,
       path: this.props.link.path,
+      classNames: [styles.error__link],
     });
   }
 

@@ -17,21 +17,25 @@ class Block {
 
     protected props: any;
 
+    protected classNames: string[];
+
     protected children: Record<string, Block>;
 
     private eventBus: () => EventBus;
 
     /** JSDoc
-     * @param {Object} propsAndChildren
+     * @param {Object} componentData
      *
      * @returns {void}
      */
-    constructor(propsAndChildren: any = {}) {
+    constructor(componentData: any = {}) {
       const eventBus = new EventBus();
 
-      const { props, children } = this.getChildren(propsAndChildren);
+      const { props, children, classNames } = this.getChildren(componentData);
 
       this.children = children;
+
+      this.classNames = classNames;
 
       this.props = this._makePropsProxy(props);
 
@@ -43,21 +47,24 @@ class Block {
       eventBus.emit(Block.EVENTS.INIT);
     }
 
-    getChildren(propsAndChildren: any) {
+    getChildren(componentData: any) {
       const children: any = {};
       const props: any = {};
+      let classNames: any = [];
 
-      Object.entries(propsAndChildren).map(([key, value]) => {
+      Object.entries(componentData).map(([key, value]) => {
         if (value instanceof Block) {
           children[key] = value;
         } else if (Array.isArray(value) && value.every((v) => v instanceof Block)) {
           children[key] = value;
+        } else if (key === 'classNames') {
+          classNames = value;
         } else {
           props[key] = value;
         }
       });
 
-      return { props, children };
+      return { props, children, classNames };
     }
 
     protected initChildren() {}
@@ -207,6 +214,10 @@ class Block {
         }
 
         stub.replaceWith(child.getContent()!);
+
+        if (Array.isArray(child.classNames) && child.classNames.length) {
+          child.getContent()!.classList.add(...child.classNames);
+        }
       });
 
       return fragment.content;
