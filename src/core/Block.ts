@@ -150,7 +150,7 @@ class Block {
     }
 
     getContent() {
-      return this.element;
+      return this.element!;
     }
 
     private _makePropsProxy(props: any) {
@@ -209,6 +209,14 @@ class Block {
       });
 
       return fragment.content;
+    }
+
+    show() {
+      this.getContent().style.display = 'block';
+    }
+
+    hide() {
+      this.getContent().style.display = 'none';
     }
 }
 

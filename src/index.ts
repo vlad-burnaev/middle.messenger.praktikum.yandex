@@ -1,10 +1,15 @@
-import { renderDOM } from './core/renderDOM';
 import './styles/index.pcss';
-import Navigation from './pages/Navigation';
+import Router from './core/Router';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Main from './pages/Main';
+import ProfileMain from './pages/Profile/Main';
+import ProfileEditData from './pages/Profile/EditData';
+import ProfileChangePassword from './pages/Profile/ChangePassword';
+import Error404 from './pages/404';
+import Error500 from './pages/500';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const navigation = new Navigation();
-
   document.addEventListener('submit', (e) => {
     e.preventDefault();
     const res = {};
@@ -17,5 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  renderDOM('#app', navigation);
+  const router = new Router('#app');
+  router
+    .use('/', Main)
+    .use('/sign-in', SignIn)
+    .use('/sign-up', SignUp)
+    .use('/profile', ProfileMain)
+    .use('/edit-profile', ProfileEditData)
+    .use('/change-password', ProfileChangePassword)
+    .use('/404', Error404)
+    .use('/500', Error500)
+    .start();
 });
