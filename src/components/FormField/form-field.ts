@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './form-field.hbs';
 import * as styles from './form-field.pcss';
-import { validate, ValidationScheme } from '../../utils/validation.v2';
+import { validate, ValidationScheme } from '../../core/validation';
 import { Input } from './Input/input';
 import InputError from './InputError';
 

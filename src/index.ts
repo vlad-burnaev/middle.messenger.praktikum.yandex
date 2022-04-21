@@ -1,4 +1,4 @@
-import { renderDOM } from './utils/renderDOM';
+import { renderDOM } from './core/renderDOM';
 import './styles/index.pcss';
 import Navigation from './pages/Navigation';
 

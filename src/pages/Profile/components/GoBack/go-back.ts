@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './go-back.hbs';
 import * as styles from './go-back.pcss';
 import { ArrowLeft } from '../../../../../static/icons/arrow-left';

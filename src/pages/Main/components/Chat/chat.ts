@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './chat.hbs';
 import * as styles from './chat.pcss';
 import { Menu } from '../../../../../static/icons/menu';

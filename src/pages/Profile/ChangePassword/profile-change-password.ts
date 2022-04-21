@@ -1,6 +1,6 @@
 import template from './profile-change-password.hbs';
 import * as styles from '../profile.pcss';
-import Block from '../../../utils/Block';
+import Block from '../../../core/Block';
 import { profileChangePasswordPageData } from './profile-change-password.data';
 import ProfileGoBack from '../components/GoBack';
 import ProfileDataFieldEditable from '../components/DataFieldEditable';

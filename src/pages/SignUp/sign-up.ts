@@ -1,5 +1,5 @@
 import template from './sign-up.hbs';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import { signUpData } from './sign-up.data';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';

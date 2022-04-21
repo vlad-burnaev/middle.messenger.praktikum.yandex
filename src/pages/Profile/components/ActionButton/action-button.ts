@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './action-button.hbs';
 import * as styles from './action-button.pcss';
 

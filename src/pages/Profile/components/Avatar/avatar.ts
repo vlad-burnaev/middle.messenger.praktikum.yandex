@@ -1,4 +1,4 @@
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './avatar.hbs';
 import * as styles from './avatar.pcss';
 import { Image } from '../../../../../static/icons/image';

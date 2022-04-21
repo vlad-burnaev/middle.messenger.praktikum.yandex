@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './sign-in.hbs';
 import { signInData } from './sign-in.data';
 import FormField from '../../components/FormField';

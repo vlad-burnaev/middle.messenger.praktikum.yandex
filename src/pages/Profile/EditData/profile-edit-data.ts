@@ -1,6 +1,6 @@
 import template from './profile-edit-data.hbs';
 import * as styles from '../profile.pcss';
-import Block from '../../../utils/Block';
+import Block from '../../../core/Block';
 import { profileEditDataPageData } from './profile-edit-data.data';
 import ProfileGoBack from '../components/GoBack';
 import ProfileDataFieldEditable from '../components/DataFieldEditable';

@@ -2,10 +2,10 @@ import template from './new-message-panel.hbs';
 import * as styles from './new-message-panel.pcss';
 import { Clip } from '../../../../../../static/icons/clip';
 import { ArrowRight2 } from '../../../../../../static/icons/arrow-right-2';
-import Block from '../../../../../utils/Block';
+import Block from '../../../../../core/Block';
 import { Menu } from '../../../../../../static/icons/menu';
 import { Input } from '../../../../../components/FormField/Input/input';
-import { validate } from '../../../../../utils/validation.v2';
+import { validate } from '../../../../../core/validation';
 
 export class NewMessagePanel extends Block {
   constructor() {

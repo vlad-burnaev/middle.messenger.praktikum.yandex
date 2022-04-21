@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './500.hbs';
 import ErrorComponent from '../../components/Error';
 import { error500Data } from './500.data';

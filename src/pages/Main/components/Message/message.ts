@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './message.hbs';
 import * as styles from './message.pcss';
 import { Checkmark } from '../../../../../static/icons/checkmark';

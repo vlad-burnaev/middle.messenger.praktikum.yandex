@@ -1,6 +1,6 @@
 import template from './profile-main.hbs';
 import * as styles from '../profile.pcss';
-import Block from '../../../utils/Block';
+import Block from '../../../core/Block';
 import { profileMainData } from './profile-main.data';
 import ProfileDataField from '../components/DataField';
 import ProfileActionButton from '../components/ActionButton';

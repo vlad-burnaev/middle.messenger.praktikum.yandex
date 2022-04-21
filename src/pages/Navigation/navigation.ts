@@ -1,7 +1,7 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './navigation.hbs';
 import Button from '../../components/Button';
-import { renderDOM } from '../../utils/renderDOM';
+import { renderDOM } from '../../core/renderDOM';
 import Main from '../Main';
 import SignIn from '../SignIn';
 import SignUp from '../SignUp';

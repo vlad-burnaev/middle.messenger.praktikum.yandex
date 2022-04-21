@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './main.hbs';
 import ChatPreview from './components/ChatPreview';
 import { ArrowRight1 } from '../../../static/icons/arrow-right-1';

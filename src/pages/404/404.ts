@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import template from './404.hbs';
 import { error404Data } from './404.data';
 import ErrorComponent from '../../components/Error';

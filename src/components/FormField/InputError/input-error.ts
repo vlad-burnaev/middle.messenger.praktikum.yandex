@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import Block from '../../../utils/Block';
+import Block from '../../../core/Block';
 import template from './input-error.hbs';
 import * as styles from './input-error.pcss';
 

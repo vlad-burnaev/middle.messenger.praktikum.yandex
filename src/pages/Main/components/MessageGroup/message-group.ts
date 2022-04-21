@@ -1,5 +1,5 @@
 import Handlebars from 'handlebars/dist/handlebars.runtime';
-import Block from '../../../../utils/Block';
+import Block from '../../../../core/Block';
 import template from './message-group.hbs';
 import * as styles from './message-group.pcss';
 import { Message, MessageProps } from '../Message/message';
