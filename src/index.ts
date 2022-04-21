@@ -8,6 +8,7 @@ import ProfileEditData from './pages/Profile/EditData';
 import ProfileChangePassword from './pages/Profile/ChangePassword';
 import Error404 from './pages/404';
 import Error500 from './pages/500';
+import { APP_ROOT_PATH } from './utils/constants';
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('submit', (e) => {
@@ -22,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const router = new Router('#app');
+  const router = new Router(APP_ROOT_PATH);
   router
     .use('/', Main)
     .use('/sign-in', SignIn)

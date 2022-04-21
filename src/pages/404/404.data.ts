@@ -3,6 +3,6 @@ export const error404Data = {
   subtitle: 'Не туда попали',
   link: {
     label: 'Назад к чатам',
-    href: '#',
+    path: '/',
   },
 };

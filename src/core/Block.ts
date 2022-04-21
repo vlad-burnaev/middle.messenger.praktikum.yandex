@@ -2,6 +2,7 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
+// todo - generic props
 class Block {
     static EVENTS = {
       INIT: 'init',
@@ -212,7 +213,7 @@ class Block {
     }
 
     show() {
-      this.getContent().style.display = 'block';
+      this.getContent().style.display = 'flex';
     }
 
     hide() {

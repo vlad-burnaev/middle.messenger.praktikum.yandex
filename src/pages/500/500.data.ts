@@ -3,6 +3,6 @@ export const error500Data = {
   subtitle: 'Мы уже фиксим',
   link: {
     label: 'Назад к чатам',
-    href: '#',
+    path: '/',
   },
 };
