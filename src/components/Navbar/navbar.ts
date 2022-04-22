@@ -3,6 +3,7 @@ import template from './navbar.hbs';
 import styles from './navbar.pcss';
 import { Routes } from '../../core/routes';
 
+// todo - выпилить после настройки роутинга и интеграции с API
 export class Navbar extends Block {
   constructor() {
     const links = [
