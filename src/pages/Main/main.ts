@@ -5,6 +5,7 @@ import { ArrowRight1 } from '../../../static/icons/arrow-right-1';
 import Chat from './components/Chat';
 import * as styles from './main.pcss';
 import { mainPageData } from './main.data';
+import Navbar from '../../components/Navbar';
 
 export class Main extends Block {
   constructor() {
@@ -16,6 +17,7 @@ export class Main extends Block {
     this.children.ChatPreview2 = new ChatPreview(mainPageData.chatPreviews[1]);
     this.children.ChatPreview3 = new ChatPreview(mainPageData.chatPreviews[2]);
     this.children.Chat = new Chat(mainPageData.chat);
+    this.children.navbar = new Navbar();
   }
 
   render() {

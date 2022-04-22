@@ -8,7 +8,10 @@ import ProfileEditData from './pages/Profile/EditData';
 import ProfileChangePassword from './pages/Profile/ChangePassword';
 import Error404 from './pages/404';
 import Error500 from './pages/500';
-import { APP_ROOT_PATH } from './utils/constants';
+import { Routes } from './core/routes';
+
+export const router = new Router();
+window.router = router;
 
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('submit', (e) => {
@@ -23,15 +26,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  const router = new Router(APP_ROOT_PATH);
   router
-    .use('/', Main)
-    .use('/sign-in', SignIn)
-    .use('/sign-up', SignUp)
-    .use('/profile', ProfileMain)
-    .use('/edit-profile', ProfileEditData)
-    .use('/change-password', ProfileChangePassword)
-    .use('/404', Error404)
-    .use('/500', Error500)
+    .use(Routes.Index, Main)
+    .use(Routes.SignIn, SignIn)
+    .use(Routes.SignUp, SignUp)
+    .use(Routes.Profile, ProfileMain)
+    .use(Routes.EditProfile, ProfileEditData)
+    .use(Routes.ChangePassword, ProfileChangePassword)
+    .use(Routes.Page404, Error404)
+    .use(Routes.Page500, Error500)
     .start();
 });

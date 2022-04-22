@@ -1,5 +1,6 @@
 import Route from './Route';
 import Block from './Block';
+import { APP_ROOT_PATH } from '../utils/constants';
 
 export default class Router {
   private static __instance: any;
@@ -10,9 +11,7 @@ export default class Router {
 
   private _currentRoute: Route | null;
 
-  private _rootPath: string;
-
-  constructor(rootPath: string) {
+  constructor() {
     if (Router.__instance) {
       return Router.__instance;
     }
@@ -20,13 +19,12 @@ export default class Router {
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
-    this._rootPath = rootPath;
 
     Router.__instance = this;
   }
 
   use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, { rootQuery: this._rootPath });
+    const route = new Route(pathname, block, { rootQuery: APP_ROOT_PATH });
     this.routes.push(route);
 
     return this;
@@ -51,9 +49,11 @@ export default class Router {
       return;
     }
 
-    if (this._currentRoute) {
+    if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave();
     }
+
+    this._currentRoute = route;
 
     route.render();
   }

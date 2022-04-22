@@ -3,6 +3,10 @@ import template from './sign-in.hbs';
 import { signInData } from './sign-in.data';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
+import Link from '../../components/Link';
+import { router } from '../../index';
+import { Routes } from '../../core/routes';
+import Navbar from '../../components/Navbar';
 
 export class SignIn extends Block {
   constructor() {
@@ -32,7 +36,9 @@ export class SignIn extends Block {
       events: {
         click: () => {
           const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
+          // todo - разобраться почему кнопка кликается не всегда или не с первого раза
           if (isValid) {
+            router.go(Routes.Index);
             console.log('Форма заполнена верно');
           } else {
             console.error('Форма заполнена неверно');
@@ -40,6 +46,12 @@ export class SignIn extends Block {
         },
       },
     });
+    this.children.noAccountLink = new Link({
+      ...signInData.secondaryButton,
+      classNames: ['form__secondary-button'],
+    });
+
+    this.children.navbar = new Navbar();
   }
 
   render() {

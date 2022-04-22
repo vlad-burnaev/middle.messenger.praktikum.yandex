@@ -1,4 +1,5 @@
 import { FormData } from '../SignIn/sign-in.data';
+import { Routes } from '../../core/routes';
 
 export const signUpData: FormData = {
   title: 'Регистрация',
@@ -65,6 +66,6 @@ export const signUpData: FormData = {
   },
   secondaryButton: {
     label: 'Войти',
-    href: '#',
+    path: Routes.SignIn,
   },
 };

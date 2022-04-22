@@ -1,3 +1,5 @@
+import { Routes } from '../../../core/routes';
+
 export const profileChangePasswordPageData = {
   data: {
     old_password: {
@@ -10,8 +12,8 @@ export const profileChangePasswordPageData = {
       id: 'new_password_2', category: 'Повторите новый пароль', type: 'password', placeholder: '•••••••••••',
     },
   },
-  submitButton: { href: '#', label: 'Сохранить' },
+  submitButton: { href: Routes.Profile, label: 'Сохранить' },
   goBack: {
-    href: '#',
+    href: Routes.Profile,
   },
 };

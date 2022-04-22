@@ -1,3 +1,5 @@
+import { Routes } from '../../../core/routes';
+
 export const profileEditDataPageData = {
   data: {
     email: {
@@ -19,8 +21,8 @@ export const profileEditDataPageData = {
       id: 'phone', category: 'Телефон', type: 'tel', placeholder: '+7 (909) 967 30 30',
     },
   },
-  submitButton: { href: '# ', label: 'Сохранить' },
+  submitButton: { href: Routes.Profile, label: 'Сохранить' },
   goBack: {
-    href: '#',
+    href: Routes.Profile,
   },
 };

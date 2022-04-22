@@ -3,6 +3,8 @@ import Block from '../../core/Block';
 import { signUpData } from './sign-up.data';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
+import Link from '../../components/Link';
+import Navbar from '../../components/Navbar';
 
 export class SignUp extends Block {
   constructor() {
@@ -68,6 +70,12 @@ export class SignUp extends Block {
         },
       },
     });
+    this.children.goToSignInLink = new Link({
+      ...signUpData.secondaryButton,
+      classNames: ['form__secondary-button'],
+    });
+
+    this.children.navbar = new Navbar();
   }
 
   render() {

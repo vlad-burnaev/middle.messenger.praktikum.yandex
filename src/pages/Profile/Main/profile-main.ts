@@ -6,6 +6,7 @@ import ProfileDataField from '../components/DataField';
 import ProfileActionButton from '../components/ActionButton';
 import ProfileGoBack from '../components/GoBack';
 import ProfileAvatar from '../components/Avatar';
+import Navbar from '../../../components/Navbar';
 
 export class ProfileMain extends Block {
   constructor() {
@@ -27,6 +28,8 @@ export class ProfileMain extends Block {
     this.children.actionButtonExit = new ProfileActionButton(profileMainData.actions[2]);
 
     this.children.goBack = new ProfileGoBack(profileMainData.goBack);
+
+    this.children.navbar = new Navbar();
   }
 
   render() {

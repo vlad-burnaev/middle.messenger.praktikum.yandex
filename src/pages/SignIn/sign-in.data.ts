@@ -1,4 +1,5 @@
 import { FormFieldProps } from '../../components/FormField/form-field';
+import { Routes } from '../../core/routes';
 
 export type FormData = {
   title: string,
@@ -8,7 +9,7 @@ export type FormData = {
   },
   secondaryButton: {
     label: string,
-    href: string
+    path: string,
   }
 }
 
@@ -37,6 +38,6 @@ export const signInData: FormData = {
   },
   secondaryButton: {
     label: 'Нет аккаунта?',
-    href: '#',
+    path: Routes.SignUp,
   },
 };

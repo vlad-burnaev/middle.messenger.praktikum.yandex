@@ -1,3 +1,5 @@
+import { Routes } from '../../../core/routes';
+
 export const profileMainData = {
   data: [
     { category: 'Почта', data: 'pochta@yandex.ru' },
@@ -8,11 +10,11 @@ export const profileMainData = {
     { category: 'Телефон', data: '+7 (909) 967 30 30' },
   ],
   actions: [
-    { href: '#', label: 'Изменить данные' },
-    { href: '#', label: 'Изменить пароль' },
-    { href: '#', label: 'Выйти' },
+    { href: Routes.EditProfile, label: 'Изменить данные' },
+    { href: Routes.ChangePassword, label: 'Изменить пароль' },
+    { href: Routes.SignIn, label: 'Выйти' },
   ],
   goBack: {
-    href: '#',
+    href: Routes.Index,
   },
 };
