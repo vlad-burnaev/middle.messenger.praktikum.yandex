@@ -39,7 +39,8 @@
         "no-useless-constructor": "off",
         "array-callback-return": "off",
         "max-len": ["error", { "code": 120 }],
-        "no-return-assign": "off"
+        "no-return-assign": "off",
+        "arrow-body-style": "off"
     },
     "settings": {
         "import/resolver": {

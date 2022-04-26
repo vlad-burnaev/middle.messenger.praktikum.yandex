@@ -20,16 +20,16 @@ export const signUpData: FormData = {
       validationScheme: 'login',
       errorMessage: 'Неверный логин',
     },
-    first_name: {
-      id: 'first_name',
+    firstName: {
+      id: 'firstName',
       label: 'Имя',
       type: 'text',
       isRequired: true,
       validationScheme: 'name',
       errorMessage: 'Неверный формат имени',
     },
-    second_name: {
-      id: 'second_name',
+    secondName: {
+      id: 'secondName',
       label: 'Фамилия',
       type: 'text',
       isRequired: true,
@@ -52,8 +52,8 @@ export const signUpData: FormData = {
       validationScheme: 'password',
       errorMessage: 'Неверный формат пароля',
     },
-    password_2: {
-      id: 'password_2',
+    passwordRepeat: {
+      id: 'passwordRepeat',
       label: 'Пароль (еще раз)',
       type: 'password',
       isRequired: true,

@@ -12,7 +12,7 @@ export interface FormFieldProps {
   type: string,
   isRequired: boolean,
   validationScheme?: ValidationScheme,
-  setValidationStatus?: (name:string, isValid:boolean) => void,
+  setValidationStatus?: (props: { name: string, value: string, status: boolean }) => void,
   errorMessage?: string,
 }
 
@@ -33,7 +33,7 @@ export class FormField extends Block {
     this.children.error.setProps({ isValid });
 
     if (setValidationStatus) {
-      setValidationStatus(id, isValid);
+      setValidationStatus({ name: id, value, status: isValid });
     }
   }
 

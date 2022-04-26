@@ -11,21 +11,8 @@ import Error500 from './pages/500';
 import { Routes } from './core/routes';
 
 export const router = new Router();
-window.router = router;
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const res = {};
-    const form = e.target as HTMLElement;
-    if (form) {
-      const inputs = form.querySelectorAll('input');
-      [...inputs].forEach((input) => res[input.id] = input.value);
-
-      console.log(res);
-    }
-  });
-
   router
     .use(Routes.Index, Main)
     .use(Routes.SignIn, SignIn)
