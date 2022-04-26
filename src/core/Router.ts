@@ -1,6 +1,7 @@
 import Route from './Route';
 import Block from './Block';
 import { APP_ROOT_PATH } from '../utils/constants';
+import { Routes } from './routes';
 
 export default class Router {
   private static __instance: any;
@@ -41,8 +42,9 @@ export default class Router {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+
     if (!route) {
-      const pageNotFoundRoute = this.getRoute('/404');
+      const pageNotFoundRoute = this.getRoute(Routes.Page404);
       if (pageNotFoundRoute) {
         pageNotFoundRoute.render();
       }

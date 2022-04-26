@@ -63,6 +63,7 @@ export const signUpData: FormData = {
   },
   submitButton: {
     label: 'Зарегистрироваться',
+    isDisabled: true,
   },
   secondaryButton: {
     label: 'Войти',

@@ -91,7 +91,10 @@ export class SignUp extends Block {
       ...signUpData.submitButton,
       events: {
         click: () => {
-          const isFormValid = Object.values(this.inputsState).map(({ isValid }) => isValid).every((v) => v);
+          const isFormValid = this.inputsState.password.value === this.inputsState.passwordRepeat.value
+            && Object.values(this.inputsState)
+              .map(({ isValid }) => isValid)
+              .every((v) => v);
           if (isFormValid) {
             authService.register({
               firstName: this.inputsState.firstName.value,

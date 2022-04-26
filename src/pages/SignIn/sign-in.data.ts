@@ -5,7 +5,8 @@ export type FormData = {
   title: string,
   formFields: Record<string, FormFieldProps>,
   submitButton: {
-    label: string
+    label: string,
+    isDisabled?: boolean
   },
   secondaryButton: {
     label: string,
@@ -35,6 +36,7 @@ export const signInData: FormData = {
   },
   submitButton: {
     label: 'Авторизироваться',
+    isDisabled: true,
   },
   secondaryButton: {
     label: 'Нет аккаунта?',

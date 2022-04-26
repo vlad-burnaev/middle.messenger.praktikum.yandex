@@ -1,9 +1,14 @@
 <nav class="{{styles.navbar}}">
     <ul class="{{styles.navbar__links}}">
-        {{#each links}}
-            <li class="{{styles.navbar__link}}">
-                <a href="{{this}}">{{this}}</a>
-            </li>
-        {{/each}}
+        <li class="{{styles.navbar__link}}">
+            {{{ Index }}}
+            {{{ SignIn }}}
+            {{{ SignUp }}}
+            {{{ Profile }}}
+            {{{ EditProfile }}}
+            {{{ ChangePassword }}}
+            {{{ Page404 }}}
+            {{{ Page500 }}}
+        </li>
     </ul>
 </nav>

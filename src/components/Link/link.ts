@@ -13,9 +13,9 @@ export class Link extends Block {
     super({
       ...props,
       events: {
-        click: () => {
+        click: (e: MouseEvent) => {
           // todo - разобраться, почему не работает без перезрузки страницы
-          // e.preventDefault();
+          e.preventDefault();
           router.go(props.path);
         },
       },

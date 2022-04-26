@@ -1,10 +1,12 @@
 import AuthAPI from '../api/auth-api';
 import { UserData } from '../api/auth-api.model';
+import Router from '../core/Router';
+import { Routes } from '../core/routes';
 
 export class AuthService {
   private api = new AuthAPI();
 
-  // private router = new Router();
+  private router = new Router();
 
   public async register(data: UserData) {
     const res = await this.api.signUp(data);
@@ -14,6 +16,6 @@ export class AuthService {
     }
 
     console.log('Запиши в стор id', JSON.parse(res.responseText).id);
-    // this.router.go(Routes.Index);
+    this.router.go(Routes.Index);
   }
 }
