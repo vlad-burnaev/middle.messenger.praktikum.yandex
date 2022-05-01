@@ -25,6 +25,7 @@ export default class Route {
     }
   }
 
+  // todo - удаление неиспользуемых блоков из памяти (shorturl.at/nqCL8)
   leave() {
     if (this._block) {
       this._block.hide();
