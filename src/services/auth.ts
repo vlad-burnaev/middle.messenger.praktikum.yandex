@@ -15,7 +15,16 @@ export class AuthService {
       throw new Error(JSON.parse(res.responseText).reason);
     }
 
-    console.log('Запиши в стор id', JSON.parse(res.responseText).id);
+    console.log('Запиши в стор ', {
+      user: {
+        id: JSON.parse(res.responseText).id,
+        firstName: data.firstName,
+        secondName: data.secondName,
+        login: data.login,
+        email: data.email,
+        phone: data.phone,
+      },
+    });
     this.router.go(Routes.Index);
   }
 }

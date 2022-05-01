@@ -152,7 +152,6 @@ class Block {
       this._addEvents();
     }
 
-    // Переопределяется пользователем. Необходимо вернуть разметку
     protected render(): DocumentFragment {
       return new DocumentFragment();
     }
@@ -186,7 +185,6 @@ class Block {
     }
 
     private _createDocumentElement(tagName: string) {
-      // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
       return document.createElement(tagName);
     }
 
