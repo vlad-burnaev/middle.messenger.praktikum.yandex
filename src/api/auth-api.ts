@@ -1,7 +1,7 @@
 import HTTPTransport from '../core/HTTPTransport';
 import { BodyRequest } from '../utils/types';
-import { UserData } from './auth-api.model';
-import { mapUserDataToRaw } from './auth-api.mappers';
+import { SignUpFormData } from './auth-api.model';
+import { mapSignUpFormDataToRaw } from './auth-api.mappers';
 
 export default class AuthAPI {
   private api = HTTPTransport.getInstance();
@@ -18,9 +18,9 @@ export default class AuthAPI {
     return this.api.post('/auth/logout');
   }
 
-  public signUp(data: UserData) {
+  public signUp(data: SignUpFormData) {
     const options = {
-      data: mapUserDataToRaw(data),
+      data: mapSignUpFormDataToRaw(data),
     };
 
     return this.api.post('/auth/signup', options);

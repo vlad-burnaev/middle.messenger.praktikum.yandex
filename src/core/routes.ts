@@ -1,4 +1,3 @@
-// todo разобраться с ошибками
 export enum Routes {
   Index = '/',
   SignIn = '/sign-in',

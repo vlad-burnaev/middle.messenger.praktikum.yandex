@@ -6,10 +6,15 @@ import Chat from './components/Chat';
 import * as styles from './main.pcss';
 import { mainPageData } from './main.data';
 import Navbar from '../../components/Navbar';
+import { AuthService } from '../../services/auth';
+
+const authService = new AuthService();
 
 export class Main extends Block {
   constructor() {
     super({ styles });
+
+    authService.getUser();
   }
 
   initChildren() {
