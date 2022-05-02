@@ -1,12 +1,11 @@
 import HTTPTransport from '../core/HTTPTransport';
-import { BodyRequest } from '../utils/types';
-import { SignUpFormData } from './auth-api.model';
+import { SignInFormData, SignUpFormData } from './auth-api.model';
 import { mapSignUpFormDataToRaw } from './auth-api.mappers';
 
 export default class AuthAPI {
   private api = HTTPTransport.getInstance();
 
-  public signIn(data: BodyRequest) {
+  public signIn(data: SignInFormData) {
     const options = {
       data,
     };

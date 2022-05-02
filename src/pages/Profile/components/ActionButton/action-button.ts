@@ -4,7 +4,10 @@ import * as styles from './action-button.pcss';
 
 interface ProfileActionButtonProps {
   label: string,
-  href: string
+  href?: string,
+  events?: {
+    click: () => void
+  }
 }
 
 export class ProfileActionButton extends Block {

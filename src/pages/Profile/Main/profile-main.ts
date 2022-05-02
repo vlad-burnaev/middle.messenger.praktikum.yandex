@@ -7,10 +7,15 @@ import ProfileActionButton from '../components/ActionButton';
 import ProfileGoBack from '../components/GoBack';
 import ProfileAvatar from '../components/Avatar';
 import Navbar from '../../../components/Navbar';
+import { AuthService } from '../../../services/auth';
+import { withStore } from '../../../utils/withStore';
+import { Store } from '../../../core/Store';
 
-export class ProfileMain extends Block {
-  constructor() {
-    super({ styles });
+const authService = new AuthService();
+
+class ProfileMain extends Block {
+  constructor(props: {store: Store<AppState>}) {
+    super({ ...props, styles });
   }
 
   initChildren() {
@@ -25,7 +30,14 @@ export class ProfileMain extends Block {
 
     this.children.actionButtonEditData = new ProfileActionButton(profileMainData.actions[0]);
     this.children.actionButtonChangePassword = new ProfileActionButton(profileMainData.actions[1]);
-    this.children.actionButtonExit = new ProfileActionButton(profileMainData.actions[2]);
+    this.children.actionButtonExit2 = new ProfileActionButton({
+      label: 'Выйти',
+      events: {
+        click: () => {
+          this.props.store.dispatch(authService.logout);
+        },
+      },
+    });
 
     this.children.goBack = new ProfileGoBack(profileMainData.goBack);
 
@@ -36,3 +48,5 @@ export class ProfileMain extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export default withStore(ProfileMain);

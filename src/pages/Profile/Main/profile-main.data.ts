@@ -12,7 +12,6 @@ export const profileMainData = {
   actions: [
     { href: Routes.EditProfile, label: 'Изменить данные' },
     { href: Routes.ChangePassword, label: 'Изменить пароль' },
-    { href: Routes.SignIn, label: 'Выйти' },
   ],
   goBack: {
     href: Routes.Index,

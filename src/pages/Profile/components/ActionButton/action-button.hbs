@@ -1,1 +1,5 @@
-<a href={{href}} class="{{styles.action_button}}">{{label}}</a>s
+{{#if href}}
+    <a href={{href}} class="{{styles.action_button}}">{{label}}</a>
+{{else}}
+    <span class="{{styles.action_button}}">{{label}}</span>
+{{/if}}

@@ -1,11 +1,13 @@
 import AuthAPI from '../api/auth-api';
-import { SignUpFormData } from '../api/auth-api.model';
+import { SignInFormData, SignUpFormData } from '../api/auth-api.model';
 import { Dispatch } from '../core/Store';
 import Router from '../core/Router';
 import { Routes } from '../core/routes';
 
 const api = new AuthAPI();
+const router = new Router();
 
+// todo - обработка error-cases
 export class AuthService {
   public async register(
     dispatch: Dispatch<AppState>,
@@ -22,6 +24,7 @@ export class AuthService {
     }
 
     dispatch({
+      isAuth: true,
       isLoading: false,
       user: {
         id: JSON.parse(response.responseText).id,
@@ -36,6 +39,34 @@ export class AuthService {
     });
 
     new Router().go(Routes.Index);
+  }
+
+  public async login(dispatch: Dispatch<AppState>, _:any, action: SignInFormData) {
+    dispatch({ isLoading: true });
+
+    const response = await api.signIn(action);
+
+    if (response.status !== 200) {
+      dispatch({ isLoading: false });
+      throw new Error(JSON.parse(response.responseText).reason);
+    }
+
+    dispatch({
+      isLoading: false,
+      isAuth: true,
+    });
+
+    router.go(Routes.Index);
+  }
+
+  public async logout(dispatch: Dispatch<AppState>) {
+    dispatch({ isLoading: true });
+
+    await api.logout();
+
+    dispatch({ isLoading: false, user: null });
+
+    router.go(Routes.SignIn);
   }
 
   public async getUser() {

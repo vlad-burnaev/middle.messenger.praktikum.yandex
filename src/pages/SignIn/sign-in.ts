@@ -4,24 +4,41 @@ import { signInData } from './sign-in.data';
 import FormField from '../../components/FormField';
 import Button from '../../components/Button';
 import Link from '../../components/Link';
-import { router } from '../../index';
-import { Routes } from '../../core/routes';
 import Navbar from '../../components/Navbar';
+import { AuthService } from '../../services/auth';
+import { withStore } from '../../utils/withStore';
+import { Store } from '../../core/Store';
 
-export class SignIn extends Block {
-  constructor() {
-    super({ ...signInData });
+const authService = new AuthService();
+
+class SignIn extends Block {
+  constructor(props: {store: Store<AppState>}) {
+    super({ ...props, ...signInData });
   }
 
-  private inputsValidationState = new Map<string, boolean>([['login', false], ['password', false]]);
+  private inputsState: Record<string, {value: string, isValid: boolean}> = {
+    login: {
+      value: '',
+      isValid: false,
+    },
+    password: {
+      value: '',
+      isValid: false,
+    },
+  }
 
   private setValidationStatus: any;
 
   initChildren() {
-    this.setValidationStatus = (name: string, status: boolean) => {
-      this.inputsValidationState.set(name, status);
-      const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
-      this.children.submitButton.setProps({ isDisabled: !isValid });
+    this.setValidationStatus = (props: { name: string, value: string, status: boolean }) => {
+      const { name, value, status } = props;
+      this.inputsState[name].isValid = status;
+      this.inputsState[name].value = value;
+
+      const isFormValid = Object.values(this.inputsState)
+        .map(({ isValid }) => isValid)
+        .every((v) => v);
+      this.children.submitButton.setProps({ isDisabled: !isFormValid });
     };
     this.children.formFieldLogin = new FormField({
       ...signInData.formFields.login,
@@ -35,11 +52,15 @@ export class SignIn extends Block {
       ...signInData.submitButton,
       events: {
         click: () => {
-          const isValid = Array.from(this.inputsValidationState.values()).every((v) => v);
-          // todo - разобраться почему кнопка кликается не всегда или не с первого раза
-          if (isValid) {
-            router.go(Routes.Index);
-            console.log('Форма заполнена верно');
+          const isFormValid = Object.values(this.inputsState)
+            .map(({ isValid }) => isValid)
+            .every((v) => v);
+          // todo - разобраться почему кнопка кликается только со второго раза
+          if (isFormValid) {
+            this.props.store.dispatch(authService.login, {
+              login: this.inputsState.login.value,
+              password: this.inputsState.password.value,
+            });
           } else {
             console.error('Форма заполнена неверно');
           }
@@ -58,3 +79,5 @@ export class SignIn extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export default withStore(SignIn);

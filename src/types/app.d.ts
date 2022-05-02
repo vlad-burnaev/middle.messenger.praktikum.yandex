@@ -9,6 +9,7 @@ declare global {
 
   export type AppState = {
     isLoading: boolean,
+    isAuth: boolean,
     user: Nullable<User>,
   };
 
