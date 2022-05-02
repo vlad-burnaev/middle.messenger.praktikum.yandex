@@ -3,6 +3,7 @@ import { SignInFormData, SignUpFormData } from '../api/auth-api.model';
 import { Dispatch } from '../core/Store';
 import Router from '../core/Router';
 import { Routes } from '../core/routes';
+import { mapRawToUser } from '../api/auth-api.mappers';
 
 const api = new AuthAPI();
 const router = new Router();
@@ -64,7 +65,7 @@ export class AuthService {
 
     dispatch({
       isLoading: false,
-      user: JSON.parse(getUserResponse.responseText),
+      user: mapRawToUser(JSON.parse(getUserResponse.responseText)),
     });
 
     router.go(Routes.Index);

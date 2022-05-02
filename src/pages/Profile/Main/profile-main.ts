@@ -10,23 +10,42 @@ import Navbar from '../../../components/Navbar';
 import { AuthService } from '../../../services/auth';
 import { withStore } from '../../../utils/withStore';
 import { Store } from '../../../core/Store';
+import { withUser } from '../../../utils/withUser';
 
 const authService = new AuthService();
 
 class ProfileMain extends Block {
-  constructor(props: {store: Store<AppState>}) {
+  constructor(props: {store: Store<AppState>, user: User}) {
     super({ ...props, styles });
   }
 
   initChildren() {
     this.children.avatar = new ProfileAvatar();
 
-    this.children.dataFieldEmail = new ProfileDataField(profileMainData.data[0]);
-    this.children.dataFieldLogin = new ProfileDataField(profileMainData.data[1]);
-    this.children.dataFieldFirstName = new ProfileDataField(profileMainData.data[2]);
-    this.children.dataFieldSecondName = new ProfileDataField(profileMainData.data[3]);
-    this.children.dataFieldChatName = new ProfileDataField(profileMainData.data[4]);
-    this.children.dataFieldPhone = new ProfileDataField(profileMainData.data[5]);
+    this.children.dataFieldEmail = new ProfileDataField({
+      category: 'Почта',
+      data: this.props.user?.email ?? 'defaultEmail',
+    });
+    this.children.dataFieldLogin = new ProfileDataField({
+      category: 'Логин',
+      data: this.props.user?.login ?? 'defaultLogin',
+    });
+    this.children.dataFieldFirstName = new ProfileDataField({
+      category: 'Имя',
+      data: this.props.user?.firstName ?? 'defaultFirstName',
+    });
+    this.children.dataFieldSecondName = new ProfileDataField({
+      category: 'Фамилия',
+      data: this.props.user?.secondName ?? 'defaultSecondName',
+    });
+    this.children.dataFieldChatName = new ProfileDataField({
+      category: 'Имя в чате',
+      data: this.props.user?.displayName ?? 'defaultDisplayName',
+    });
+    this.children.dataFieldPhone = new ProfileDataField({
+      category: 'Телефон',
+      data: this.props.user?.phone ?? 'defaultPhone',
+    });
 
     this.children.actionButtonEditData = new ProfileActionButton(profileMainData.actions[0]);
     this.children.actionButtonChangePassword = new ProfileActionButton(profileMainData.actions[1]);
@@ -49,4 +68,4 @@ class ProfileMain extends Block {
   }
 }
 
-export default withStore(ProfileMain);
+export default withStore(withUser(ProfileMain));

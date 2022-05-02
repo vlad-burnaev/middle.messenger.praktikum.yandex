@@ -6,8 +6,9 @@ import Chat from './components/Chat';
 import * as styles from './main.pcss';
 import { mainPageData } from './main.data';
 import Navbar from '../../components/Navbar';
+import { withStore } from '../../utils/withStore';
 
-export class Main extends Block {
+class Main extends Block {
   constructor() {
     super({ styles });
   }
@@ -24,3 +25,5 @@ export class Main extends Block {
     return this.compile(template, { ...this.props, ArrowRight1 });
   }
 }
+
+export default withStore(Main);
