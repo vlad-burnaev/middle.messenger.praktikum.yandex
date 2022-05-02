@@ -13,11 +13,20 @@ import { Store } from './core/Store';
 import { defaultStoreState } from './store';
 
 export const router = new Router();
-const store = new Store(defaultStoreState);
-
-window.store = store;
 
 document.addEventListener('DOMContentLoaded', () => {
+  const store = new Store(defaultStoreState);
+
+  window.store = store;
+
+  store.on('changed', (_, nextState) => {
+    console.log(
+      '%cstore updated',
+      'background: #222; color: #bada55',
+      nextState,
+    );
+  });
+
   router
     .use(Routes.Index, Main)
     .use(Routes.SignIn, SignIn)

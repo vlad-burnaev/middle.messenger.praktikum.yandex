@@ -9,7 +9,7 @@ const api = new AuthAPI();
 export class AuthService {
   public async register(
     dispatch: Dispatch<AppState>,
-    state: AppState,
+    _: any,
     action: SignUpFormData,
   ) {
     dispatch({ isLoading: true });
