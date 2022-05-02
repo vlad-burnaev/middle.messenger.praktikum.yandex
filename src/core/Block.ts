@@ -12,8 +12,9 @@ class Block {
     static EVENTS = {
       INIT: 'init',
       FLOW_CDM: 'flow:component-did-mount',
-      FLOW_RENDER: 'flow:render',
+      FLOW_CWU: 'flow:component-will-unmount',
       FLOW_CDU: 'flow:component-did-update',
+      FLOW_RENDER: 'flow:render',
     };
 
     private id = nanoid(6);
@@ -52,6 +53,21 @@ class Block {
       eventBus.emit(Block.EVENTS.INIT);
     }
 
+    /**
+   * Хелпер, который проверяет, находится ли элемент в DOM дереве
+   * И есть нет, триггерит событие COMPONENT_WILL_UNMOUNT
+   */
+    _checkInDom() {
+      const elementInDOM = document.body.contains(this._element);
+
+      if (elementInDOM) {
+        setTimeout(() => this._checkInDom(), 1000);
+        return;
+      }
+
+      this.eventBus().emit(Block.EVENTS.FLOW_CWU, this.props);
+    }
+
     getChildren(componentData: any) {
       const children: any = {};
       const props: any = {};
@@ -77,6 +93,7 @@ class Block {
     private _registerEvents(eventBus: EventBus) {
       eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
       eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
@@ -86,6 +103,8 @@ class Block {
     }
 
     private _componentDidMount() {
+      this._checkInDom();
+
       this.componentDidMount();
     }
 
@@ -103,9 +122,11 @@ class Block {
     }
 
     private _componentDidUpdate(oldProps: any, newProps: any) {
-      if (this.componentDidUpdate(oldProps, newProps)) {
-        this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+      const response = this.componentDidUpdate(oldProps, newProps);
+      if (!response) {
+        return;
       }
+      this._render();
     }
 
     componentDidUpdate(oldProps: any, newProps: any) {
