@@ -44,16 +44,27 @@ export class AuthService {
   public async login(dispatch: Dispatch<AppState>, _:any, action: SignInFormData) {
     dispatch({ isLoading: true });
 
-    const response = await api.signIn(action);
+    const loginResponse = await api.signIn(action);
 
-    if (response.status !== 200) {
+    if (loginResponse.status !== 200) {
       dispatch({ isLoading: false });
-      throw new Error(JSON.parse(response.responseText).reason);
+      throw new Error(JSON.parse(loginResponse.responseText).reason);
+    }
+
+    dispatch({
+      isAuth: true,
+    });
+
+    const getUserResponse = await api.getUser();
+
+    if (getUserResponse.status !== 200) {
+      dispatch({ isLoading: false });
+      throw new Error(JSON.parse(getUserResponse.responseText).reason);
     }
 
     dispatch({
       isLoading: false,
-      isAuth: true,
+      user: JSON.parse(getUserResponse.responseText),
     });
 
     router.go(Routes.Index);
@@ -64,23 +75,8 @@ export class AuthService {
 
     await api.logout();
 
-    dispatch({ isLoading: false, user: null });
+    dispatch({ isLoading: false, isAuth: false, user: null });
 
     router.go(Routes.SignIn);
-  }
-
-  public async getUser() {
-    // if (this.store.getState().user !== null) {
-    //   return this.store.getState().user;
-    // }
-
-    const res = await api.getUser();
-
-    if (res.status !== 200) {
-      throw new Error(JSON.parse(res.responseText).reason);
-    }
-
-    // this.store.setState({ user: mapRawToUser(JSON.parse(res.responseText)) });
-    // return this.store.getState().user;
   }
 }

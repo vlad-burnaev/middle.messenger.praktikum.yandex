@@ -30,7 +30,7 @@ class ProfileMain extends Block {
 
     this.children.actionButtonEditData = new ProfileActionButton(profileMainData.actions[0]);
     this.children.actionButtonChangePassword = new ProfileActionButton(profileMainData.actions[1]);
-    this.children.actionButtonExit2 = new ProfileActionButton({
+    this.children.actionButtonExit = new ProfileActionButton({
       label: 'Выйти',
       events: {
         click: () => {
