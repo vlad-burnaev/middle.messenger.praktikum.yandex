@@ -19,6 +19,7 @@ class ProfileMain extends Block {
     super({ ...props, styles });
   }
 
+  // todo - выпилить defaultState
   initChildren() {
     this.children.avatar = new ProfileAvatar();
 

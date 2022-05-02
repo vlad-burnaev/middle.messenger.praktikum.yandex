@@ -7,69 +7,90 @@ import ProfileDataFieldEditable from '../components/DataFieldEditable';
 import ProfileAvatar from '../components/Avatar';
 import Button from '../../../components/Button';
 import Navbar from '../../../components/Navbar';
+import { withUser } from '../../../utils/withUser';
+import { withStore } from '../../../utils/withStore';
+import { Store } from '../../../core/Store';
 
-export class ProfileEditData extends Block {
-  constructor() {
-    super({ styles });
-  }
-
-  private formData = {
-    email: profileEditDataPageData.data.email.placeholder,
-    login: profileEditDataPageData.data.login.placeholder,
-    first_name: profileEditDataPageData.data.first_name.placeholder,
-    second_name: profileEditDataPageData.data.second_name.placeholder,
-    display_name: profileEditDataPageData.data.display_name.placeholder,
-    phone: profileEditDataPageData.data.phone.placeholder,
+class ProfileEditData extends Block {
+  constructor(props: {state: Store<AppState>, user: User}) {
+    super({ ...props, styles });
   }
 
   initChildren() {
+    // todo - выпилить defaultState
+    const formData = {
+      email: this.props.user?.email ?? 'defaultEmail',
+      login: this.props.user?.login ?? 'defaultLogin',
+      firstName: this.props.user?.firstName ?? 'defaultFirstName',
+      secondName: this.props.user?.secondName ?? 'defaultSecondName',
+      displayName: this.props.user?.displayName ?? 'defaultDisplayName',
+      phone: this.props.user?.phone ?? 'defaultPhone',
+    };
     this.children.avatar = new ProfileAvatar();
 
     this.children.dataFieldEmail = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.email,
+        id: 'email',
+        category: 'Почта',
+        type: 'email',
+        placeholder: formData.email,
         events: {
-          change: (e) => this.formData.email = e.target.value,
+          change: (e) => formData.email = e.target.value,
         },
       },
     );
     this.children.dataFieldLogin = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.login,
+        id: 'login',
+        category: 'Логин',
+        type: 'text',
+        placeholder: formData.login,
         events: {
-          change: (e) => this.formData.login = e.target.value,
+          change: (e) => formData.login = e.target.value,
         },
       },
     );
     this.children.dataFieldFirstName = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.first_name,
+        id: 'first_name',
+        category: 'Имя',
+        type: 'text',
+        placeholder: formData.firstName,
         events: {
-          change: (e) => this.formData.first_name = e.target.value,
+          change: (e) => formData.firstName = e.target.value,
         },
       },
     );
     this.children.dataFieldSecondName = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.second_name,
+        id: 'second_name',
+        category: 'Фамилия',
+        type: 'text',
+        placeholder: formData.secondName,
         events: {
-          change: (e) => this.formData.second_name = e.target.value,
+          change: (e) => formData.secondName = e.target.value,
         },
       },
     );
     this.children.dataFieldDisplayName = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.display_name,
+        id: 'display_name',
+        category: 'Имя в чате',
+        type: 'text',
+        placeholder: formData.displayName,
         events: {
-          change: (e) => this.formData.display_name = e.target.value,
+          change: (e) => formData.displayName = e.target.value,
         },
       },
     );
     this.children.dataFieldPhone = new ProfileDataFieldEditable(
       {
-        ...profileEditDataPageData.data.phone,
+        id: 'phone',
+        category: 'Телефон',
+        type: 'tel',
+        placeholder: formData.phone,
         events: {
-          change: (e) => this.formData.phone = e.target.value,
+          change: (e) => formData.phone = e.target.value,
         },
       },
     );
@@ -77,7 +98,7 @@ export class ProfileEditData extends Block {
     this.children.submitButton = new Button({
       ...profileEditDataPageData.submitButton,
       events: {
-        click: () => console.log(this.formData),
+        click: () => console.log(formData),
       },
     });
 
@@ -89,3 +110,5 @@ export class ProfileEditData extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export default withStore(withUser(ProfileEditData));
