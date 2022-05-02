@@ -9,8 +9,13 @@ import ProfileChangePassword from './pages/Profile/ChangePassword';
 import Error404 from './pages/404';
 import Error500 from './pages/500';
 import { Routes } from './core/routes';
+import { Store } from './core/Store';
+import { defaultStoreState } from './store';
 
 export const router = new Router();
+const store = new Store(defaultStoreState);
+
+window.store = store;
 
 document.addEventListener('DOMContentLoaded', () => {
   router

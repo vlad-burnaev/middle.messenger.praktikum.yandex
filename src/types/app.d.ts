@@ -8,6 +8,7 @@ declare global {
   export type Nullable<T> = T | null;
 
   export type AppState = {
+    isLoading: boolean,
     user: Nullable<User>,
   };
 
@@ -21,8 +22,8 @@ declare global {
     login: string,
     firstName: string,
     secondName: string,
-    displayName: string,
-    avatar: string,
+    displayName: Nullable<string>,
+    avatar: Nullable<string>,
     phone: string,
     email: string,
   }

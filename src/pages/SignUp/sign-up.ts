@@ -6,12 +6,14 @@ import Button from '../../components/Button';
 import Link from '../../components/Link';
 import Navbar from '../../components/Navbar';
 import { AuthService } from '../../services/auth';
+import { withStore } from '../../utils/withStore';
+import { Store } from '../../core/Store';
 
 const authService = new AuthService();
 
-export class SignUp extends Block {
-  constructor() {
-    super({ ...signUpData });
+class SignUp extends Block {
+  constructor(props: {store: Store<AppState>}) {
+    super({ ...props, ...signUpData });
   }
 
   private inputsState: Record<string, {value: string, isValid: boolean}> = {
@@ -96,7 +98,7 @@ export class SignUp extends Block {
               .map(({ isValid }) => isValid)
               .every((v) => v);
           if (isFormValid) {
-            authService.register({
+            this.props.store.dispatch(authService.register, {
               firstName: this.inputsState.firstName.value,
               secondName: this.inputsState.secondName.value,
               email: this.inputsState.email.value,
@@ -120,3 +122,5 @@ export class SignUp extends Block {
     return this.compile(template, { ...this.props });
   }
 }
+
+export default withStore(SignUp);

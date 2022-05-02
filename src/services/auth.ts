@@ -1,32 +1,41 @@
 import AuthAPI from '../api/auth-api';
 import { SignUpFormData } from '../api/auth-api.model';
+import { Dispatch } from '../core/Store';
 import Router from '../core/Router';
 import { Routes } from '../core/routes';
 
+const api = new AuthAPI();
+
 export class AuthService {
-  private api = new AuthAPI();
+  public async register(
+    dispatch: Dispatch<AppState>,
+    state: AppState,
+    action: SignUpFormData,
+  ) {
+    dispatch({ isLoading: true });
 
-  private router = new Router();
+    const response = await api.signUp(action);
 
-  public async register(data: SignUpFormData) {
-    const res = await this.api.signUp(data);
-
-    if (res.status !== 200) {
-      throw new Error(JSON.parse(res.responseText).reason);
+    if (response.status !== 200) {
+      dispatch({ isLoading: false });
+      throw new Error(JSON.parse(response.responseText).reason);
     }
 
-    // this.store.setState({
-    //   user: {
-    //     id: JSON.parse(res.responseText).id,
-    //     firstName: data.firstName,
-    //     secondName: data.secondName,
-    //     login: data.login,
-    //     email: data.email,
-    //     phone: data.phone,
-    //   },
-    // });
+    dispatch({
+      isLoading: false,
+      user: {
+        id: JSON.parse(response.responseText).id,
+        firstName: action.firstName,
+        secondName: action.secondName,
+        login: action.login,
+        email: action.email,
+        phone: action.phone,
+        displayName: null,
+        avatar: null,
+      },
+    });
 
-    this.router.go(Routes.Index);
+    new Router().go(Routes.Index);
   }
 
   public async getUser() {
@@ -34,7 +43,7 @@ export class AuthService {
     //   return this.store.getState().user;
     // }
 
-    const res = await this.api.getUser();
+    const res = await api.getUser();
 
     if (res.status !== 200) {
       throw new Error(JSON.parse(res.responseText).reason);

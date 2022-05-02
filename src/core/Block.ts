@@ -2,6 +2,11 @@
 import { nanoid } from 'nanoid';
 import EventBus from './EventBus';
 
+export interface BlockClass extends Function {
+  new (props: any): Block;
+  componentName?: string;
+}
+
 // todo - generic props
 class Block {
     static EVENTS = {
@@ -86,6 +91,13 @@ class Block {
 
     componentDidMount() {}
 
+    _componentWillUnmount() {
+      this.eventBus().destroy();
+      this.componentWillUnmount();
+    }
+
+    componentWillUnmount() {}
+
     dispatchComponentDidMount() {
       this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
@@ -96,7 +108,6 @@ class Block {
       }
     }
 
-    // @ts-ignore
     componentDidUpdate(oldProps: any, newProps: any) {
       return true;
     }
