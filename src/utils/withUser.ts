@@ -1,12 +1,9 @@
-import { BlockClass } from '../core/Block';
-import { Store } from '../core/Store';
+import { BlockConstructable } from '../core/Block';
 
-type WithUserProps = { user: Store<AppState> };
+type WithUserProps = { user: User | null };
 
-export function withUser<P extends WithUserProps>(WrappedBlock: BlockClass) {
+export function withUser<P extends WithUserProps>(WrappedBlock: BlockConstructable<P>) {
   return class extends WrappedBlock {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
-
     constructor(props: P) {
       super({ ...props, user: window.store.getState().user });
     }
@@ -15,10 +12,10 @@ export function withUser<P extends WithUserProps>(WrappedBlock: BlockClass) {
       if (JSON.stringify(prevState.user) !== JSON.stringify(nextState.user)) {
         this.setProps({ ...this.props, user: nextState.user });
       }
-    }
+    };
 
-    componentDidMount() {
-      super.componentDidMount();
+    componentDidMount(props: P) {
+      super.componentDidMount(props);
       window.store.on('changed', this.__onChangeUserCallback);
     }
 

@@ -1,42 +1,38 @@
-// eslint-disable-next-line no-unused-vars
-type Handler = (...args: unknown[]) => void;
+export type Listener<T extends unknown[] = any[]> = (...args: T) => void;
 
-export default class EventBus {
-  private listeners: Record<string, Handler[]> = {};
+export default class EventBus<
+  E extends string = string,
+  M extends { [K in E]: unknown[] } = Record<E, any[]>
+  > {
+  private listeners: { [key in E]?: Listener<M[E]>[] } = {};
 
-  constructor() {
-    this.listeners = {};
-  }
-
-  public on(event: string, callback: Handler): void {
+  on(event: E, callback: Listener<M[E]>) {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }
 
-    this.listeners[event].push(callback);
+    this.listeners[event]!.push(callback);
   }
 
-  public off(event: string, callback: Handler): void {
+  off(event: E, callback: Listener<M[E]>) {
     if (!this.listeners[event]) {
-      console.error(`Нет события, чтобы отписаться: ${event}`);
+      throw new Error(`Event ${event} is not found`);
     }
 
-    this.listeners[event] = this.listeners[event].filter(
+    this.listeners[event] = this.listeners[event]!.filter(
       (listener) => listener !== callback,
     );
   }
 
-  public emit(event: string, ...args: unknown[]): void {
+  emit(event: E, ...args: M[E]) {
     if (!this.listeners[event]) {
-      return;
+      throw new Error(`Event ${event} is not found`);
     }
 
-    this.listeners[event].forEach((listener) => {
-      listener(...args);
-    });
+    this.listeners[event]!.forEach((listener) => listener(...args));
   }
 
-  public destroy() {
+  destroy() {
     this.listeners = {};
   }
 }

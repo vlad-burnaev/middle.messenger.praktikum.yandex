@@ -1,27 +1,33 @@
-import { Store } from '../core/Store';
-import { BlockClass } from '../core/Block';
+import { BlockConstructable } from '../core/Block';
+import { Dispatch } from '../core/Store';
 
-type WithStateProps = { store: Store<AppState> };
+interface PropsWithDispatch {
+  dispatch: Dispatch<AppState>
+}
 
-export function withStore<P extends WithStateProps>(WrappedBlock: BlockClass) {
+export function withStore<P extends PropsWithDispatch>(
+  WrappedBlock: BlockConstructable<P>,
+  mapStateToProps: (state: AppState) => Partial<P>,
+) {
   return class extends WrappedBlock {
-    public static componentName = WrappedBlock.componentName || WrappedBlock.name;
-
     constructor(props: P) {
-      super({ ...props, store: window.store });
+      super({
+        ...props,
+        ...mapStateToProps(window.store.getState()),
+        dispatch: window.store.dispatch.bind(window.store),
+      });
     }
 
     __onChangeStoreCallback = () => {
-      /**
-       * TODO: проверить что стор реально обновлен
-       * и прокидывать не целый стор, а необходимые поля
-       * с помощью метода mapStateToProps
-       */
-      this.setProps({ ...this.props, store: window.store });
-    }
+      this.setProps({
+        ...this.props,
+        ...mapStateToProps(window.store.getState()),
+        dispatch: window.store.dispatch.bind(window.store),
+      });
+    };
 
-    componentDidMount() {
-      super.componentDidMount();
+    componentDidMount(props: P) {
+      super.componentDidMount(props);
       window.store.on('changed', this.__onChangeStoreCallback);
     }
 

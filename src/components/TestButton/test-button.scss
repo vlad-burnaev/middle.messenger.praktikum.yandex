@@ -12,18 +12,9 @@
 
   font-size: 13px;
   line-height: 13px;
+}
 
-  &:disabled {
-    background: var(--color-blue-light);
-
-    &:hover {
-      cursor: not-allowed;
-    }
-  }
-
-  @media (hover: hover) {
-    &:hover {
-      background: var(--color-blue-light);
-    }
-  }
+.button:disabled {
+  background: var(--color-blue-light);
+  cursor: not-allowed;
 }

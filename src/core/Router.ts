@@ -1,40 +1,56 @@
 import Route from './Route';
 import Block from './Block';
-import { APP_ROOT_PATH } from '../utils/constants';
-import { Routes } from './routes';
 
-export default class Router {
-  private static __instance: any;
+interface BlockConstructable<Props extends {}> {
+  new(props: any): Block<Props>;
+}
 
-  private routes: Route[];
+class Router {
+  private static __instance: Router;
 
-  private history: History;
+  private _rootQuery: string;
 
-  private _currentRoute: Route | null;
+  private _currentRoute: Nullable<Route>;
 
-  constructor() {
+  routes: Route[];
+
+  history: History;
+
+  constructor(rootQuery: string) {
     if (Router.__instance) {
+      // eslint-disable-next-line no-constructor-return
       return Router.__instance;
     }
-
+    Router.__instance = this;
     this.routes = [];
     this.history = window.history;
     this._currentRoute = null;
-
-    Router.__instance = this;
+    this._rootQuery = rootQuery;
   }
 
-  use(pathname: string, block: typeof Block) {
-    const route = new Route(pathname, block, { rootQuery: APP_ROOT_PATH });
+  use(pathname: string, block: BlockConstructable<{}>) {
+    const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+
     this.routes.push(route);
 
     return this;
   }
 
+  back() {
+    this.history.back();
+  }
+
+  forward() {
+    this.history.forward();
+  }
+
   start() {
-    window.onpopstate = (event) => {
-      // @ts-ignore
-      this._onRoute(event.currentTarget.location.pathname);
+    window.onpopstate = (event: PopStateEvent) => {
+      const target = event.currentTarget as Nullable<Window>;
+
+      if (target) {
+        this._onRoute(target.location.pathname);
+      }
     };
 
     this._onRoute(window.location.pathname);
@@ -42,20 +58,13 @@ export default class Router {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-
     if (!route) {
-      const pageNotFoundRoute = this.getRoute(Routes.Page404);
-      if (pageNotFoundRoute) {
-        pageNotFoundRoute.render();
-      }
       return;
     }
 
-    if (this._currentRoute && this._currentRoute !== route) {
+    if (this._currentRoute) {
       this._currentRoute.leave();
     }
-
-    this._currentRoute = route;
 
     route.render();
   }
@@ -69,3 +78,5 @@ export default class Router {
     return this.routes.find((route) => route.match(pathname));
   }
 }
+
+export default Router;
