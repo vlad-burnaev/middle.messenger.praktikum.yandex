@@ -7,6 +7,9 @@ import * as styles from './main.pcss';
 import { mainPageData } from './main.data';
 import Navbar from '../../components/Navbar';
 import { withStore } from '../../utils/withStore';
+import { Routes } from '../../core/routes';
+import { ProfileLink } from './components/ProfileLink/profile-link';
+import Router from '../../core/Router';
 
 class Main extends Block {
   constructor() {
@@ -14,6 +17,13 @@ class Main extends Block {
   }
 
   initChildren() {
+    this.children.profileLink = new ProfileLink({
+      events: {
+        click: () => {
+          new Router().go(Routes.Profile);
+        },
+      },
+    });
     this.children.ChatPreview1 = new ChatPreview(mainPageData.chatPreviews[0]);
     this.children.ChatPreview2 = new ChatPreview(mainPageData.chatPreviews[1]);
     this.children.ChatPreview3 = new ChatPreview(mainPageData.chatPreviews[2]);

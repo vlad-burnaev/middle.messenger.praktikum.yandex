@@ -3,9 +3,10 @@ import template from './link.hbs';
 import { router } from '../../index';
 
 interface LinkProps {
-  label: string,
   path: string;
+  label?: string,
   classNames?: string[];
+  children?: typeof Block;
 }
 
 export class Link extends Block {
