@@ -1,8 +1,11 @@
 import HTTPTransport from '../core/HTTPTransport';
-import { ProfileEditData } from './user-api.model';
+import { ProfileChangePasswordData, ProfileEditData } from './user-api.model';
 import { mapProfileEditDataToRaw } from './user-api.mappers';
 
-const BASE_API_URL = '/user';
+const USER_API_PREFIX = '/user';
+const getUserApiURL = (path: string) => {
+  return `${USER_API_PREFIX}/${path}`;
+};
 
 export default class UserApi {
   private api = HTTPTransport.getInstance();
@@ -12,6 +15,14 @@ export default class UserApi {
       data: mapProfileEditDataToRaw(data),
     };
 
-    return this.api.put(`${BASE_API_URL}/profile`, options);
+    return this.api.put(getUserApiURL('profile'), options);
+  }
+
+  public changePassword(data: ProfileChangePasswordData) {
+    const options = {
+      data,
+    };
+
+    return this.api.put(getUserApiURL('password'), options);
   }
 }

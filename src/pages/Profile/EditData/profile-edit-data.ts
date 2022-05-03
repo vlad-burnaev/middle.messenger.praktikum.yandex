@@ -21,6 +21,7 @@ class ProfileEditData extends Block {
   }
 
   initChildren() {
+    // todo - добавить валидацию
     // todo - выпилить defaultState
     const formData = {
       email: this.props.user?.email ?? 'defaultEmail',

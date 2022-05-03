@@ -6,3 +6,8 @@ export type ProfileEditData = {
   email: string,
   phone: string
 }
+
+export type ProfileChangePasswordData = {
+  oldPassword: string,
+  newPassword: string
+}

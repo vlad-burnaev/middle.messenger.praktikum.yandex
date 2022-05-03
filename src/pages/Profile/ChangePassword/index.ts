@@ -1,1 +1,1 @@
-export { ProfileChangePassword as default } from './profile-change-password';
+export { default } from './profile-change-password';
