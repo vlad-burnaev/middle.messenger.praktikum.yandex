@@ -11,10 +11,17 @@ import { Routes } from '../../core/routes';
 import { ProfileLink } from './components/ProfileLink/profile-link';
 import Router from '../../core/Router';
 import { Store } from '../../core/Store';
+import { ChatsService } from '../../services/chats';
+
+const chatsService = new ChatsService();
 
 class Main extends Block {
   constructor(props: {store: Store<AppState>}) {
     super({ ...props, styles });
+  }
+
+  componentDidMount() {
+    this.props.store.dispatch(chatsService.getChats);
   }
 
   initChildren() {

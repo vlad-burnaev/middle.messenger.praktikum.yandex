@@ -10,6 +10,7 @@ declare global {
   export type AppState = {
     isLoading: boolean,
     isAuth: boolean,
+    chats: Nullable<Chat[]>,
     user: Nullable<User>,
   };
 
@@ -28,6 +29,18 @@ declare global {
     phone: string,
     email: string,
   }
-}
 
-export { };
+  export type Interlocutor = Omit<User, 'id' | 'displayName'>
+
+  export type Chat = {
+    id: number,
+    title: string,
+    avatar: Nullable<string>,
+    unreadCount: number,
+    lastMessage: {
+      user: Interlocutor,
+      time: Date,
+      content: string
+    }
+  }
+}
