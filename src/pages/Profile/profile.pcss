@@ -29,3 +29,25 @@
 
   margin-top: 50px;
 }
+
+.action_button {
+  display: block;
+  cursor: pointer;
+
+  width: 100%;
+  padding: 10px 0;
+
+  color: var(--color-blue);
+
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-grey-light);
+  }
+
+  &:last-child {
+    color: var(--color-red);
+  }
+}

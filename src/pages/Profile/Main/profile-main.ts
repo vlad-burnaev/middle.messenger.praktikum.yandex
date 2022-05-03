@@ -11,6 +11,8 @@ import { AuthService } from '../../../services/auth';
 import { withStore } from '../../../utils/withStore';
 import { Store } from '../../../core/Store';
 import { withUser } from '../../../utils/withUser';
+import Link from '../../../components/Link';
+import { Routes } from '../../../core/routes';
 
 const authService = new AuthService();
 
@@ -48,8 +50,16 @@ class ProfileMain extends Block {
       data: this.props.user?.phone ?? 'defaultPhone',
     });
 
-    this.children.actionButtonEditData = new ProfileActionButton(profileMainData.actions[0]);
-    this.children.actionButtonChangePassword = new ProfileActionButton(profileMainData.actions[1]);
+    this.children.actionButtonEditData = new Link({
+      label: 'Изменить данные',
+      path: Routes.EditProfile,
+      classNames: [styles.action_button],
+    });
+    this.children.actionButtonChangePassword = new Link({
+      label: 'Изменить пароль',
+      path: Routes.ChangePassword,
+      classNames: [styles.action_button],
+    });
     this.children.actionButtonExit = new ProfileActionButton({
       label: 'Выйти',
       events: {
@@ -57,6 +67,7 @@ class ProfileMain extends Block {
           this.props.store.dispatch(authService.logout);
         },
       },
+      classNames: [styles.action_button],
     });
 
     this.children.goBack = new ProfileGoBack(profileMainData.goBack);
