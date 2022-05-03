@@ -19,14 +19,14 @@ export class AuthService {
 
     const response = await api.signUp(action);
 
+    dispatch({ isLoading: false });
+
     if (response.status !== 200) {
-      dispatch({ isLoading: false });
       throw new Error(JSON.parse(response.responseText).reason);
     }
 
     dispatch({
       isAuth: true,
-      isLoading: false,
       user: {
         id: JSON.parse(response.responseText).id,
         firstName: action.firstName,
@@ -47,8 +47,9 @@ export class AuthService {
 
     const loginResponse = await api.signIn(action);
 
+    dispatch({ isLoading: false });
+
     if (loginResponse.status !== 200) {
-      dispatch({ isLoading: false });
       throw new Error(JSON.parse(loginResponse.responseText).reason);
     }
 
@@ -58,13 +59,13 @@ export class AuthService {
 
     const getUserResponse = await api.getUser();
 
+    dispatch({ isLoading: false });
+
     if (getUserResponse.status !== 200) {
-      dispatch({ isLoading: false });
       throw new Error(JSON.parse(getUserResponse.responseText).reason);
     }
 
     dispatch({
-      isLoading: false,
       user: mapRawToUser(JSON.parse(getUserResponse.responseText)),
     });
 

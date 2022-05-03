@@ -11,6 +11,9 @@ import { withUser } from '../../../utils/withUser';
 import { withStore } from '../../../utils/withStore';
 import { Store } from '../../../core/Store';
 import { Routes } from '../../../core/routes';
+import { UserService } from '../../../services/user';
+
+const userService = new UserService();
 
 class ProfileEditData extends Block {
   constructor(props: {state: Store<AppState>, user: User}) {
@@ -99,7 +102,9 @@ class ProfileEditData extends Block {
     this.children.submitButton = new Button({
       ...profileEditDataPageData.submitButton,
       events: {
-        click: () => console.log(formData),
+        click: () => {
+          this.props.store.dispatch(userService.editProfile, formData);
+        },
       },
     });
 
