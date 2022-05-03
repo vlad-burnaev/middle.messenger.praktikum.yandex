@@ -8,6 +8,8 @@ import Navbar from '../../components/Navbar';
 import { AuthService } from '../../services/auth';
 import { withStore } from '../../utils/withStore';
 import { Store } from '../../core/Store';
+import Router from '../../core/Router';
+import { Routes } from '../../core/routes';
 
 const authService = new AuthService();
 
@@ -28,6 +30,14 @@ class SignIn extends Block {
   }
 
   private setValidationStatus: any;
+
+  // todo - разобраться почему не работает
+  componentDidUpdate() {
+    if (this.props.store.getState().user) {
+      new Router().go(Routes.Index);
+    }
+    return true;
+  }
 
   initChildren() {
     this.setValidationStatus = (props: { name: string, value: string, status: boolean }) => {

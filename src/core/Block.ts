@@ -53,6 +53,14 @@ class Block {
       eventBus.emit(Block.EVENTS.INIT);
     }
 
+    private _registerEvents(eventBus: EventBus) {
+      eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
+      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
+    }
+
     /**
    * Хелпер, который проверяет, находится ли элемент в DOM дереве
    * И есть нет, триггерит событие COMPONENT_WILL_UNMOUNT
@@ -89,14 +97,6 @@ class Block {
     }
 
     protected initChildren() {}
-
-    private _registerEvents(eventBus: EventBus) {
-      eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_CWU, this._componentWillUnmount.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
-      eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
-    }
 
     init() {
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -189,6 +189,14 @@ class Block {
     }
 
     getContent() {
+      // Хак, чтобы вызвать CDM только после добавления в DOM
+      if (this.element?.parentNode?.nodeType === Node.DOCUMENT_FRAGMENT_NODE) {
+        setTimeout(() => {
+          if (this.element?.parentNode?.nodeType !== Node.DOCUMENT_FRAGMENT_NODE) {
+            this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+          }
+        }, 100);
+      }
       return this.element!;
     }
 

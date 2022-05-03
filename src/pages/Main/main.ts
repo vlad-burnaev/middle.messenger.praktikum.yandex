@@ -10,10 +10,11 @@ import { withStore } from '../../utils/withStore';
 import { Routes } from '../../core/routes';
 import { ProfileLink } from './components/ProfileLink/profile-link';
 import Router from '../../core/Router';
+import { Store } from '../../core/Store';
 
 class Main extends Block {
-  constructor() {
-    super({ styles });
+  constructor(props: {store: Store<AppState>}) {
+    super({ ...props, styles });
   }
 
   initChildren() {

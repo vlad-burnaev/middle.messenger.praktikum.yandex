@@ -11,12 +11,14 @@ import Error500 from './pages/500';
 import { Routes } from './core/routes';
 import { Store } from './core/Store';
 import { defaultStoreState } from './store';
+import { InitAppService } from './services/initApp';
 
 export const router = new Router();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = new Store(defaultStoreState);
+  const initAppService = new InitAppService();
 
+  const store = new Store(defaultStoreState);
   window.store = store;
 
   store.on('changed', (_, nextState) => {
@@ -26,6 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
       nextState,
     );
   });
+
+  store.dispatch(initAppService.init);
 
   router
     .use(Routes.Index, Main)
