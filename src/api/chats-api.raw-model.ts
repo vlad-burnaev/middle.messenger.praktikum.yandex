@@ -8,14 +8,16 @@ export type InterlocutorRaw = {
   phone: string
 }
 
+type ChatLastMessage = {
+  user: InterlocutorRaw,
+  time: string,
+  content: string
+}
+
 export type ChatRaw = {
   id: number,
   title: string,
-  avatar: string,
+  avatar: Nullable<string>,
   unread_count: number,
-  last_message: {
-    user: InterlocutorRaw,
-    time: string,
-    content: string
-  }
+  last_message: Nullable<ChatLastMessage>
 }

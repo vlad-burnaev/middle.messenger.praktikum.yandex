@@ -32,15 +32,17 @@ declare global {
 
   export type Interlocutor = Omit<User, 'id' | 'displayName'>
 
+  type ChatLastMessage = {
+    user: Interlocutor,
+    time: Date,
+    content: string
+  }
+
   export type Chat = {
     id: number,
     title: string,
     avatar: Nullable<string>,
     unreadCount: number,
-    lastMessage: {
-      user: Interlocutor,
-      time: Date,
-      content: string
-    }
+    lastMessage: Nullable<ChatLastMessage>
   }
 }
