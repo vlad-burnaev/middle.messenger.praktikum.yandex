@@ -1,7 +1,6 @@
 import template from './profile-main.hbs';
 import * as styles from '../profile.pcss';
 import Block from '../../../core/Block';
-import { profileMainData } from './profile-main.data';
 import ProfileDataField from '../components/DataField';
 import ProfileActionButton from '../components/ActionButton';
 import ProfileGoBack from '../components/GoBack';
@@ -70,7 +69,7 @@ class ProfileMain extends Block {
       classNames: [styles.action_button],
     });
 
-    this.children.goBack = new ProfileGoBack(profileMainData.goBack);
+    this.children.goBack = new ProfileGoBack({ path: Routes.Index });
 
     this.children.navbar = new Navbar();
   }

@@ -10,6 +10,7 @@ import Navbar from '../../../components/Navbar';
 import { withUser } from '../../../utils/withUser';
 import { withStore } from '../../../utils/withStore';
 import { Store } from '../../../core/Store';
+import { Routes } from '../../../core/routes';
 
 class ProfileEditData extends Block {
   constructor(props: {state: Store<AppState>, user: User}) {
@@ -102,7 +103,7 @@ class ProfileEditData extends Block {
       },
     });
 
-    this.children.goBack = new ProfileGoBack(profileEditDataPageData.goBack);
+    this.children.goBack = new ProfileGoBack({ path: Routes.Profile });
     this.children.navbar = new Navbar();
   }
 

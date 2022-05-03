@@ -13,7 +13,4 @@ export const profileChangePasswordPageData = {
     },
   },
   submitButton: { href: Routes.Profile, label: 'Сохранить' },
-  goBack: {
-    href: Routes.Profile,
-  },
 };

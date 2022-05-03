@@ -7,6 +7,7 @@ import ProfileDataFieldEditable from '../components/DataFieldEditable';
 import ProfileAvatar from '../components/Avatar';
 import Button from '../../../components/Button';
 import Navbar from '../../../components/Navbar';
+import { Routes } from '../../../core/routes';
 
 export class ProfileChangePassword extends Block {
   constructor() {
@@ -47,7 +48,7 @@ export class ProfileChangePassword extends Block {
       },
     });
 
-    this.children.goBack = new ProfileGoBack(profileChangePasswordPageData.goBack);
+    this.children.goBack = new ProfileGoBack({ path: Routes.Profile });
     this.children.navbar = new Navbar();
   }
 
