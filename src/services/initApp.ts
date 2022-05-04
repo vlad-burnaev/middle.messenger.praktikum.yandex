@@ -1,8 +1,6 @@
 import AuthAPI from '../api/auth-api';
 import { Dispatch } from '../core/Store';
 import { mapRawToUser } from '../api/auth-api.mappers';
-import Router from '../core/Router';
-import { Routes } from '../core/routes';
 
 const api = new AuthAPI();
 
@@ -16,7 +14,7 @@ export class InitAppService {
 
     if (response.status === 401) {
       dispatch({ isAuth: false });
-      new Router().go(Routes.SignIn);
+      // new Router().go(Routes.SignIn);
     }
 
     if (response.status !== 200) {

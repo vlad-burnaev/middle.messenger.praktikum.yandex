@@ -1,15 +1,19 @@
+// todo - перейти с pcss на scss
 import './styles/index.pcss';
 import Router from './core/Router';
 import { Routes } from './core/routes';
 import { Store } from './core/Store';
 import { InitAppService } from './services/initApp';
 import registerComponent from './core/registerComponent';
-import TestButton from './components/TestButton/test-button';
 import { defaultStoreState } from './store';
-import TestPage from './pages/TestPage/TestPage';
+import { NewButton } from './components/NewButton';
+import { NewLink } from './components/NewLink';
+import { NewError404 } from './pages/New404';
+import { NewError500 } from './pages/New500';
 
 function registerComponents() {
-  registerComponent(TestButton, 'TestButton');
+  registerComponent(NewButton, 'NewButton');
+  registerComponent(NewLink, 'NewLink');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -33,13 +37,14 @@ document.addEventListener('DOMContentLoaded', () => {
   store.dispatch(initAppService.init);
 
   router
-    .use(Routes.Index, TestPage)
     // .use(Routes.SignIn, SignIn)
     // .use(Routes.SignUp, SignUp)
     // .use(Routes.Profile, ProfileMain)
     // .use(Routes.EditProfile, ProfileEditData)
     // .use(Routes.ChangePassword, ProfileChangePassword)
     // .use(Routes.Page404, Error404)
+    .use(Routes.Page404, NewError404)
+    .use(Routes.Page500, NewError500)
     // .use(Routes.Page500, Error500)
     .start();
 });

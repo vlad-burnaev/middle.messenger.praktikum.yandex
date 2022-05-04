@@ -1,0 +1,35 @@
+.root {
+  display: flex;
+  height: 100vh;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  text-align: center;
+
+  &__title {
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 500;
+  }
+
+  &__subtitle {
+
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 500;
+  }
+
+  &__link {
+    display: inline-block;
+    color: var(--color-blue);
+
+    margin-top: 69px;
+
+    font-size: 11px;
+    line-height: 11px;
+  }
+}

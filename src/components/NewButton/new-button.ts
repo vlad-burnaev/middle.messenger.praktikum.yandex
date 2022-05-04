@@ -1,5 +1,5 @@
 import Block from '../../core/Block';
-import './test-button.scss';
+import './new-button.scss';
 import classnames from '../../helpers/classnames';
 
 interface IButtonProps {
@@ -15,7 +15,7 @@ interface IButtonPropsWithEvents extends Omit<IButtonProps, 'onClick'> {
   }
 }
 
-class TestButton extends Block<IButtonPropsWithEvents> {
+class NewButton extends Block<IButtonPropsWithEvents> {
   constructor(props: IButtonProps) {
     const {
       label, disabled = false, className, onClick,
@@ -30,7 +30,7 @@ class TestButton extends Block<IButtonPropsWithEvents> {
       label,
       disabled,
       className: classnames(...classNames, {
-        button: true
+        button: true,
       }),
       events: {
         click: onClick,
@@ -53,4 +53,4 @@ class TestButton extends Block<IButtonPropsWithEvents> {
   }
 }
 
-export default TestButton;
+export default NewButton;
