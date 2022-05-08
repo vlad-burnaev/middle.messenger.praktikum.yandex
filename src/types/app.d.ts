@@ -8,6 +8,8 @@ declare global {
   export type Nullable<T> = T | null;
 
   export type AppState = {
+    signUpFormError: string,
+    signInFormError: string,
     isLoading: boolean,
     isAuth: boolean,
     chats: Nullable<Chat[]>,

@@ -1,12 +1,10 @@
 import AuthAPI from '../api/auth-api';
 import { SignInFormData, SignUpFormData } from '../api/auth-api.model';
 import { Dispatch } from '../core/Store';
-import Router from '../core/Router';
 import { Routes } from '../core/routes';
 import { mapRawToUser } from '../api/auth-api.mappers';
 
 const api = new AuthAPI();
-const router = new Router();
 
 // todo - обработка error-cases
 export class AuthService {
@@ -39,7 +37,7 @@ export class AuthService {
       },
     });
 
-    new Router().go(Routes.Index);
+    window.router.go(Routes.Index);
   }
 
   public async login(dispatch: Dispatch<AppState>, _:any, action: SignInFormData) {
@@ -69,7 +67,7 @@ export class AuthService {
       user: mapRawToUser(JSON.parse(getUserResponse.responseText)),
     });
 
-    router.go(Routes.Index);
+    window.router.go(Routes.Index);
   }
 
   public async logout(dispatch: Dispatch<AppState>) {
@@ -79,6 +77,6 @@ export class AuthService {
 
     dispatch({ isLoading: false, isAuth: false, user: null });
 
-    router.go(Routes.SignIn);
+    window.router.go(Routes.SignIn);
   }
 }

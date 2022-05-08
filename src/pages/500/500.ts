@@ -1,20 +1,37 @@
 import Block from '../../core/Block';
-import template from './500.hbs';
-import ErrorComponent from '../../components/Error';
-import { error500Data } from './500.data';
-import Navbar from '../../components/Navbar';
+import './500.scss';
+import Router from '../../core/Router';
+import { Routes } from '../../core/routes';
+import { withRouter } from '../../utils/withRouter';
 
-export class Error500 extends Block {
-  constructor() {
-    super();
+interface INewError500Props {
+  router: Router,
+}
+
+class NewError500 extends Block<INewError500Props> {
+  protected getStateFromProps() {
+    this.state = {
+      onGoBackLinkClick: this.handleGoToIndexPage.bind(this),
+    };
   }
 
-  protected initChildren() {
-    this.children.error = new ErrorComponent({ ...error500Data });
-    this.children.navbar = new Navbar();
+  handleGoToIndexPage() {
+    this.props.router.go(Routes.Index);
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return `
+      <div>
+        <main class="root">
+          <div class="content">
+            <h1 class="content__title">500</h1>
+            <h2 class="content__subtitle">Мы уже фиксим</h2>
+            {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
+          </div>
+        </main>
+      </div>
+    `;
   }
 }
+
+export default withRouter<INewError500Props>(NewError500);

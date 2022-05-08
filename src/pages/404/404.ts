@@ -1,20 +1,37 @@
 import Block from '../../core/Block';
-import template from './404.hbs';
-import { error404Data } from './404.data';
-import ErrorComponent from '../../components/Error';
-import Navbar from '../../components/Navbar';
+import './404.scss';
+import Router from '../../core/Router';
+import { Routes } from '../../core/routes';
+import { withRouter } from '../../utils/withRouter';
 
-export class Error404 extends Block {
-  constructor() {
-    super();
+interface INewError404Props {
+  router: Router,
+}
+
+class NewError404 extends Block<INewError404Props> {
+  protected getStateFromProps() {
+    this.state = {
+      onGoBackLinkClick: this.handleGoToIndexPage.bind(this),
+    };
   }
 
-  protected initChildren() {
-    this.children.error = new ErrorComponent({ ...error404Data });
-    this.children.navbar = new Navbar();
+  handleGoToIndexPage() {
+    this.props.router.go(Routes.Index);
   }
 
   render() {
-    return this.compile(template, { ...this.props });
+    return `
+      <div>
+        <main class="root">
+          <div class="content">
+            <h1 class="content__title">404</h1>
+            <h2 class="content__subtitle">Не туда попали</h2>
+            {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
+          </div>
+        </main>
+      </div>
+    `;
   }
 }
+
+export default withRouter<INewError404Props>(NewError404);
