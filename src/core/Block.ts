@@ -169,6 +169,16 @@ class Block {
       });
     }
 
+    private _addChildEvents(child) {
+      if (!('events' in child.props)) return;
+
+      if (child.props.events) {
+        Object.entries(child.props.events).forEach(([event, handler]) => {
+          child.getContent().addEventListener(event, handler);
+        });
+      }
+    }
+
     private _render() {
       const fragment = this.render();
 
@@ -228,12 +238,13 @@ class Block {
       return document.createElement(tagName);
     }
 
-    compile(template: (context: any) => string, context: any) {
+    compile(template: (context: any) => string, context: any = {}) {
       const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
 
       Object.entries(this.children).forEach(([key, child]) => {
-        if (Array.isArray(child)) {
-          context[key] = child.map((ch) => `<div data-id="id-${ch.id}"></div>`);
+        const childrenIsArray = Array.isArray(child) && child.every((v) => v instanceof Block);
+        if (childrenIsArray) {
+          context[key] = child.map(({ id }) => `<div data-id="id-${id}"></div>`);
           return;
         }
 
@@ -241,20 +252,37 @@ class Block {
       });
 
       const htmlString = template(context);
-
       fragment.innerHTML = htmlString;
 
-      Object.entries(this.children).forEach(([_, child]) => {
-        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+      Object.entries(this.children).forEach(([key, child]) => {
+        const isChildrenArray = Array.isArray(child) && child.every((v) => v instanceof Block) as boolean;
 
+        if (isChildrenArray) {
+          const childrenIds = child.map(({ id }) => id);
+          const stubs = childrenIds.map((id) => fragment.content.querySelector(`[data-id="id-${id}"]`)) as [];
+
+          stubs.forEach((stub: HTMLElement) => {
+            const childById = child.find((ch) => `id-${ch.id}` === stub.dataset.id);
+            stub.replaceWith(childById.getContent());
+            this._addChildEvents(childById);
+          });
+          return;
+        }
+        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
         if (!stub) {
           return;
         }
+        const content = child.getContent()!;
+        stub.replaceWith(content);
+        this._addChildEvents(child);
 
-        stub.replaceWith(child.getContent()!);
+        if (stub.childNodes.length) {
+          content.append(...stub.childNodes);
+        }
 
+        // add classes
         if (Array.isArray(child.classNames) && child.classNames.length) {
-          child.getContent()!.classList.add(...child.classNames);
+          child.getContent().classList.add(...child.classNames);
         }
       });
 

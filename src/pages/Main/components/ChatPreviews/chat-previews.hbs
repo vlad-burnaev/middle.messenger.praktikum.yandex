@@ -1,0 +1,26 @@
+<div>
+    {{#each previews}}
+        <li class="{{styles.chat-preview}}">
+            <div class="{{styles.avatar}}">
+                <img src="{{avatarSrc}}">
+            </div>
+            <div class="{{styles.text-block}}">
+                <div class="{{styles.text-block__name}}">{{name}}</div>
+                <div class="{{styles.text-block__last-message}} {{styles.last-message}}">
+                    <span class="{{styles.last-message__prefix}}">{{lastMessage.prefix}}</span>
+                    {{lastMessage.text}}
+                </div>
+            </div>
+            <div class="{{styles.meta}}">
+                <time class="{{styles.meta__time}}">
+                    {{meta.time}}
+                </time>
+                {{#if meta.newMessagesCount}}
+                    <div class="{{styles.meta__new-messages-count}}">
+                        {{meta.newMessagesCount}}
+                    </div>
+                {{/if}}
+            </div>
+        </li>
+    {{/each}}
+</div>

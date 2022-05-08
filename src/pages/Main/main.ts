@@ -1,6 +1,5 @@
 import Block from '../../core/Block';
 import template from './main.hbs';
-import ChatPreview from './components/ChatPreview';
 import { ArrowRight1 } from '../../../static/icons/arrow-right-1';
 import Chat from './components/Chat';
 import * as styles from './main.pcss';
@@ -12,6 +11,7 @@ import { ProfileLink } from './components/ProfileLink/profile-link';
 import Router from '../../core/Router';
 import { Store } from '../../core/Store';
 import { ChatsService } from '../../services/chats';
+import ChatPreviews from './components/ChatPreviews';
 
 const chatsService = new ChatsService();
 
@@ -32,9 +32,7 @@ class Main extends Block {
         },
       },
     });
-    this.children.ChatPreview1 = new ChatPreview(mainPageData.chatPreviews[0]);
-    this.children.ChatPreview2 = new ChatPreview(mainPageData.chatPreviews[1]);
-    this.children.ChatPreview3 = new ChatPreview(mainPageData.chatPreviews[2]);
+    this.children.ChatPreviews = new ChatPreviews({ previews: mainPageData.chatPreviews });
     this.children.Chat = new Chat(mainPageData.chat);
     this.children.navbar = new Navbar();
   }

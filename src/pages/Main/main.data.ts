@@ -1,8 +1,8 @@
 import { ChatProps } from './components/Chat/chat';
-import { ChatPreviewProps } from './components/ChatPreview/chat-preview';
+import { ChatPreview } from './components/ChatPreviews/chat-previews';
 
 export const mainPageData: {
-  chatPreviews: ChatPreviewProps[],
+  chatPreviews: ChatPreview[],
   chat: ChatProps
 } = {
   chatPreviews: [
