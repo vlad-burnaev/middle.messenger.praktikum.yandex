@@ -14,10 +14,12 @@
   }
 }
 
-.meta {
+.message-meta {
   display: flex;
 
-  margin-left: 14px;
+  flex-direction: row;
+
+  margin-left: 10px;
 
   align-items: flex-end;
 
@@ -34,5 +36,7 @@
     font-weight: 500;
     font-size: 9px;
     line-height: 9px;
+
+    margin-left: 4px;
   }
 }

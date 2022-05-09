@@ -1,5 +1,6 @@
 import Block from '../../../../core/Block';
 import './message.scss';
+import { IconName } from '../../../../components/icon/icon';
 
 enum MessageStatus {
   Sent = 'sent',
@@ -24,11 +25,11 @@ class Message extends Block<IMessageProps> {
     return `
       <li class="message">
         <span class="message__text">{{text}}</span>
-        <div class="meta">
+        <div class="message-meta">
             {{#if ${this.props.meta.status === MessageStatus.Sent} }}
-                {{{ Checkmark }}}
+                {{{ Icon name=${IconName.Checkmark} }}}
             {{/if}}
-            <span class="meta__text">{{meta.time}}</span>
+            <span class="message-meta__text">{{meta.time}}</span>
         </div>
       </li>
     `;

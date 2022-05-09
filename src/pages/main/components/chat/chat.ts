@@ -2,6 +2,7 @@ import { MessageGroupProps } from '../../../main (deprecated)/components/Message
 import Block from '../../../../core/Block';
 import './chat.scss';
 import { InputType } from '../../../../components/input';
+import { IconName } from '../../../../components/icon/icon';
 
 export interface IChatProps {
   avatarSrc: string,
@@ -26,7 +27,7 @@ class Chat extends Block<IChatProps> {
                 <div class="chat-header__name">{{name}}</div>
             </div>
             <div class="chat-header__right-block">
-                {{{ Menu }}}
+                {{{ Icon name=${IconName.Menu} }}}
             </div>
         </section>
         <ul class="chat-main">
@@ -40,14 +41,14 @@ class Chat extends Block<IChatProps> {
         </ul>
         <form class="new-message-panel">
             <button class="new-message-panel__attach">
-                {{{ Clip }}}
+                {{{ Icon name=${IconName.Clip} }}}
             </button>
             {{{ Input
                     type=${InputType.TEXT}
                     name='message'
             }}}
             <button class="new-message-panel__enter-button">
-                {{{ ArrowRight2 }}}
+                {{{ Icon name=${IconName.ArrowRight2} }}}
             </button>
         </form>
       </article>

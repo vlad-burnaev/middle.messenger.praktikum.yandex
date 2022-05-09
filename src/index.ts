@@ -21,8 +21,10 @@ import { Error500 } from './pages/500';
 import { SignIn } from './pages/signIn';
 import { SignUp } from './pages/signUp';
 import { Main } from './pages/main';
+import { Icon } from './components/icon';
 
 function registerComponents() {
+  registerComponent(Icon, 'Icon');
   registerComponent(Button, 'Button');
   registerComponent(Link, 'Link');
   registerComponent(Error, 'Error');
