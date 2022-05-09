@@ -1,12 +1,12 @@
+import './helpers/handlebarsHelpers';
 import './styles/index.scss';
 import Router from './core/Router';
 import { Routes } from './core/routes';
 import { Store } from './core/Store';
 import { InitAppService } from './services/initApp';
-import registerComponent from './core/registerComponent';
 import { defaultStoreState } from './store';
+import registerComponent from './core/registerComponent';
 import { AuthForm } from './components/authForm';
-import './helpers/handlebarsHelpers';
 import { InputField } from './components/inputField';
 import { Input } from './components/input';
 import { Button } from './components/button';
