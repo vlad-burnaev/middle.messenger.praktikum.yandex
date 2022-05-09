@@ -1,47 +1,85 @@
-import Block from '../../core/Block';
-import template from './main.hbs';
-import ChatPreview from './components/ChatPreview';
-import { ArrowRight1 } from '../../../static/icons/arrow-right-1';
-import Chat from './components/Chat';
-import * as styles from './main.pcss';
-import { mainPageData } from './main.data';
-import Navbar from '../../components/Navbar';
 import { withStore } from '../../utils/withStore';
-import { Routes } from '../../core/routes';
-import { ProfileLink } from './components/ProfileLink/profile-link';
+import { withRouter } from '../../utils/withRouter';
+import { Dispatch } from '../../core/Store';
+import Block from '../../core/Block';
 import Router from '../../core/Router';
-import { Store } from '../../core/Store';
-import { ChatsService } from '../../services/chats';
+import { mainPageData } from './main.data';
+import './main.scss';
 
-const chatsService = new ChatsService();
+interface IMainProps {
+  router: Router,
+  dispatch: Dispatch<AppState>,
+  isLoading: boolean
+}
 
-class Main extends Block {
-  constructor(props: {store: Store<AppState>}) {
-    super({ ...props, styles });
+class Main extends Block<IMainProps> {
+  constructor(props: IMainProps) {
+    super({ ...props });
   }
-
-  componentDidMount() {
-    this.props.store.dispatch(chatsService.getChats);
-  }
-
-  initChildren() {
-    this.children.profileLink = new ProfileLink({
-      events: {
-        click: () => {
-          new Router().go(Routes.Profile);
-        },
-      },
-    });
-    this.children.ChatPreview1 = new ChatPreview(mainPageData.chatPreviews[0]);
-    this.children.ChatPreview2 = new ChatPreview(mainPageData.chatPreviews[1]);
-    this.children.ChatPreview3 = new ChatPreview(mainPageData.chatPreviews[2]);
-    this.children.Chat = new Chat(mainPageData.chat);
-    this.children.navbar = new Navbar();
-  }
+  //
+  // componentDidMount() {
+  //   this.props.store.dispatch(chatsService.getChats);
+  // }
+  //
+  // initChildren() {
+  //   this.children.profileLink = new ProfileLink({
+  //     events: {
+  //       click: () => {
+  //         new Router().go(Routes.Profile);
+  //       },
+  //     },
+  //   });
 
   render() {
-    return this.compile(template, { ...this.props, ArrowRight1 });
+    // language=hbs
+    return `
+        <main class="main-page">
+          <div class="chats-preview-block">
+              <nav class="chats-preview-block-header">
+                  <a class="profile-link c-pointer">
+                    Профиль
+                    <div class="profile-link__icon">
+                        {{{ ArrowRight1 }}}
+                    </div>
+                  </a>
+                  <input type="text" class="search" placeholder="Поиск">
+              </nav>
+              <ul class="chats-preview">
+                  {{{ ChatPreview
+                        avatarSrc='${mainPageData.chatPreviews[0].avatarSrc}'
+                        name='${mainPageData.chatPreviews[0].name}'
+                        lastMessage='${mainPageData.chatPreviews[0].lastMessage}'
+                        meta='${mainPageData.chatPreviews[0].meta}'
+                  }}}
+                  {{{ ChatPreview
+                        avatarSrc='${mainPageData.chatPreviews[1].avatarSrc}'
+                        name='${mainPageData.chatPreviews[1].name}'
+                        lastMessage='${mainPageData.chatPreviews[1].lastMessage}'
+                        meta='${mainPageData.chatPreviews[1].meta}'
+                  }}}
+              </ul>
+          </div>
+          <div class="chat">
+              {{{ Chat
+                    avatarSrc='${mainPageData.chat.avatarSrc}'
+                    name='${mainPageData.chat.name}'
+                    messageGroups='${mainPageData.chat.messageGroups}'
+              }}}
+          </div>
+        </main>
+      `;
   }
 }
 
-export default withStore(Main);
+function mapStateToProps(state: AppState) {
+  return {
+    isLoading: state?.isLoading,
+  };
+}
+
+export default withRouter<IMainProps>(
+  withStore<IMainProps>(
+    Main,
+    mapStateToProps,
+  ),
+);

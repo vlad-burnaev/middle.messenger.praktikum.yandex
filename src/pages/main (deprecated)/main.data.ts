@@ -1,9 +1,9 @@
-import { IChatPreviewProps } from './components/chatPreview/chat-preview';
-import { IChatProps } from './components/chat/chat';
+import { ChatProps } from './components/Chat/chat';
+import { ChatPreviewProps } from './components/ChatPreview/chat-preview';
 
 export const mainPageData: {
-  chatPreviews: IChatPreviewProps[],
-  chat: IChatProps
+  chatPreviews: ChatPreviewProps[],
+  chat: ChatProps
 } = {
   chatPreviews: [
     {

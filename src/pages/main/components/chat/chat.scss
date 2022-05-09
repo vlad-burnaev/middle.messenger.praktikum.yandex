@@ -1,0 +1,130 @@
+:root {
+  --dialog-header-height: 55px;
+  --dialog-footer-height: 55px;
+}
+
+.chat {
+  display: flex;
+  width: 100%;
+
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.chat-header {
+  display: flex;
+
+  height: var(--dialog-header-height);
+
+  padding: 10px 0;
+  margin: 0 20px;
+
+  justify-content: space-between;
+
+  border-bottom: 1px solid var(--color-grey-light);
+
+  &__left-block {
+    display: flex;
+
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 34px;
+    height: 34px;
+
+    margin-right: 10px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: var(--color-grey-light);
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__right-block {
+    display: flex;
+
+    width: 15px;
+
+    margin-right: 11px;
+
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+  }
+}
+
+.chat-main {
+  display: flex;
+
+  height: calc(100vh - (var(--dialog-header-height) + var(--dialog-footer-height)));
+
+  padding: 30px 20px;
+
+  overflow-y: auto;
+
+  flex-direction: column-reverse;
+}
+
+:root {
+  --dialog-footer-height: 55px;
+}
+.new-message-panel {
+  display: flex;
+
+  height: var(--dialog-footer-height);
+
+  padding: 10px 0;
+  margin: 0 20px;
+
+  align-items: center;
+
+  border-top: 1px solid var(--color-grey-light);
+
+  &__attach {
+    margin-right: 10px;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 20px;
+
+    border-radius: 30px;
+
+    color: var(--color-grey);
+    background: var(--color-grey-light);
+    outline: none;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 12px;
+
+    border-bottom: none;
+  }
+
+  &__enter-button {
+    display: flex;
+
+    width: 28px;
+    height: 28px;
+
+    margin-left: 10px;
+
+    justify-content: center;
+    align-items: center;
+
+    flex-shrink: 0;
+    border-radius: 50%;
+
+    color: var(--color-white);
+    background: var(--color-blue);
+  }
+}
+

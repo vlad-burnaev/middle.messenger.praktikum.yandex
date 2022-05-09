@@ -22,7 +22,10 @@ interface IFormProps {
   className: string,
   inputs: string,
   submitBtn: ISubmitBtn,
-  link?: string,
+  link?: {
+    onClick: () => void,
+    label: string
+  },
   readonly?: boolean,
   isFormValid: boolean,
   update: ({ field, value, error }: UpdateState) => void,
@@ -220,18 +223,16 @@ class AuthForm extends Block<AuthFormProps> {
               }}}
             {{/if}}
           {{/ifEquals}}
-          <div class="form__container">
-            <div class="form__submit-btn-wrap">
-              {{{ Button 
-                    label=submitBtn 
-                    className='form__submit-btn' 
-                    onClick=handleSubmit 
-                    isLoading=isLoading 
-                    disabled=${!isFormValid} }}}
-              {{{ Error value=formError }}}
-            </div>
-            {{{ Link label=link.label size="small" className="form__link" onClick=link.onClick }}}
+          <div class="form__submit-btn-wrap">
+            {{{ Button 
+                  label=submitBtn 
+                  className='form__submit-btn' 
+                  onClick=handleSubmit 
+                  isLoading=isLoading 
+                  disabled=${!isFormValid} }}}
+            {{{ Error value=formError }}}
           </div>
+          {{{ Link label=link.label className="form__link" onClick=link.onClick }}}
       </form>
     `;
   }
