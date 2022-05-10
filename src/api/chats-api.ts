@@ -6,7 +6,7 @@ const getURL = (path: string) => {
 };
 
 export default class ChatsApi {
-  private api = HTTPTransport.getInstance();
+  private api = new HTTPTransport();
 
   public getChats() {
     return this.api.get(BASE_URL);

@@ -1,8 +1,8 @@
 import { Dispatch } from '../core/Store';
-import { ProfileChangePasswordData, ProfileEditData } from '../api/user-api.model';
 import UserAPI from '../api/user-api';
-import { mapRawToUser } from '../api/auth-api.mappers';
 import { Routes } from '../core/routes';
+import { apiHasError } from '../helpers/apiHasError';
+import { mapUser, ProfileEditRequest } from '../api/types/user';
 
 const userAPI = new UserAPI();
 
@@ -14,30 +14,26 @@ export class UserService {
 
     dispatch({ isLoading: false });
 
-    if (response.status === 401) {
+    if (apiHasError(response)) {
       dispatch({ isAuth: false });
-      // new Router().go(Routes.SignIn);
+      return;
     }
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
-    }
-
-    dispatch({ isAuth: true, user: mapRawToUser(JSON.parse(response.responseText)) });
+    dispatch({ isAuth: true, user: mapUser(response) });
   }
 
-  public async editProfile(dispatch: Dispatch<AppState>, _: any, action: ProfileEditData) {
+  public async editProfile(dispatch: Dispatch<AppState>, _: any, action: ProfileEditRequest) {
     dispatch({ isLoading: true });
 
     const response = await userAPI.editProfile(action);
 
     dispatch({ isLoading: false });
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
+    if (apiHasError(response)) {
+      return;
     }
 
-    dispatch({ user: mapRawToUser(JSON.parse(response.responseText)) });
+    dispatch({ user: mapUser(response) });
   }
 
   public async changePassword(dispatch: Dispatch<AppState>, _: any, action: ProfileChangePasswordData) {
@@ -47,8 +43,8 @@ export class UserService {
 
     dispatch({ isLoading: false });
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
+    if (apiHasError(response)) {
+      return;
     }
 
     window.router.go(Routes.Profile);

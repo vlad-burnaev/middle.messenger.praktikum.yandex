@@ -1,97 +1,106 @@
 import { queryStringify } from '../utils/stringUtils';
 import { API_BASE_URL } from '../utils/constants';
 
-const Methods = {
-  GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  DELETE: 'DELETE',
-};
-
-type Options = {
-  includeCredentials?: boolean,
-  headers?: Record<string, string>,
-  method?: string,
-  timeout?: number,
-  data?: Record<string, unknown>
+export enum Methods {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  PATCH = 'PATCH',
+  DELETE = 'DELETE'
 }
 
-export default class HTTPTransport {
-  private static instance: HTTPTransport
+type Options = {
+  method: Methods;
+  data?: any;
+  retries?: number,
+  isFile?: boolean,
+};
 
-  static getInstance() {
-    if (!this.instance) {
-      this.instance = new HTTPTransport(API_BASE_URL);
+type OptionsWithoutMethod = Omit<Options, 'method'>;
+
+class HTTPTransport {
+  baseURL: string = API_BASE_URL;
+
+  constructor(baseURL?: string) {
+    if (baseURL) {
+      this.baseURL = baseURL;
     }
-    return this.instance;
   }
 
-  private baseURL: string
-
-  private constructor(baseURL: string) {
-    this.baseURL = baseURL;
+  get(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(url, { ...options, method: Methods.GET });
   }
 
-  get = (path: string, options: Options = {}) => {
-    return this.request(path, { ...options, method: Methods.GET }, options.timeout);
-  };
+  put(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(url, { ...options, method: Methods.PUT });
+  }
 
-  post = (path: string, options: Options = {}) => {
-    return this.request(path, { ...options, method: Methods.POST }, options.timeout);
-  };
+  post(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(url, { ...options, method: Methods.POST });
+  }
 
-  put = (path: string, options: Options = {}) => {
-    return this.request(path, { ...options, method: Methods.PUT }, options.timeout);
-  };
+  delete(url: string, options: OptionsWithoutMethod = {}): Promise<XMLHttpRequest> {
+    return this.request(url, { ...options, method: Methods.DELETE });
+  }
 
-  delete = (path: string, options: Options = {}) => {
-    return this.request(path, { ...options, method: Methods.DELETE }, options.timeout);
-  };
+  async request(url: string, options: Options = { method: Methods.GET }, timeout = 5000):
+    Promise<XMLHttpRequest> {
+    let targetUrl = `${this.baseURL}${url}`;
 
-  request = (path: string, options: Options = {}, timeout = 5000): Promise<XMLHttpRequest> => {
-    const {
-      headers = {
-        'content-type': 'application/json',
-      }, includeCredentials = true, method, data,
-    } = options;
-    const url = this.baseURL + path;
+    return new Promise<XMLHttpRequest>((resolve, reject) => {
+      const xhr = new XMLHttpRequest();
+      const { method, data, isFile = false } = options;
 
-    return new Promise(((resolve, reject) => {
-      if (!method) {
-        reject('No method');
-        return;
+      if (data && method === Methods.GET) {
+        targetUrl += `?${queryStringify(data)}`;
       }
 
-      const xhr = new XMLHttpRequest();
-      const isGet = method === Methods.GET;
-
-      xhr.open(
-        method,
-        isGet && !!data
-          ? `${url}${queryStringify(data)}`
-          : url,
-      );
-      xhr.withCredentials = includeCredentials;
-
-      Object.keys(headers).forEach((key) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
-
-      xhr.onload = function () {
+      const handleLoad = () => {
         resolve(xhr);
       };
 
-      xhr.onabort = reject;
-      xhr.onerror = reject;
+      const handleError: ((this: XMLHttpRequest, ev: ProgressEvent) => any) | null = (err) => {
+        reject(err);
+      };
 
+      xhr.open(method, targetUrl, true);
+      if (!isFile) {
+        xhr.setRequestHeader('content-type', 'application/json');
+      }
+
+      xhr.setRequestHeader('accept', 'application/json');
+      xhr.responseType = 'json';
+
+      xhr.withCredentials = true;
       xhr.timeout = timeout;
-      xhr.ontimeout = reject;
+      xhr.onload = handleLoad;
+      xhr.onabort = handleError;
+      xhr.onerror = handleError;
+      xhr.ontimeout = handleError;
 
-      if (isGet || !data) {
+      if (method === Methods.GET || !data) {
         xhr.send();
       } else {
-        xhr.send(JSON.stringify(data));
+        xhr.send(isFile ? data : JSON.stringify(data));
       }
-    }));
-  };
+    });
+  }
+
+  fetchWithRetry(url: string, options: Options): Promise<XMLHttpRequest> {
+    const { retries = 1 } = options;
+
+    function onError() {
+      const retriesLeft = retries - 1;
+
+      if (retriesLeft < 1) {
+        throw new Error('Exceeded the number of attempts');
+      }
+
+      return this.fetchWithRetry(url, { ...options, retries: retriesLeft });
+    }
+
+    return this.request(url, options).catch(onError);
+  }
 }
+
+export default HTTPTransport;

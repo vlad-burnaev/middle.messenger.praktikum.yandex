@@ -1,9 +1,10 @@
 import AuthAPI from '../api/auth-api';
-import { SignInFormData, SignUpFormData } from '../api/auth-api.model';
 import { Dispatch } from '../core/Store';
 import { Routes } from '../core/routes';
-import { mapRawToUser } from '../api/auth-api.mappers';
 import UserAPI from '../api/user-api';
+import { SignInRequest, SignUpRequest } from '../api/types/auth';
+import { apiHasError } from '../helpers/apiHasError';
+import { mapUser } from '../api/types/user';
 
 const authAPI = new AuthAPI();
 const userApi = new UserAPI();
@@ -13,7 +14,7 @@ export class AuthService {
   public async register(
     dispatch: Dispatch<AppState>,
     _: any,
-    action: SignUpFormData,
+    action: SignUpRequest,
   ) {
     dispatch({ isLoading: true });
 
@@ -21,14 +22,14 @@ export class AuthService {
 
     dispatch({ isLoading: false });
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
+    if (apiHasError(response)) {
+      return;
     }
 
     dispatch({
       isAuth: true,
       user: {
-        id: JSON.parse(response.responseText).id,
+        id: response.id,
         firstName: action.firstName,
         secondName: action.secondName,
         login: action.login,
@@ -42,15 +43,15 @@ export class AuthService {
     window.router.go(Routes.Index);
   }
 
-  public async login(dispatch: Dispatch<AppState>, _:any, action: SignInFormData) {
+  public async login(dispatch: Dispatch<AppState>, _:any, action: SignInRequest) {
     dispatch({ isLoading: true });
 
     const loginResponse = await authAPI.signIn(action);
 
     dispatch({ isLoading: false });
 
-    if (loginResponse.status !== 200) {
-      throw new Error(JSON.parse(loginResponse.responseText).reason);
+    if (apiHasError(loginResponse)) {
+      return;
     }
 
     dispatch({
@@ -61,12 +62,12 @@ export class AuthService {
 
     dispatch({ isLoading: false });
 
-    if (getUserResponse.status !== 200) {
-      throw new Error(JSON.parse(getUserResponse.responseText).reason);
+    if (apiHasError(getUserResponse)) {
+      return;
     }
 
     dispatch({
-      user: mapRawToUser(JSON.parse(getUserResponse.responseText)),
+      user: mapUser(getUserResponse),
     });
 
     window.router.go(Routes.Index);

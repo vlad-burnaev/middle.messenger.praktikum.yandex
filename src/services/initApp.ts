@@ -1,6 +1,7 @@
 import { Dispatch } from '../core/Store';
-import { mapRawToUser } from '../api/auth-api.mappers';
 import UserAPI from '../api/user-api';
+import { apiHasError } from '../helpers/apiHasError';
+import { mapUser } from '../api/types/user';
 
 const userAPI = new UserAPI();
 
@@ -12,15 +13,10 @@ export class InitAppService {
 
     dispatch({ isLoading: false });
 
-    if (response.status === 401) {
-      dispatch({ isAuth: false });
-      // new Router().go(Routes.SignIn);
+    if (apiHasError(response)) {
+      return;
     }
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
-    }
-
-    dispatch({ appIsInited: true, isAuth: true, user: mapRawToUser(response) });
+    dispatch({ appIsInited: true, isAuth: true, user: mapUser(response) });
   }
 }
