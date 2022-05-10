@@ -131,7 +131,7 @@ class Profile extends Block<IUserProfileProps> {
 
   handleAvatarChange() {
     const formData = new FormData(document.querySelector('form.avatar') as HTMLFormElement);
-    this.props.dispatch(changeAvatar, formData);
+    this.props.dispatch(userService.changeAvatar, formData);
   }
 
   handleLogout() {

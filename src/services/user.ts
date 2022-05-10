@@ -2,7 +2,9 @@ import { Dispatch } from '../core/Store';
 import UserAPI from '../api/user-api';
 import { Routes } from '../core/routes';
 import { apiHasError } from '../helpers/apiHasError';
-import { mapUser, ProfileEditRequest } from '../api/types/user';
+import {
+  ChangeAvatarRequest, mapUser, ProfileChangePasswordRequest, ProfileEditRequest,
+} from '../api/types/user';
 
 const userAPI = new UserAPI();
 
@@ -36,7 +38,7 @@ export class UserService {
     dispatch({ user: mapUser(response) });
   }
 
-  public async changePassword(dispatch: Dispatch<AppState>, _: any, action: ProfileChangePasswordData) {
+  public async changePassword(dispatch: Dispatch<AppState>, _: any, action: ProfileChangePasswordRequest) {
     dispatch({ isLoading: true });
 
     const response = await userAPI.changePassword(action);
@@ -48,5 +50,19 @@ export class UserService {
     }
 
     window.router.go(Routes.Profile);
+  }
+
+  public async changeAvatar(dispatch: Dispatch<AppState>, _:any, action: ChangeAvatarRequest) {
+    dispatch({ isLoading: true });
+
+    const response = await userAPI.changeAvatar(action);
+
+    dispatch({ isLoading: false });
+
+    if (apiHasError(response)) {
+      return;
+    }
+
+    dispatch({ user: mapUser(response) });
   }
 }

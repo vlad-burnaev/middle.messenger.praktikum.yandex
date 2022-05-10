@@ -1,4 +1,5 @@
 import { APIError } from './errors';
+import { AVATAR_API_BASE_URL } from '../../utils/constants';
 
 export type ProfileEditRequest = {
   firstName: string,
@@ -60,7 +61,7 @@ export const mapUser = (response: UserDTO): User => {
     firstName: response.first_name,
     secondName: response.second_name,
     displayName: response.display_name,
-    avatar: response.avatar,
+    avatar: response.avatar ? `${AVATAR_API_BASE_URL}${response.avatar}` : '',
     phone: response.phone,
     email: response.email,
   };
