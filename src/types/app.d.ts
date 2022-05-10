@@ -8,6 +8,7 @@ declare global {
   export type Nullable<T> = T | null;
 
   export type AppState = {
+    appIsInited: boolean,
     signUpFormError: string,
     signInFormError: string,
     isLoading: boolean,

@@ -1,18 +1,35 @@
 import { Dispatch } from '../core/Store';
 import { ProfileChangePasswordData, ProfileEditData } from '../api/user-api.model';
-import UserApi from '../api/user-api';
+import UserAPI from '../api/user-api';
 import { mapRawToUser } from '../api/auth-api.mappers';
-import Router from '../core/Router';
 import { Routes } from '../core/routes';
 
-const api = new UserApi();
-const router = new Router();
+const userAPI = new UserAPI();
 
 export class UserService {
+  public async getUser(dispatch: Dispatch<AppState>) {
+    dispatch({ isLoading: true });
+
+    const response = await userAPI.getUser();
+
+    dispatch({ isLoading: false });
+
+    if (response.status === 401) {
+      dispatch({ isAuth: false });
+      // new Router().go(Routes.SignIn);
+    }
+
+    if (response.status !== 200) {
+      throw new Error(JSON.parse(response.responseText).reason);
+    }
+
+    dispatch({ isAuth: true, user: mapRawToUser(JSON.parse(response.responseText)) });
+  }
+
   public async editProfile(dispatch: Dispatch<AppState>, _: any, action: ProfileEditData) {
     dispatch({ isLoading: true });
 
-    const response = await api.editProfile(action);
+    const response = await userAPI.editProfile(action);
 
     dispatch({ isLoading: false });
 
@@ -26,7 +43,7 @@ export class UserService {
   public async changePassword(dispatch: Dispatch<AppState>, _: any, action: ProfileChangePasswordData) {
     dispatch({ isLoading: true });
 
-    const response = await api.changePassword(action);
+    const response = await userAPI.changePassword(action);
 
     dispatch({ isLoading: false });
 
@@ -34,6 +51,6 @@ export class UserService {
       throw new Error(JSON.parse(response.responseText).reason);
     }
 
-    router.go(Routes.Profile);
+    window.router.go(Routes.Profile);
   }
 }

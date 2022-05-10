@@ -1,14 +1,14 @@
-import AuthAPI from '../api/auth-api';
 import { Dispatch } from '../core/Store';
 import { mapRawToUser } from '../api/auth-api.mappers';
+import UserAPI from '../api/user-api';
 
-const api = new AuthAPI();
+const userAPI = new UserAPI();
 
 export class InitAppService {
   public async init(dispatch: Dispatch<AppState>) {
     dispatch({ isLoading: true });
 
-    const response = await api.getUser();
+    const response = await userAPI.getUser();
 
     dispatch({ isLoading: false });
 
@@ -21,6 +21,6 @@ export class InitAppService {
       throw new Error(JSON.parse(response.responseText).reason);
     }
 
-    dispatch({ isAuth: true, user: mapRawToUser(JSON.parse(response.responseText)) });
+    dispatch({ appIsInited: true, isAuth: true, user: mapRawToUser(response) });
   }
 }

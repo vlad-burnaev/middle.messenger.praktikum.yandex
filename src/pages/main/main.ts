@@ -120,6 +120,7 @@ class Main extends Block<IMainProps> {
                     messageGroups=chat.messageGroups
               }}}
           </div>
+          {{{ Navbar }}}
         </main>
       `;
   }

@@ -29,6 +29,7 @@ class NewError500 extends Block<INewError500Props> {
             {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
           </div>
         </main>
+        {{{ Navbar }}}
       </div>
     `;
   }

@@ -3,8 +3,10 @@ import { SignInFormData, SignUpFormData } from '../api/auth-api.model';
 import { Dispatch } from '../core/Store';
 import { Routes } from '../core/routes';
 import { mapRawToUser } from '../api/auth-api.mappers';
+import UserAPI from '../api/user-api';
 
-const api = new AuthAPI();
+const authAPI = new AuthAPI();
+const userApi = new UserAPI();
 
 // todo - обработка error-cases
 export class AuthService {
@@ -15,7 +17,7 @@ export class AuthService {
   ) {
     dispatch({ isLoading: true });
 
-    const response = await api.signUp(action);
+    const response = await authAPI.signUp(action);
 
     dispatch({ isLoading: false });
 
@@ -43,7 +45,7 @@ export class AuthService {
   public async login(dispatch: Dispatch<AppState>, _:any, action: SignInFormData) {
     dispatch({ isLoading: true });
 
-    const loginResponse = await api.signIn(action);
+    const loginResponse = await authAPI.signIn(action);
 
     dispatch({ isLoading: false });
 
@@ -55,7 +57,7 @@ export class AuthService {
       isAuth: true,
     });
 
-    const getUserResponse = await api.getUser();
+    const getUserResponse = await userApi.getUser();
 
     dispatch({ isLoading: false });
 
@@ -73,7 +75,7 @@ export class AuthService {
   public async logout(dispatch: Dispatch<AppState>) {
     dispatch({ isLoading: true });
 
-    await api.logout();
+    await authAPI.logout();
 
     dispatch({ isLoading: false, isAuth: false, user: null });
 

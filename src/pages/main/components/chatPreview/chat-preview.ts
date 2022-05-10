@@ -25,7 +25,7 @@ class ChatPreview extends Block<IChatPreviewProps> {
     // language=hbs
     return `
       <li class="chat-preview">
-        <div class="avatar">
+        <div class="chat-preview__avatar">
             <img src={{avatarSrc}}>
         </div>
         <div class="text-block">

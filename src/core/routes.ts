@@ -3,8 +3,6 @@ export enum Routes {
   SignIn = '/sign-in',
   SignUp = '/sign-up',
   Profile = '/profile',
-  EditProfile = '/edit-profile',
-  ChangePassword = '/change-password',
   Page404 = '/404',
   Page500 = '/500',
 }

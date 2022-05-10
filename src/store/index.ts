@@ -1,4 +1,5 @@
 export const defaultStoreState: AppState = {
+  appIsInited: false,
   signInFormError: '',
   signUpFormError: '',
   isAuth: false,

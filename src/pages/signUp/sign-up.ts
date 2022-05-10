@@ -88,22 +88,26 @@ class SignUp extends Block<ISignupProps> {
         error: this.state.errors[key],
       }));
 
+    // language=hbs
     return `
-      {{{AuthForm
-          id='signup'
-          name='signup-form'
-          title='Регистрация'
-          ref='form'
-          className='sign-up-form'
-          inputs='${JSON.stringify(inputs)}'
-          submitBtn='Зарегистрироваться'
-          onSubmit=handleSignup
-          link=goToLoginLink
-          update=handleStateChange
-          formError="${signupFormError}"
-          isLoading=${isLoading}
-          isFormValid=isFormValid
-      }}}
+      <div>
+        {{{AuthForm
+            id='signup'
+            name='signup-form'
+            title='Регистрация'
+            ref='form'
+            className='sign-up-form'
+            inputs='${JSON.stringify(inputs)}'
+            submitBtn='Зарегистрироваться'
+            onSubmit=handleSignup
+            link=goToLoginLink
+            update=handleStateChange
+            formError="${signupFormError}"
+            isLoading=${isLoading}
+            isFormValid=isFormValid
+        }}}
+        {{{ Navbar }}}
+      </div>
     `;
   }
 }

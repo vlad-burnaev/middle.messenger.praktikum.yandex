@@ -3,7 +3,7 @@ import { SignInFormData, SignUpFormData } from './auth-api.model';
 import { mapSignUpFormDataToRaw } from './auth-api.mappers';
 
 export default class AuthAPI {
-  private api = HTTPTransport.getInstance();
+  private api = new HTTPTransport();
 
   public signIn(data: SignInFormData) {
     const options = {
@@ -11,10 +11,6 @@ export default class AuthAPI {
     };
 
     return this.api.post('/auth/signin', options);
-  }
-
-  public logout() {
-    return this.api.post('/auth/logout');
   }
 
   public signUp(data: SignUpFormData) {
@@ -25,7 +21,8 @@ export default class AuthAPI {
     return this.api.post('/auth/signup', options);
   }
 
-  public getUser() {
-    return this.api.get('/auth/user');
+  public logout() {
+    return this.api.post('/auth/logout')
+      .then(({ response }) => response);
   }
 }

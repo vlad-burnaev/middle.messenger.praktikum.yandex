@@ -84,22 +84,23 @@ class SignIn extends Block<ILoginProps> {
 
     // language=hbs
     return `
-    <div>
-      {{{AuthForm
-          id='login'
-          name='login-form'
-          title='Вход'
-          ref='form'
-          className='sign-in-form'
-          inputs='${JSON.stringify(inputs)}'
-          submitBtn='Войти'
-          link=goToSignupLink
-          update=handleStateChange
-          onSubmit=handleLogin
-          isLoading=${isLoading}
-          isFormValid=isFormValid
-          formError="${loginFormError}"
+      <div>
+        {{{AuthForm
+            id='login'
+            name='login-form'
+            title='Вход'
+            ref='form'
+            className='sign-in-form'
+            inputs='${JSON.stringify(inputs)}'
+            submitBtn='Войти'
+            link=goToSignupLink
+            update=handleStateChange
+            onSubmit=handleLogin
+            isLoading=${isLoading}
+            isFormValid=isFormValid
+            formError="${loginFormError}"
         }}}
+        {{{ Navbar }}}
       </div>
     `;
   }

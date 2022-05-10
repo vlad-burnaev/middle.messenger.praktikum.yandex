@@ -29,6 +29,7 @@ class NewError404 extends Block<INewError404Props> {
             {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
           </div>
         </main>
+        {{{ Navbar }}}
       </div>
     `;
   }
