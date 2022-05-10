@@ -1,13 +1,13 @@
-import { MessageGroupProps } from '../../../main (deprecated)/components/MessageGroup/message-group';
 import Block from '../../../../core/Block';
 import './chat.scss';
-import { InputType } from '../../../../components/input';
 import { IconName } from '../../../../components/icon/icon';
+import { IMessageGroupProps } from '../messageGroup/message-group';
+import { InputType } from '../../../../components/input/input';
 
 export interface IChatProps {
   avatarSrc: string,
   name: string,
-  messageGroups: MessageGroupProps[]
+  messageGroups: IMessageGroupProps[]
 }
 
 class Chat extends Block<IChatProps> {

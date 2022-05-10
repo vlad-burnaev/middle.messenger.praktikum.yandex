@@ -1,5 +1,5 @@
 import HTTPTransport from '../core/HTTPTransport';
-import { ChatDTO } from './types/chats';
+import { ChatDTO, CreateChatRequest } from './types/chats';
 
 const BASE_URL = '/chats';
 const getURL = (path: string) => {
@@ -12,5 +12,16 @@ export default class ChatsApi {
   public getChats() {
     return this.api.get(BASE_URL)
       .then(({ response }) => response as ChatDTO[]);
+  }
+
+  public createChat(data: CreateChatRequest) {
+    const options = {
+      data: {
+        title: data.title,
+      },
+    };
+
+    return this.api.post(BASE_URL, options)
+      .then(({ response }) => response);
   }
 }

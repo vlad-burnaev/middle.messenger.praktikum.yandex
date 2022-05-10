@@ -40,6 +40,14 @@
   background: var(--color-grey-light);
 }
 
+.create-chat-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px;
+}
+
 .chats-preview {
   height: calc(100vh - var(--chats-block-header-height));
   overflow-y: auto;
@@ -57,15 +65,17 @@
   justify-content: right;
   align-items: center;
 
-  color: var(--color-grey);
-
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
 
-  @media (hover: hover) {
-    &:hover {
-      color: var(--color-beige);
+  &__label {
+    color: var(--color-grey);
+
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-beige);
+      }
     }
   }
 

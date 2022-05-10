@@ -1,7 +1,23 @@
-import { InputVariants, InputType } from './types';
-import './input.style.scss';
+import './input.scss';
 import Block from '../../core/Block';
 import classnames from '../../helpers/classnames';
+
+export enum InputType {
+  BUTTON = 'button',
+  CHECKBOX = 'checkbox',
+  EMAIL = 'email',
+  FILE = 'file',
+  IMAGE = 'image',
+  PASSWORD = 'password',
+  SUBMIT = 'submit',
+  TEL = 'tel',
+  TEXT = 'text'
+}
+
+export enum InputVariants {
+  CLASSIC,
+  FILLED,
+}
 
 export interface IInputProps {
   id?: string,

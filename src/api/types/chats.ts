@@ -47,3 +47,7 @@ export const mapChats = (chats: ChatDTO[]): Chat[] => {
     };
   });
 };
+
+export type CreateChatRequest = {
+  title: string
+}

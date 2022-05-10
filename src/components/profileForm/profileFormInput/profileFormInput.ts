@@ -1,7 +1,7 @@
 import './profileFormInput.scss';
 import Block from '../../../core/Block';
 import classnames from '../../../helpers/classnames';
-import { InputType } from '../../input';
+import { InputType } from '../../input/input';
 
 interface IProfileFormInputProps {
   type?: InputType,
