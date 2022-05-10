@@ -1,6 +1,7 @@
 import ChatsApi from '../api/chats-api';
 import { Dispatch } from '../core/Store';
-import { mapChats } from '../api/chats-api.mappers';
+import { apiHasError } from '../helpers/apiHasError';
+import { mapChats } from '../api/types/chats';
 
 const api = new ChatsApi();
 
@@ -12,10 +13,10 @@ export class ChatsService {
 
     dispatch({ isLoading: false });
 
-    if (response.status !== 200) {
-      throw new Error(JSON.parse(response.responseText).reason);
+    if (apiHasError(response)) {
+      return;
     }
 
-    dispatch({ chats: mapChats(JSON.parse(response.responseText)) });
+    dispatch({ chats: mapChats(response) });
   }
 }

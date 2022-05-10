@@ -1,4 +1,17 @@
-import { ChatRaw, InterlocutorRaw } from './chats-api.raw-model';
+export type InterlocutorRaw = {
+  first_name: string,
+  second_name: string,
+  avatar: string,
+  email: string,
+  login: string,
+  phone: string
+}
+
+type ChatLastMessage = {
+  user: InterlocutorRaw,
+  time: string,
+  content: string
+}
 
 const mapInterlocutor = (data: InterlocutorRaw): Interlocutor => {
   return {
@@ -11,7 +24,15 @@ const mapInterlocutor = (data: InterlocutorRaw): Interlocutor => {
   };
 };
 
-export const mapChats = (chats: ChatRaw[]): Chat[] => {
+export type ChatDTO = {
+  id: number,
+  title: string,
+  avatar: Nullable<string>,
+  unread_count: number,
+  last_message: Nullable<ChatLastMessage>
+}
+
+export const mapChats = (chats: ChatDTO[]): Chat[] => {
   return chats.map((chat) => {
     return {
       id: chat.id,
