@@ -9,13 +9,19 @@ import { Routes } from '../../core/routes';
 import { ChatsService } from '../../services/chats';
 import registerComponent from '../../core/registerComponent';
 import { CreateChatPopup } from './components/createChatPopup';
+import ChatMenuPopup from './components/chatMenuPopup/chat-menu-popup';
+import { AddUserPopup } from './components/addUserPopup';
 
+registerComponent(ChatMenuPopup, 'ChatMenuPopup');
 registerComponent(CreateChatPopup, 'CreateChatPopup');
+registerComponent(AddUserPopup, 'AddUserPopup');
 
 interface IMainProps {
   router: Router,
   dispatch: Dispatch<AppState>,
   chats: Nullable<Chat[]>,
+  chatUsers: Nullable<User[]>,
+  searchResult: Nullable<User[]>,
   isLoading: boolean
 }
 
@@ -34,10 +40,31 @@ class Main extends Block<IMainProps> {
     window.router.go(Routes.Profile);
   }
 
-  setIsCreateChatPopupVisible(isOpen: boolean) {
+  setIsCreateChatPopupVisible(isVisible: boolean) {
     this.setState({
       ...this.state,
-      isCreateChatPopupVisible: isOpen,
+      isCreateChatPopupVisible: isVisible,
+    });
+  }
+
+  setIsChatMenuPopupVisible(isVisible: boolean) {
+    this.setState({
+      ...this.state,
+      isChatMenuPopupVisible: isVisible,
+    });
+  }
+
+  setIsAddUserPopupVisible(isVisible: boolean) {
+    this.setState({
+      ...this.state,
+      isAddUserPopupVisible: isVisible,
+    });
+  }
+
+  handleToggleIsChatMenuPopupVisible() {
+    this.setState({
+      ...this.state,
+      isChatMenuPopupVisible: !this.state.isChatMenuPopupVisible,
     });
   }
 
@@ -47,6 +74,33 @@ class Main extends Block<IMainProps> {
       onOpenCreateChatPopup: this.setIsCreateChatPopupVisible.bind(this, true),
       onCloseCreateChatPopup: this.setIsCreateChatPopupVisible.bind(this, false),
       onCreateChat: (title: string) => this.props.dispatch(ChatsService.createChat, { title }),
+
+      chatMenuItems: [
+        {
+          label: 'Добавить пользователя',
+          onClick: () => {
+            this.setIsAddUserPopupVisible(true);
+            this.setIsChatMenuPopupVisible(false);
+          }
+          ,
+        },
+        {
+          label: 'Удалить пользователя',
+          onClick: () => {},
+        },
+      ],
+      isChatMenuPopupVisible: false,
+      onOpenChatMenuPopup: this.setIsChatMenuPopupVisible.bind(this, true),
+      onCloseChatMenuPopup: this.setIsChatMenuPopupVisible.bind(this, false),
+      onToggleChatMenuPopup: this.handleToggleIsChatMenuPopupVisible.bind(this),
+
+      isAddUserPopupVisible: false,
+      onOpenAddUserPopup: this.setIsAddUserPopupVisible.bind(this, true),
+      onCloseAddUserPopup: this.setIsAddUserPopupVisible.bind(this, false),
+      onSearchUser: (login: string) => this.props.dispatch(ChatsService.searchUser, { login }),
+      // todo - выпилить хардкод chatId
+      onAddUser: (userId: number) => this.props.dispatch(ChatsService.addUserToChat, { users: [userId], chatId: 987 }),
+
       onGoToProfileClick: this.handleGoToProfilePage.bind(this),
       chat: {
         avatarSrc: '',
@@ -113,14 +167,29 @@ class Main extends Block<IMainProps> {
                     avatarSrc=chat.avatarSrc
                     name=chat.name
                     messageGroups=chat.messageGroups
+                    onMenuButtonClick=onToggleChatMenuPopup
               }}}
           </div>
-            {{#if isCreateChatPopupVisible}}
-                {{{ CreateChatPopup
-                      onSubmit=onCreateChat
-                      onClose=onCloseCreateChatPopup
-                }}}
-            {{/if}}
+          {{#if isCreateChatPopupVisible}}
+              {{{ CreateChatPopup
+                    onSubmit=onCreateChat
+                    onClose=onCloseCreateChatPopup
+              }}}
+          {{/if}}
+          {{#if isAddUserPopupVisible}}
+              {{{ AddUserPopup
+                    onSearch=onSearchUser
+                    searchResult=searchResult
+                    onAddUser=onAddUser
+                    onClose=onCloseAddUserPopup
+              }}}
+          {{/if}}
+          {{#if isChatMenuPopupVisible}}
+              {{{ ChatMenuPopup
+                    items=chatMenuItems
+                    onClose=onCloseChatMenuPopup
+              }}}
+          {{/if}}
           {{{ Navbar }}}
         </main>
       `;
@@ -130,6 +199,8 @@ class Main extends Block<IMainProps> {
 function mapStateToProps(state: AppState) {
   return {
     chats: state.chats,
+    chatUsers: state.chatUsers,
+    searchResult: state.searchResult,
     isLoading: state.isLoading,
   };
 }

@@ -14,6 +14,8 @@ declare global {
     isLoading: boolean,
     isAuth: boolean,
     chats: Nullable<Chat[]>,
+    chatUsers: Nullable<User[]>,
+    searchResult: Nullable<User[]>,
     user: Nullable<User>,
   };
 

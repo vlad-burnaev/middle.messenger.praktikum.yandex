@@ -1,5 +1,5 @@
 import Block from '../../../../core/Block';
-import './createChatPopup.scss';
+import './create-chat-popup.scss';
 import { InputType, InputVariants } from '../../../../components/input/input';
 import { ButtonTypes } from '../../../../components/button/button';
 

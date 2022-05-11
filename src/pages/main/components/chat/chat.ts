@@ -3,11 +3,16 @@ import './chat.scss';
 import { IconName } from '../../../../components/icon/icon';
 import { IMessageGroupProps } from '../messageGroup/message-group';
 import { InputType } from '../../../../components/input/input';
+import registerComponent from '../../../../core/registerComponent';
+import { ChatMenuButton } from './chatMenuButton';
+
+registerComponent(ChatMenuButton, 'ChatMenuButton');
 
 export interface IChatProps {
   avatarSrc: string,
   name: string,
-  messageGroups: IMessageGroupProps[]
+  messageGroups: IMessageGroupProps[],
+  onMenuButtonClick: () => void
 }
 
 class Chat extends Block<IChatProps> {
@@ -27,7 +32,7 @@ class Chat extends Block<IChatProps> {
                 <div class="chat-header__name">{{name}}</div>
             </div>
             <div class="chat-header__right-block">
-                {{{ Icon name=${IconName.Menu} }}}
+                {{{ ChatMenuButton onClick=onMenuButtonClick }}}
             </div>
         </section>
         <ul class="chat-main">

@@ -6,4 +6,6 @@ export const defaultStoreState: AppState = {
   isLoading: false,
   user: null,
   chats: null,
+  chatUsers: null,
+  searchResult: null,
 };

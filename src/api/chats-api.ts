@@ -1,5 +1,8 @@
 import HTTPTransport from '../core/HTTPTransport';
-import { ChatDTO, CreateChatRequest } from './types/chats';
+import {
+  AddUserToChatRequest, ChatDTO, CreateChatRequest, GetChatUsersRequest, SearchUserRequest,
+} from './types/chats';
+import { UserDTO } from './types/user';
 
 const BASE_URL = '/chats';
 const getURL = (path: string) => {
@@ -22,6 +25,29 @@ export default class ChatsApi {
     };
 
     return this.api.post(BASE_URL, options)
+      .then(({ response }) => response);
+  }
+
+  public getChatUsers(data: GetChatUsersRequest) {
+    return this.api.get(getURL(`${data.chatId}/users`))
+      .then(({ response }) => response as UserDTO[]);
+  }
+
+  public searchUser(data: SearchUserRequest) {
+    const options = {
+      data,
+    };
+
+    return this.api.post('/user/search', options)
+      .then(({ response }) => response as UserDTO[]);
+  }
+
+  public addUserToChat(data: AddUserToChatRequest) {
+    const options = {
+      data,
+    };
+
+    return this.api.put(getURL('users'), options)
       .then(({ response }) => response);
   }
 }

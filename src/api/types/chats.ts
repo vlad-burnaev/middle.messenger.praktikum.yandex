@@ -51,3 +51,16 @@ export const mapChats = (chats: ChatDTO[]): Chat[] => {
 export type CreateChatRequest = {
   title: string
 }
+
+export type AddUserToChatRequest = {
+  users: number[],
+  chatId: number
+}
+
+export type GetChatUsersRequest = {
+  chatId: string
+}
+
+export type SearchUserRequest = {
+  login: string
+}
