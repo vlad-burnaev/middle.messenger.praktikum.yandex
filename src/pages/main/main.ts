@@ -190,66 +190,68 @@ class Main extends Block<IMainProps> {
     };
     // language=hbs
     return `
-        <main class="main-page">
-          <div class="chats-preview-block">
-              <nav class="chats-preview-block-header">
-                  <a class="profile-link c-pointer">
-                    {{{ Link label='Профиль' onClick=onGoToProfileClick className='profile-link__label' }}}
-                    <div class="profile-link__icon">
-                        {{{ Icon name=${IconName.ArrowRight1} }}}
+        <main data-id="main-page">
+          <div class="main-page">
+            <div class="chats-preview-block">
+                <nav class="chats-preview-block-header">
+                    <a class="profile-link c-pointer">
+                      {{{ Link label='Профиль' onClick=onGoToProfileClick className='profile-link__label' }}}
+                      <div class="profile-link__icon">
+                          {{{ Icon name=${IconName.ArrowRight1} }}}
+                      </div>
+                    </a>
+                    <input type="text" class="search" placeholder="Поиск">
+                </nav>
+                <ul class="chats-preview">
+                    ${getChatPreviews()}
+                    <div class="create-chat-block">
+                        {{{ Button label='Создать новый чат' onClick=onOpenCreateChatPopup }}}
                     </div>
-                  </a>
-                  <input type="text" class="search" placeholder="Поиск">
-              </nav>
-              <ul class="chats-preview">
-                  ${getChatPreviews()}
-                  <div class="create-chat-block">
-                      {{{ Button label='Создать новый чат' onClick=onOpenCreateChatPopup }}}
-                  </div>
-              </ul>
-          </div>
-          <div class="chat">
-            {{#if activeChatId}}
-              {{{ Chat
-                    users=chatUsers
-                    avatarSrc=chat.avatar
-                    name=chat.name
-                    messageGroups=chat.messageGroups
-                    onMenuButtonClick=onToggleChatMenuPopup
-              }}}
-            {{else}}
-              <h3 class="no-active-chat">Выберите чат чтобы отправить сообщение</h3>
+                </ul>
+            </div>
+            <div class="chat">
+              {{#if activeChatId}}
+                {{{ Chat
+                      users=chatUsers
+                      avatarSrc=chat.avatar
+                      name=chat.name
+                      messageGroups=chat.messageGroups
+                      onMenuButtonClick=onToggleChatMenuPopup
+                }}}
+              {{else}}
+                <h3 class="no-active-chat">Выберите чат чтобы отправить сообщение</h3>
+              {{/if}}
+            </div>
+            {{#if isCreateChatPopupVisible}}
+                {{{ CreateChatPopup
+                      onSubmit=onCreateChat
+                      onClose=onCloseCreateChatPopup
+                }}}
             {{/if}}
+            {{#if isAddUserPopupVisible}}
+                {{{ AddUserPopup
+                      onSearch=onSearchUser
+                      searchResult=searchResult
+                      onAddUser=onAddUser
+                      onClose=onCloseAddUserPopup
+                }}}
+            {{/if}}
+            {{#if isDeleteUserPopupVisible}}
+                {{{ DeleteUserPopup
+                      onSearch=onSearchUser
+                      searchResult=searchResult
+                      onDeleteUser=onDeleteUser
+                      onClose=onCloseDeleteUserPopup
+                }}}
+            {{/if}}
+            {{#if isChatMenuPopupVisible}}
+                {{{ ChatMenuPopup
+                      items=chatMenuItems
+                      onClose=onCloseChatMenuPopup
+                }}}
+            {{/if}}
+            {{{ Navbar }}}
           </div>
-          {{#if isCreateChatPopupVisible}}
-              {{{ CreateChatPopup
-                    onSubmit=onCreateChat
-                    onClose=onCloseCreateChatPopup
-              }}}
-          {{/if}}
-          {{#if isAddUserPopupVisible}}
-              {{{ AddUserPopup
-                    onSearch=onSearchUser
-                    searchResult=searchResult
-                    onAddUser=onAddUser
-                    onClose=onCloseAddUserPopup
-              }}}
-          {{/if}}
-          {{#if isDeleteUserPopupVisible}}
-              {{{ DeleteUserPopup
-                    onSearch=onSearchUser
-                    searchResult=searchResult
-                    onDeleteUser=onDeleteUser
-                    onClose=onCloseDeleteUserPopup
-              }}}
-          {{/if}}
-          {{#if isChatMenuPopupVisible}}
-              {{{ ChatMenuPopup
-                    items=chatMenuItems
-                    onClose=onCloseChatMenuPopup
-              }}}
-          {{/if}}
-          {{{ Navbar }}}
         </main>
       `;
   }

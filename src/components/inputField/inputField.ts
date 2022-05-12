@@ -1,7 +1,8 @@
 import './inputField.scss';
 import Block from '../../core/Block';
 import classnames from '../../helpers/classnames';
-import { IInputProps, InputType } from '../input';
+import { IInputProps } from '../input';
+import { InputType } from '../input/input';
 
 interface IInputFieldProps extends IInputProps {
   ref?: string,

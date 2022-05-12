@@ -21,16 +21,16 @@ class NewError404 extends Block<INewError404Props> {
 
   render() {
     return `
-      <div>
-        <main class="root">
+      <main data-id="404">
+        <div class="root">
           <div class="content">
             <h1 class="content__title">404</h1>
             <h2 class="content__subtitle">Не туда попали</h2>
             {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
           </div>
-        </main>
+        </div>
         {{{ Navbar }}}
-      </div>
+      </main>
     `;
   }
 }

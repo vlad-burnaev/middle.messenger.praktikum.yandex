@@ -161,56 +161,58 @@ class Profile extends Block<IUserProfileProps> {
 
     // language=hbs
     return `
-      <div class='page-wrap profile'>
-        {{{ Avatar 
-          imageUrl="${avatarImg}"
-          onChange=onAvatarChange 
-        }}}
-        {{#ifEquals ${view} ${Views.EDIT_USER_INFO}}}
+      <main data-id="profile">
+        <div class='page-wrap profile'>
+          {{{ Avatar 
+            imageUrl="${avatarImg}"
+            onChange=onAvatarChange 
+          }}}
+          {{#ifEquals ${view} ${Views.EDIT_USER_INFO}}}
+            {{{ ProfileForm 
+              inputs='${JSON.stringify(userInfoInputs)}'
+              onSubmit=onSubmitUserInfo
+              updateErrors=updateErrors
+            }}}
+          {{/ifEquals}}
+  
+          {{#ifEquals ${view} ${Views.EDIT_USER_PASSWORD}}}
           {{{ ProfileForm 
-            inputs='${JSON.stringify(userInfoInputs)}'
-            onSubmit=onSubmitUserInfo
+            inputs='${JSON.stringify(passwordChangeInputs)}'
+            onSubmit=onSubmitPassword
             updateErrors=updateErrors
           }}}
-        {{/ifEquals}}
-
-        {{#ifEquals ${view} ${Views.EDIT_USER_PASSWORD}}}
-        {{{ ProfileForm 
-          inputs='${JSON.stringify(passwordChangeInputs)}'
-          onSubmit=onSubmitPassword
-          updateErrors=updateErrors
-        }}}
-        {{/ifEquals}}
-
-        {{#ifEquals ${view} ${Views.READ_ONLY}}}
-          {{{ ProfileForm 
-            inputs='${JSON.stringify(userInfoInputs)}'
-            readonly=true
-          }}}
-          <ul class='profile__actions-buttons'>
-            <li class='profile__actions-button-row'>
-              {{{ Button 
-                  id="change-user-info-button"
-                  variant=${ButtonVariants.LINK}
-                  label="Изменить данные"
-                  onClick=onChangeUserInfoClick
-              }}}
-            </li>
-            <li class='profile__actions-button-row'>
-              {{{ Button 
-                    id="change-password-button"
+          {{/ifEquals}}
+  
+          {{#ifEquals ${view} ${Views.READ_ONLY}}}
+            {{{ ProfileForm 
+              inputs='${JSON.stringify(userInfoInputs)}'
+              readonly=true
+            }}}
+            <ul class='profile__actions-buttons'>
+              <li class='profile__actions-button-row'>
+                {{{ Button 
+                    id="change-user-info-button"
                     variant=${ButtonVariants.LINK}
-                    label="Изменить пароль"
-                    onClick=onChangePasswordClick
-              }}}
-            </li>
-            <li class='profile__actions-button-row'>
-              {{{ Link label="Выйти" size="medium" onClick=logout }}}
-            </li>
-          </ul>
-        {{/ifEquals}}
-        {{{ Navbar }}}
-      </div>
+                    label="Изменить данные"
+                    onClick=onChangeUserInfoClick
+                }}}
+              </li>
+              <li class='profile__actions-button-row'>
+                {{{ Button 
+                      id="change-password-button"
+                      variant=${ButtonVariants.LINK}
+                      label="Изменить пароль"
+                      onClick=onChangePasswordClick
+                }}}
+              </li>
+              <li class='profile__actions-button-row'>
+                {{{ Link label="Выйти" size="medium" onClick=logout }}}
+              </li>
+            </ul>
+          {{/ifEquals}}
+          {{{ Navbar }}}
+        </div>
+      </main>
     `;
   }
 }

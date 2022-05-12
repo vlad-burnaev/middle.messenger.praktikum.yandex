@@ -90,7 +90,7 @@ class SignUp extends Block<ISignupProps> {
 
     // language=hbs
     return `
-      <div>
+      <main data-id="sign-up">
         {{{AuthForm
             id='signup'
             name='signup-form'
@@ -107,7 +107,7 @@ class SignUp extends Block<ISignupProps> {
             isFormValid=isFormValid
         }}}
         {{{ Navbar }}}
-      </div>
+      </main>
     `;
   }
 }

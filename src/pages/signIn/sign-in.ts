@@ -84,7 +84,7 @@ class SignIn extends Block<ILoginProps> {
 
     // language=hbs
     return `
-      <div>
+      <main data-id="sign-in">
         {{{AuthForm
             id='login'
             name='login-form'
@@ -101,7 +101,7 @@ class SignIn extends Block<ILoginProps> {
             formError="${loginFormError}"
         }}}
         {{{ Navbar }}}
-      </div>
+      </main>
     `;
   }
 }
