@@ -9,14 +9,20 @@ export class InitAppService {
   public async init(dispatch: Dispatch<AppState>) {
     dispatch({ isLoading: true });
 
-    const response = await userAPI.getUser();
+    try {
+      const response = await userAPI.getUser();
 
-    dispatch({ isLoading: false });
+      dispatch({ isLoading: false });
 
-    if (apiHasError(response)) {
-      return;
+      if (apiHasError(response)) {
+        return;
+      }
+
+      dispatch({ appIsInited: true, isAuth: true, user: mapUser(response) });
+    } catch (e) {
+      console.error(e);
+    } finally {
+      dispatch({ appIsInited: true });
     }
-
-    dispatch({ appIsInited: true, isAuth: true, user: mapUser(response) });
   }
 }
