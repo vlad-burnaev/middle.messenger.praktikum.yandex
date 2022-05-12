@@ -1,5 +1,6 @@
 import Route from './Route';
 import Block from './Block';
+import { Routes } from './routes';
 
 interface BlockConstructable<Props extends {}> {
   new(props: any): Block<Props>;
@@ -58,13 +59,20 @@ class Router {
 
   _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
+
     if (!route) {
+      const pageNotFoundRoute = this.getRoute(Routes.Page404);
+      if (pageNotFoundRoute) {
+        this.go(Routes.Page404);
+      }
       return;
     }
 
-    if (this._currentRoute) {
+    if (this._currentRoute && this._currentRoute !== route) {
       this._currentRoute.leave();
     }
+
+    this._currentRoute = route;
 
     route.render();
   }
