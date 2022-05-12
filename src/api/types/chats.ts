@@ -69,3 +69,11 @@ export type GetChatUsersRequest = {
 export type SearchUserRequest = {
   login: string
 }
+
+export type GetChatTokenRequest = {
+  chatId: string
+}
+
+export type GetChatTokenResponse = {
+  token: string
+}

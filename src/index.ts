@@ -26,6 +26,7 @@ import { SignUp } from './pages/signUp';
 import { Main } from './pages/main';
 import { Profile } from './pages/profile';
 import { Avatar } from './components/avatar';
+import { APP_ROOT_PATH } from './utils/constants';
 
 function registerComponents() {
   registerComponent(Icon, 'Icon');
@@ -50,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const initAppService = new InitAppService();
 
   const store = new Store<AppState>(defaultStoreState);
-  const router = new Router('#app');
+  const router = new Router(APP_ROOT_PATH);
   window.router = router;
   window.store = store;
 

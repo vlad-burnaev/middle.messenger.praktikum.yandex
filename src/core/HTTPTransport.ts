@@ -1,5 +1,5 @@
 import { queryStringify } from '../utils/stringUtils';
-import { API_BASE_URL } from '../utils/constants';
+import { REST_API_BASE_URL } from '../utils/constants';
 
 export enum Methods {
   GET = 'GET',
@@ -19,7 +19,7 @@ type Options = {
 type OptionsWithoutMethod = Omit<Options, 'method'>;
 
 class HTTPTransport {
-  baseURL: string = API_BASE_URL;
+  baseURL: string = REST_API_BASE_URL;
 
   constructor(baseURL?: string) {
     if (baseURL) {

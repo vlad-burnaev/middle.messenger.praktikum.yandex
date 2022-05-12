@@ -47,6 +47,7 @@ class Main extends Block<IMainProps> {
   handleSelectActiveChat(chatId: number) {
     this.props.dispatch({ activeChatId: chatId });
     this.props.dispatch(ChatsService.getChatUsers, { chatId });
+    this.props.dispatch(ChatsService.createWSConnection, { chatId });
   }
 
   setIsCreateChatPopupVisible(isVisible: boolean) {

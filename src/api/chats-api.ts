@@ -1,6 +1,12 @@
 import HTTPTransport from '../core/HTTPTransport';
 import {
-  AddUserToChatRequest, ChatDTO, CreateChatRequest, DeleteUserFromChatRequest, GetChatUsersRequest, SearchUserRequest,
+  AddUserToChatRequest,
+  ChatDTO,
+  CreateChatRequest,
+  DeleteUserFromChatRequest,
+  GetChatTokenRequest,
+  GetChatTokenResponse,
+  SearchUserRequest,
 } from './types/chats';
 import { UserDTO } from './types/user';
 
@@ -9,7 +15,7 @@ const getURL = (path: string) => {
   return `${BASE_URL}/${path}`;
 };
 
-export default class ChatsApi {
+class ChatsApiClass {
   private api = new HTTPTransport();
 
   public getChats() {
@@ -28,7 +34,7 @@ export default class ChatsApi {
       .then(({ response }) => response);
   }
 
-  public getChatUsers(data: GetChatUsersRequest) {
+  public getChatUsers(data: GetChatTokenRequest) {
     return this.api.get(getURL(`${data.chatId}/users`))
       .then(({ response }) => response as UserDTO[]);
   }
@@ -59,4 +65,11 @@ export default class ChatsApi {
     return this.api.delete(getURL('users'), options)
       .then(({ response }) => response);
   }
+
+  public getChatToken(data: GetChatTokenRequest) {
+    return this.api.post(getURL(`token/${data.chatId}`))
+      .then(({ response }) => response as GetChatTokenResponse);
+  }
 }
+
+export const ChatsApi = new ChatsApiClass();

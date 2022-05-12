@@ -1,6 +1,7 @@
 import Block from './Block';
+import { APP_ROOT_PATH } from '../utils/constants';
 
-export default function renderDOM(block: Block<{}>, selector = '#app') {
+export default function renderDOM(block: Block<{}>, selector = APP_ROOT_PATH) {
   const root = document.querySelector(selector);
 
   if (!root) {
