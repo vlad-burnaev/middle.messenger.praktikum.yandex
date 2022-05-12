@@ -1,6 +1,6 @@
 import HTTPTransport from '../core/HTTPTransport';
 import {
-  AddUserToChatRequest, ChatDTO, CreateChatRequest, GetChatUsersRequest, SearchUserRequest,
+  AddUserToChatRequest, ChatDTO, CreateChatRequest, DeleteUserFromChatRequest, GetChatUsersRequest, SearchUserRequest,
 } from './types/chats';
 import { UserDTO } from './types/user';
 
@@ -48,6 +48,15 @@ export default class ChatsApi {
     };
 
     return this.api.put(getURL('users'), options)
+      .then(({ response }) => response);
+  }
+
+  public deleteUserFromChat(data: DeleteUserFromChatRequest) {
+    const options = {
+      data,
+    };
+
+    return this.api.delete(getURL('users'), options)
       .then(({ response }) => response);
   }
 }

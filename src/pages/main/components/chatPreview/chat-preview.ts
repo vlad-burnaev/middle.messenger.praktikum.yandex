@@ -1,5 +1,6 @@
 import Block from '../../../../core/Block';
 import './chat-preview.scss';
+import classnames from '../../../../helpers/classnames';
 
 type LastMessage = {
   text: string,
@@ -9,20 +10,47 @@ type LastMessage = {
 }
 
 export interface IChatPreviewProps {
+  id: number,
+  isActive: boolean,
   avatarSrc: string,
   title: string,
   lastMessage: Nullable<LastMessage>,
+  onClick: (chatId: number) => void;
 }
 
-class ChatPreview extends Block<IChatPreviewProps> {
+interface IChatPreviewPropsWithEvents extends Omit<IChatPreviewProps, 'onClick'> {
+  events: {
+    click: (chatId: number) => void;
+  }
+}
+
+class ChatPreview extends Block<IChatPreviewPropsWithEvents> {
   constructor(props: IChatPreviewProps) {
-    super({ ...props });
+    const {
+      id, isActive, avatarSrc, title, lastMessage, onClick,
+    } = props;
+    super({
+      id,
+      isActive,
+      avatarSrc,
+      title,
+      lastMessage,
+      events: {
+        click: () => {
+          onClick(id);
+        },
+      },
+    });
   }
 
   render() {
+    const className = classnames('chat-preview', {
+      'chat-preview_active': this.props.isActive,
+    });
+    // todo - переделать li на button (семантика)
     // language=hbs
     return `
-      <li class="chat-preview">
+      <li class="${className}">
         <div class="chat-preview__avatar">
             <img src={{avatarSrc}}>
         </div>

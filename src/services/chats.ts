@@ -2,7 +2,7 @@ import ChatsApi from '../api/chats-api';
 import { Dispatch } from '../core/Store';
 import { apiHasError } from '../helpers/apiHasError';
 import {
-  AddUserToChatRequest, CreateChatRequest, GetChatUsersRequest, mapChats, SearchUserRequest,
+  AddUserToChatRequest, CreateChatRequest, DeleteUserFromChatRequest, GetChatUsersRequest, mapChats, SearchUserRequest,
 } from '../api/types/chats';
 import { mapUser } from '../api/types/user';
 
@@ -78,6 +78,23 @@ class ChatsServiceClass {
     dispatch({ isLoading: true });
 
     const response = await api.addUserToChat(action);
+
+    dispatch({ isLoading: false });
+
+    if (apiHasError(response)) {
+      return;
+    }
+
+    // todo - не работает обновление юзеров чата (self = undefined)
+    dispatch(self.getChatUsers);
+  }
+
+  public async deleteUserFromChat(dispatch: Dispatch<AppState>, _: any, action: DeleteUserFromChatRequest) {
+    const self = this;
+
+    dispatch({ isLoading: true });
+
+    const response = await api.deleteUserFromChat(action);
 
     dispatch({ isLoading: false });
 

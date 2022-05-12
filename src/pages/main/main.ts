@@ -9,16 +9,20 @@ import { Routes } from '../../core/routes';
 import { ChatsService } from '../../services/chats';
 import registerComponent from '../../core/registerComponent';
 import { CreateChatPopup } from './components/createChatPopup';
-import ChatMenuPopup from './components/chatMenuPopup/chat-menu-popup';
 import { AddUserPopup } from './components/addUserPopup';
+import { ChatMenuPopup } from './components/chatMenuPopup';
+import { DeleteUserPopup } from './components/deleteUserPopup';
 
 registerComponent(ChatMenuPopup, 'ChatMenuPopup');
 registerComponent(CreateChatPopup, 'CreateChatPopup');
 registerComponent(AddUserPopup, 'AddUserPopup');
+registerComponent(DeleteUserPopup, 'DeleteUserPopup');
 
 interface IMainProps {
   router: Router,
   dispatch: Dispatch<AppState>,
+  activeChatId: Nullable<number>,
+  user: Nullable<User>,
   chats: Nullable<Chat[]>,
   chatUsers: Nullable<User[]>,
   searchResult: Nullable<User[]>,
@@ -38,6 +42,11 @@ class Main extends Block<IMainProps> {
 
   handleGoToProfilePage() {
     window.router.go(Routes.Profile);
+  }
+
+  handleSelectActiveChat(chatId: number) {
+    this.props.dispatch({ activeChatId: chatId });
+    this.props.dispatch(ChatsService.getChatUsers, { chatId });
   }
 
   setIsCreateChatPopupVisible(isVisible: boolean) {
@@ -61,6 +70,13 @@ class Main extends Block<IMainProps> {
     });
   }
 
+  setIsDeleteUserPopupVisible(isVisible: boolean) {
+    this.setState({
+      ...this.state,
+      isDeleteUserPopupVisible: isVisible,
+    });
+  }
+
   handleToggleIsChatMenuPopupVisible() {
     this.setState({
       ...this.state,
@@ -70,6 +86,10 @@ class Main extends Block<IMainProps> {
 
   protected getStateFromProps() {
     this.state = {
+      chatUsersWithoutMe: this.props?.chatUsers?.filter((u) => u.id !== this.props?.user?.id),
+
+      onChatPreviewClick: this.handleSelectActiveChat.bind(this),
+
       isCreateChatPopupVisible: false,
       onOpenCreateChatPopup: this.setIsCreateChatPopupVisible.bind(this, true),
       onCloseCreateChatPopup: this.setIsCreateChatPopupVisible.bind(this, false),
@@ -86,20 +106,35 @@ class Main extends Block<IMainProps> {
         },
         {
           label: 'Удалить пользователя',
-          onClick: () => {},
+          onClick: () => {
+            this.setIsDeleteUserPopupVisible(true);
+            this.setIsChatMenuPopupVisible(false);
+          },
         },
       ],
       isChatMenuPopupVisible: false,
-      onOpenChatMenuPopup: this.setIsChatMenuPopupVisible.bind(this, true),
       onCloseChatMenuPopup: this.setIsChatMenuPopupVisible.bind(this, false),
       onToggleChatMenuPopup: this.handleToggleIsChatMenuPopupVisible.bind(this),
 
       isAddUserPopupVisible: false,
-      onOpenAddUserPopup: this.setIsAddUserPopupVisible.bind(this, true),
       onCloseAddUserPopup: this.setIsAddUserPopupVisible.bind(this, false),
       onSearchUser: (login: string) => this.props.dispatch(ChatsService.searchUser, { login }),
-      // todo - выпилить хардкод chatId
-      onAddUser: (userId: number) => this.props.dispatch(ChatsService.addUserToChat, { users: [userId], chatId: 987 }),
+      onAddUser: (userId: number) => {
+        this.props.dispatch(ChatsService.addUserToChat, {
+          users: [userId],
+          chatId: this.props.activeChatId,
+        });
+      },
+
+      isDeleteUserPopupVisible: false,
+      onOpenDeleteUserPopup: this.setIsDeleteUserPopupVisible.bind(this, true),
+      onCloseDeleteUserPopup: this.setIsDeleteUserPopupVisible.bind(this, false),
+      onDeleteUser: (userId: number) => {
+        this.props.dispatch(ChatsService.deleteUserFromChat, {
+          users: [userId],
+          chatId: this.props.activeChatId,
+        });
+      },
 
       onGoToProfileClick: this.handleGoToProfilePage.bind(this),
       chat: {
@@ -136,6 +171,23 @@ class Main extends Block<IMainProps> {
   }
 
   render() {
+    // todo - chats-preview-block в отдельный компонент
+    const getChatPreviews = () => {
+      if (!this.props.chats) {
+        return '';
+      }
+      return this.props.chats.map((chat) => {
+        return `
+          {{{ ChatPreview
+                id=${chat.id}
+                avatarSrc='${chat.avatar ?? ''}'
+                title='${chat.title}'
+                lastMessage=${chat.lastMessage}
+                isActive=${this.props.activeChatId ? this.props.activeChatId === chat.id : false}
+                onClick=onChatPreviewClick
+          }}}`;
+      }).join('');
+    };
     // language=hbs
     return `
         <main class="main-page">
@@ -150,25 +202,24 @@ class Main extends Block<IMainProps> {
                   <input type="text" class="search" placeholder="Поиск">
               </nav>
               <ul class="chats-preview">
-                  {{#each chats}}
-                      {{{ ChatPreview
-                              avatarSrc=avatarSrc
-                              title=title
-                              lastMessage=lastMessage
-                      }}}
-                  {{/each}}
+                  ${getChatPreviews()}
                   <div class="create-chat-block">
                       {{{ Button label='Создать новый чат' onClick=onOpenCreateChatPopup }}}
                   </div>
               </ul>
           </div>
           <div class="chat">
+            {{#if activeChatId}}
               {{{ Chat
-                    avatarSrc=chat.avatarSrc
+                    users=chatUsers
+                    avatarSrc=chat.avatar
                     name=chat.name
                     messageGroups=chat.messageGroups
                     onMenuButtonClick=onToggleChatMenuPopup
               }}}
+            {{else}}
+              <h3 class="no-active-chat">Выберите чат чтобы отправить сообщение</h3>
+            {{/if}}
           </div>
           {{#if isCreateChatPopupVisible}}
               {{{ CreateChatPopup
@@ -182,6 +233,14 @@ class Main extends Block<IMainProps> {
                     searchResult=searchResult
                     onAddUser=onAddUser
                     onClose=onCloseAddUserPopup
+              }}}
+          {{/if}}
+          {{#if isDeleteUserPopupVisible}}
+              {{{ DeleteUserPopup
+                    onSearch=onSearchUser
+                    searchResult=searchResult
+                    onDeleteUser=onDeleteUser
+                    onClose=onCloseDeleteUserPopup
               }}}
           {{/if}}
           {{#if isChatMenuPopupVisible}}
@@ -198,6 +257,8 @@ class Main extends Block<IMainProps> {
 
 function mapStateToProps(state: AppState) {
   return {
+    user: state.user,
+    activeChatId: state.activeChatId,
     chats: state.chats,
     chatUsers: state.chatUsers,
     searchResult: state.searchResult,

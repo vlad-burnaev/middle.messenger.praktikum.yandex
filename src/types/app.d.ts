@@ -9,10 +9,12 @@ declare global {
 
   export type AppState = {
     appIsInited: boolean,
+    // todo - вынести signUpFormError, signInFormError в локальный стейт
     signUpFormError: string,
     signInFormError: string,
     isLoading: boolean,
     isAuth: boolean,
+    activeChatId: Nullable<number>,
     chats: Nullable<Chat[]>,
     chatUsers: Nullable<User[]>,
     searchResult: Nullable<User[]>,

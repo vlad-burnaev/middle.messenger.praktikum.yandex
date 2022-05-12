@@ -9,6 +9,7 @@ import { ChatMenuButton } from './chatMenuButton';
 registerComponent(ChatMenuButton, 'ChatMenuButton');
 
 export interface IChatProps {
+  users: User[],
   avatarSrc: string,
   name: string,
   messageGroups: IMessageGroupProps[],
@@ -21,6 +22,13 @@ class Chat extends Block<IChatProps> {
   }
 
   render() {
+    const getUsers = () => {
+      if (!this.props.users) {
+        return '';
+      }
+
+      return this.props.users.map((u) => u.login).join(', ');
+    };
     // language=hbs
     return `
       <article class="chat">
@@ -29,7 +37,7 @@ class Chat extends Block<IChatProps> {
                 <div class="chat-header__avatar">
                     <img src={{avatarSrc}}>
                 </div>
-                <div class="chat-header__name">{{name}}</div>
+                <div class="chat-header__name">${getUsers()}</div>
             </div>
             <div class="chat-header__right-block">
                 {{{ ChatMenuButton onClick=onMenuButtonClick }}}

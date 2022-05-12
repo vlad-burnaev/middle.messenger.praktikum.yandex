@@ -57,6 +57,21 @@
   width: 100%;
 }
 
+.no-active-chat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+
+  color: var(--color-grey);
+
+}
+
 .profile-link {
   display: flex;
 

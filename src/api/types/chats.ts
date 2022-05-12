@@ -57,6 +57,11 @@ export type AddUserToChatRequest = {
   chatId: number
 }
 
+export type DeleteUserFromChatRequest = {
+  users: number[],
+  chatId: number
+}
+
 export type GetChatUsersRequest = {
   chatId: string
 }
