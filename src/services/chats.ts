@@ -37,6 +37,7 @@ class ChatsServiceClass {
     }
 
     // todo - не работает обновление списка чатов (self = undefined)
+    location.reload();
     dispatch(self.getChats);
   }
 
@@ -86,6 +87,7 @@ class ChatsServiceClass {
     }
 
     // todo - не работает обновление юзеров чата (self = undefined)
+    location.reload();
     dispatch(self.getChatUsers);
   }
 
@@ -103,6 +105,7 @@ class ChatsServiceClass {
     }
 
     // todo - не работает обновление юзеров чата (self = undefined)
+    location.reload();
     dispatch(self.getChatUsers);
   }
 }
