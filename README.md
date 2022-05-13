@@ -1,7 +1,5 @@
 # Месседжер
-[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/3) на PR Sprint 2
-
-[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/3) на PR Sprint 2
+[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/4) на PR Sprint 3
 
 ## Общая информация
 
@@ -30,3 +28,8 @@
 - JavaScript переписан на TypeScript
 - Добавлены ESLint и Stylelint
 - Добавлен класс для работы с запросами к серверу
+
+### Третий спринт
+- Добавлен роутинг
+- Добавлена работа с API: авторизация, изменение данных пользователя, работа с чатами
+- Подключен WebSocket для работы с real-time сообщениями
