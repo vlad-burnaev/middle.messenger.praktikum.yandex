@@ -1,10 +1,10 @@
 import { Dispatch } from '../core/Store';
 import UserAPI from '../api/user-api';
-import { Routes } from '../core/routes';
 import { apiHasError } from '../helpers/apiHasError';
 import {
   ChangeAvatarRequest, mapUser, ProfileChangePasswordRequest, ProfileEditRequest,
 } from '../api/types/user';
+import { Routes } from '../core/routes';
 
 const userAPI = new UserAPI();
 
@@ -18,6 +18,7 @@ export class UserService {
 
     if (apiHasError(response)) {
       dispatch({ isAuth: false });
+      window.router.go(Routes.Page500);
       return;
     }
 
@@ -32,6 +33,7 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
+      window.router.go(Routes.Page500);
       return;
     }
 
@@ -46,10 +48,8 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
-      return;
+      window.router.go(Routes.Page500);
     }
-
-    window.router.go(Routes.Profile);
   }
 
   public async changeAvatar(dispatch: Dispatch<AppState>, _:any, action: ChangeAvatarRequest) {
@@ -60,6 +60,7 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
+      window.router.go(Routes.Page500);
       return;
     }
 
