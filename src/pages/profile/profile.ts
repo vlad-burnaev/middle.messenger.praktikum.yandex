@@ -10,6 +10,7 @@ import Block from '../../core/Block';
 import { ButtonVariants } from '../../components/button/button';
 import { AuthService } from '../../services/auth';
 import { UserService } from '../../services/user';
+import { Routes } from '../../core/routes';
 
 interface IUserProfileProps {
   dispatch: Dispatch<AppState>,
@@ -59,6 +60,7 @@ class Profile extends Block<IUserProfileProps> {
       values,
       errors,
       view: Views.READ_ONLY,
+      onGoBackClick: this.handleGoBackClick.bind(this),
       updateErrors: this.updateErrors.bind(this),
       onChangeUserInfoClick: this.handleChangeUserInfoBtnClick.bind(this),
       onSubmitUserInfo: this.handleUserInfoSubmit.bind(this),
@@ -75,6 +77,18 @@ class Profile extends Block<IUserProfileProps> {
     };
 
     this.setState(nextState);
+  }
+
+  handleGoBackClick() {
+    switch (this.state.view) {
+      case Views.EDIT_USER_INFO:
+      case Views.EDIT_USER_PASSWORD:
+        this.switchView(Views.READ_ONLY);
+        break;
+      case Views.READ_ONLY:
+      default:
+        window.router.go(Routes.Index);
+    }
   }
 
   updateErrors(field: string, newValue: string, isValid = false) {
@@ -94,10 +108,12 @@ class Profile extends Block<IUserProfileProps> {
 
   handleChangePasswordBtnClick() {
     this.switchView(Views.EDIT_USER_PASSWORD);
+    window.router.go(Routes.Profile);
   }
 
   handleChangeUserInfoBtnClick() {
     this.switchView(Views.EDIT_USER_INFO);
+    window.router.go(Routes.Profile);
   }
 
   handleUserInfoSubmit(values: { [key: string]: string }) {
@@ -210,6 +226,7 @@ class Profile extends Block<IUserProfileProps> {
               </li>
             </ul>
           {{/ifEquals}}
+          {{{ GoBackLink onClick=onGoBackClick }}}
           {{{ Navbar }}}
         </div>
       </main>

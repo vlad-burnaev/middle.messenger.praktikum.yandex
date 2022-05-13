@@ -27,6 +27,7 @@ import { Main } from './pages/main';
 import { Profile } from './pages/profile';
 import { Avatar } from './components/avatar';
 import { APP_ROOT_PATH } from './utils/constants';
+import GoBackLink from './components/goBackLink/go-back-link';
 
 function registerComponents() {
   registerComponent(Icon, 'Icon');
@@ -43,6 +44,7 @@ function registerComponents() {
   registerComponent(ProfileForm, 'ProfileForm');
   registerComponent(Navbar, 'Navbar');
   registerComponent(Avatar, 'Avatar');
+  registerComponent(GoBackLink, 'GoBackLink');
 }
 
 document.addEventListener('DOMContentLoaded', () => {

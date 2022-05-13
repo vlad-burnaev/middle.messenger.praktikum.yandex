@@ -24,7 +24,7 @@ class NewError500 extends Block<INewError500Props> {
       <main data-id="500">
         <div class="root">
           <div class="content">
-            <h1 class="content__title">500</h1>
+            <h1 class="content__title">Какая-то багулина :(</h1>
             <h2 class="content__subtitle">Мы уже фиксим</h2>
             {{{ Link label="Назад к чатам" onClick=onGoBackLinkClick className="error__link" }}}
           </div>
