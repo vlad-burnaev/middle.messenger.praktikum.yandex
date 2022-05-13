@@ -5,6 +5,7 @@ import UserAPI from '../api/user-api';
 import { SignInRequest, SignUpRequest } from '../api/types/auth';
 import { apiHasError } from '../helpers/apiHasError';
 import { mapUser } from '../api/types/user';
+import { defaultStoreState } from '../store';
 
 const authAPI = new AuthAPI();
 const userApi = new UserAPI();
@@ -78,8 +79,8 @@ export class AuthService {
 
     await authAPI.logout();
 
-    dispatch({ isLoading: false, isAuth: false, user: null });
+    dispatch({ ...defaultStoreState });
 
-    window.router.go(Routes.SignIn);
+    window.location.pathname = Routes.SignIn;
   }
 }
