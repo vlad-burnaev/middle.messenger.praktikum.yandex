@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
 import Handlebars from 'handlebars';
 import EventBus from './EventBus';
+import { isEqual } from '../utils/isEqual';
 
 interface BlockMeta<P = any> {
   props: P;
@@ -89,7 +90,13 @@ class Block<Props extends {}> {
     if (!response) {
       return;
     }
+
+    /**
+     * хак, который нужен для того, чтобы при обновлении компонента не терялись inline styles (display: 'block' | 'none)
+     */
+    const prevDisplayStyle = this._element?.style.display;
     this._render();
+    this._element!.style.display = prevDisplayStyle!;
   }
 
   private _componentWillUnmount() {
@@ -100,7 +107,7 @@ class Block<Props extends {}> {
   componentWillUnmount() { }
 
   componentDidUpdate(oldProps: Props, newProps: Props) {
-    return true;
+    return isEqual(oldProps, newProps);
   }
 
   setProps = (nextProps: Props) => {
