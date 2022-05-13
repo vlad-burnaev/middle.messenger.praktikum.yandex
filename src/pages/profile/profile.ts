@@ -43,7 +43,7 @@ class Profile extends Block<IUserProfileProps> {
     const userData = props?.user as User;
 
     (userInfoFormData as IFormData[]).forEach((input: IFormData) => {
-      values[input.name] = userData[input.name as keyof Omit<User, 'id'>] ?? '';
+      values[input.name] = userData?.[input.name as keyof Omit<User, 'id'>] ?? '';
       errors[input.name] = false;
     });
     (passwordChangeFormData as IFormData[]).forEach((input: IFormData) => {
