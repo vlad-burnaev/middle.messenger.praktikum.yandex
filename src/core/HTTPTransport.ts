@@ -1,5 +1,5 @@
-import { queryStringify } from '../utils/stringUtils';
 import { REST_API_BASE_URL } from '../utils/constants';
+import { queryStringify } from '../utils/stringUtils';
 
 export enum Methods {
   GET = 'GET',
