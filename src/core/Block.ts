@@ -86,17 +86,16 @@ class Block<Props extends {}> {
   }
 
   private _componentDidUpdate(oldProps: Props, newProps: Props) {
+    if (this._element && this._element.style.display === 'none') {
+      return;
+    }
+
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
     }
 
-    /**
-     * хак, который нужен для того, чтобы при обновлении компонента не терялись inline styles (display: 'block' | 'none)
-     */
-    const prevDisplayStyle = this._element?.style.display;
     this._render();
-    this._element!.style.display = prevDisplayStyle!;
   }
 
   private _componentWillUnmount() {
