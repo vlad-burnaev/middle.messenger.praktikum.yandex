@@ -16,7 +16,7 @@ export interface IMessageGroupProps {
 
 class MessageGroup extends Block<IMessageGroupProps> {
   constructor(props: IMessageGroupProps) {
-    super({ ...props });
+    super({ ...props, messages: JSON.parse(props.messages) });
   }
 
   render() {
@@ -28,13 +28,13 @@ class MessageGroup extends Block<IMessageGroupProps> {
     return `
         <li>
             <ul class="${className}">
-                <div class="message-group__date">{{date}}</div>
                 {{#each messages}}
                     {{{ Message
                           text=text
                           meta=meta
                     }}}
                 {{/each}}
+                <div class="message-group__date">{{date}}</div>
             </ul>
         </li>
     `;

@@ -191,7 +191,6 @@ class Main extends Block<IMainProps> {
   }
 
   render() {
-    console.log('main render: ', this.props.chatMessages);
     // todo - chats-preview-block в отдельный компонент
     const getChatPreviews = () => {
       if (!this.props.chats) {

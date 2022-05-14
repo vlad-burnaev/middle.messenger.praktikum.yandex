@@ -30,6 +30,15 @@ class Chat extends Block<IChatProps> {
       onFocus: this.handleInputEvents.bind(this),
       onBlur: this.handleInputEvents.bind(this),
       handleSubmit: this.handleFormSubmit.bind(this),
+      testMessageGroups: this.props?.messages.map((message) => {
+        return {
+          date: '26 марта',
+          type: 'My',
+          messages: [
+            { text: message, meta: { status: 'delivered', time: '15:00' } },
+          ],
+        };
+      }),
     };
   }
 
@@ -61,6 +70,35 @@ class Chat extends Block<IChatProps> {
 
       return this.props.users.map((u) => u.login).join(', ');
     };
+
+    // todo - порефачить
+    const getGroups = () => {
+      if (!this.props.messages) {
+        return '';
+      }
+
+      let result = '';
+
+      const data = this.props.messages.map((message) => {
+        return {
+          date: '26 марта',
+          type: 'My',
+          messages: [
+            { text: message, meta: { status: 'delivered', time: '15:00' } },
+          ],
+        };
+      });
+
+      data.forEach((el) => {
+        // language=hbs
+        result += `
+          {{{ MessageGroup date='${el.date}' type='${el.type}' messages='${JSON.stringify(el.messages)}' }}}
+        `;
+      });
+
+      return result;
+    };
+
     // language=hbs
     return `
       <article class="chat">
@@ -76,7 +114,7 @@ class Chat extends Block<IChatProps> {
             </div>
         </section>
         <ul class="chat-main">
-            {{ messages }}
+            ${getGroups()}
         </ul>
         <div class="new-message-panel">
             <button class="new-message-panel__attach">

@@ -134,11 +134,6 @@ class ChatsServiceClass {
     socket.addEventListener('open', () => {
       console.log('Соединение установлено');
 
-      socket.send(JSON.stringify({
-        content: 'Hello World!',
-        type: 'message',
-      }));
-
       // todo - убивать при смене чата
       setInterval(() => {
         socket.send(JSON.stringify({
