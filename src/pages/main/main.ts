@@ -140,16 +140,11 @@ class Main extends Block<IMainProps> {
 
       onGoToProfileClick: this.handleGoToProfilePage.bind(this),
       message: 'test',
-      onChangeMessage: (e: Event) => {
-        if (e.target) {
-          const element = e.target as HTMLInputElement;
-
-          this.state = {
-            ...this.state,
-            message: element.value,
-          };
-          console.log(this.state.message);
-        }
+      onChangeMessage: (value: string) => {
+        this.setState({
+          ...this.state,
+          message: value,
+        });
       },
       onSendMessage: () => {
         if (isValid('message', this.state.message)) {
@@ -158,7 +153,6 @@ class Main extends Block<IMainProps> {
             ...this.state,
             message: '',
           });
-          console.log(this.state.message);
         }
       },
       chat: {
@@ -240,7 +234,7 @@ class Main extends Block<IMainProps> {
                       avatarSrc=chat.avatar
                       name=chat.name
                       messageGroups=chat.messageGroups
-                      messageValue=message
+                      message=message
                       onChangeMessage=onChangeMessage
                       onSubmit=onSendMessage
                       onMenuButtonClick=onToggleChatMenuPopup

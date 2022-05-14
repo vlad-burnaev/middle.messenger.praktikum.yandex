@@ -13,8 +13,8 @@ export interface IChatProps {
   avatarSrc: string,
   name: string,
   messageGroups: IMessageGroupProps[],
-  messageValue: string,
-  onChangeMessage: (e: Event) => void,
+  message: string,
+  onChangeMessage: (value: string) => void,
   onSubmit: () => void,
   onMenuButtonClick: () => void
 }
@@ -24,8 +24,34 @@ class Chat extends Block<IChatProps> {
     super({ ...props });
   }
 
+  protected getStateFromProps() {
+    this.state = {
+      onFocus: this.handleInputEvents.bind(this),
+      onBlur: this.handleInputEvents.bind(this),
+      handleSubmit: this.handleFormSubmit.bind(this),
+    };
+  }
+
+  handleFormSubmit(e: Event) {
+    e.preventDefault();
+
+    this.props.onSubmit();
+  }
+
+  handleInputEvents(e: Event) {
+    if (e.target) {
+      const element = e.target as HTMLInputElement;
+      this.validateInput(element.name as InputType);
+    }
+  }
+
+  validateInput(field: InputType) {
+    const newValue = (this.refs[field] as HTMLInputElement).value;
+
+    this.props.onChangeMessage(newValue);
+  }
+
   render() {
-    console.log('messageValue', this.props.messageValue);
     const getUsers = () => {
       if (!this.props.users) {
         return '';
@@ -61,12 +87,13 @@ class Chat extends Block<IChatProps> {
                 {{{ Icon name=${IconName.Clip} }}}
             </button>
             {{{ Input
-                  value=messageValue
+                  value=message
                   type='${InputType.TEXT}'
-                  onChange=onChangeMessage
                   name='message'
+                  ref='message'
+                  onBlur=onBlur
             }}}
-            {{{ Button label='Отправить' onClick=onSubmit className="new-message-panel__enter-button" }}}
+            {{{ Button label='Отправить' onClick=handleSubmit className="new-message-panel__enter-button" }}}
         </form>
       </article>
     `;
