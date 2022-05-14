@@ -2,7 +2,7 @@ import Block from '../../../../core/Block';
 import './chat.scss';
 import { IconName } from '../../../../components/icon/icon';
 import { IMessageGroupProps } from '../messageGroup/message-group';
-import { InputType } from '../../../../components/input/input';
+import { InputType, InputVariants } from '../../../../components/input/input';
 import registerComponent from '../../../../core/registerComponent';
 import { ChatMenuButton } from './chatMenuButton';
 
@@ -89,8 +89,10 @@ class Chat extends Block<IChatProps> {
             {{{ Input
                   value=message
                   type='${InputType.TEXT}'
+                  variant=${InputVariants.FILLED}
                   name='message'
                   ref='message'
+                  placeholder='Сообщение'
                   onBlur=onBlur
             }}}
             {{{ Button label='Отправить' onClick=handleSubmit className="new-message-panel__enter-button" }}}

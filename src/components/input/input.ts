@@ -70,6 +70,7 @@ class Input extends Block<IInputPropsWithEvents> {
       [this.props.className ?? '']: Boolean(this.props.className),
     });
 
+    // language=hbs
     return `
       <input 
         {{#if value}}

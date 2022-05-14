@@ -139,7 +139,7 @@ class Main extends Block<IMainProps> {
       },
 
       onGoToProfileClick: this.handleGoToProfilePage.bind(this),
-      message: 'test',
+      message: '',
       onChangeMessage: (value: string) => {
         this.setState({
           ...this.state,
