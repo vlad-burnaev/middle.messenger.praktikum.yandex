@@ -4,7 +4,6 @@ import { apiHasError } from '../helpers/apiHasError';
 import {
   ChangeAvatarRequest, mapUser, ProfileChangePasswordRequest, ProfileEditRequest,
 } from '../api/types/user';
-import { Routes } from '../core/routes';
 
 const userAPI = new UserAPI();
 
@@ -18,7 +17,6 @@ export class UserService {
 
     if (apiHasError(response)) {
       dispatch({ isAuth: false });
-      window.router.go(Routes.Page500);
       return;
     }
 
@@ -33,7 +31,6 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
-      window.router.go(Routes.Page500);
       return;
     }
 
@@ -48,7 +45,6 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
-      window.router.go(Routes.Page500);
     }
   }
 
@@ -60,7 +56,6 @@ export class UserService {
     dispatch({ isLoading: false });
 
     if (apiHasError(response)) {
-      window.router.go(Routes.Page500);
       return;
     }
 
