@@ -22,10 +22,12 @@ registerComponent(DeleteUserPopup, 'DeleteUserPopup');
 interface IMainProps {
   router: Router,
   dispatch: Dispatch<AppState>,
+  state: AppState,
   activeChatId: Nullable<number>,
   user: Nullable<User>,
   chats: Nullable<Chat[]>,
   chatUsers: Nullable<User[]>,
+  chatMessages: string[],
   searchResult: Nullable<User[]>,
   isLoading: boolean
 }
@@ -46,7 +48,7 @@ class Main extends Block<IMainProps> {
   }
 
   handleSelectActiveChat(chatId: number) {
-    this.props.dispatch({ activeChatId: chatId });
+    this.props.dispatch({ activeChatId: chatId, chatMessages: [] });
     this.props.dispatch(ChatsService.getChatUsers, { chatId });
     this.props.dispatch(ChatsService.createWSConnection, { chatId });
   }
@@ -189,6 +191,7 @@ class Main extends Block<IMainProps> {
   }
 
   render() {
+    console.log('main render: ', this.props.chatMessages);
     // todo - chats-preview-block в отдельный компонент
     const getChatPreviews = () => {
       if (!this.props.chats) {
@@ -235,6 +238,7 @@ class Main extends Block<IMainProps> {
                       name=chat.name
                       messageGroups=chat.messageGroups
                       message=message
+                      messages=chatMessages
                       onChangeMessage=onChangeMessage
                       onSubmit=onSendMessage
                       onMenuButtonClick=onToggleChatMenuPopup
@@ -284,6 +288,7 @@ function mapStateToProps(state: AppState) {
     activeChatId: state.activeChatId,
     chats: state.chats,
     chatUsers: state.chatUsers,
+    chatMessages: state.chatMessages,
     searchResult: state.searchResult,
     isLoading: state.isLoading,
   };

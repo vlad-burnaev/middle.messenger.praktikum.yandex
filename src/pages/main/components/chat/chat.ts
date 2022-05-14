@@ -14,6 +14,7 @@ export interface IChatProps {
   name: string,
   messageGroups: IMessageGroupProps[],
   message: string,
+  messages: string[],
   onChangeMessage: (value: string) => void,
   onSubmit: () => void,
   onMenuButtonClick: () => void
@@ -75,13 +76,7 @@ class Chat extends Block<IChatProps> {
             </div>
         </section>
         <ul class="chat-main">
-            {{#each messageGroups}}
-                {{{ MessageGroup
-                      date=date
-                      type=type
-                      messages=messages
-                }}}
-            {{/each}}
+            {{ messages }}
         </ul>
         <div class="new-message-panel">
             <button class="new-message-panel__attach">

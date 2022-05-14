@@ -23,6 +23,7 @@ declare global {
     chats: Nullable<Chat[]>,
     activeChatId: Nullable<number>,
     chatUsers: Nullable<User[]>,
+    chatMessages: string[],
     searchResult: Nullable<User[]>,
     user: Nullable<User>,
     ws: Nullable<WebSocket>

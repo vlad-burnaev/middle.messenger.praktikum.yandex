@@ -9,5 +9,6 @@ export const defaultStoreState: AppState = {
   chats: null,
   chatUsers: null,
   searchResult: null,
+  chatMessages: [],
   ws: null,
 };

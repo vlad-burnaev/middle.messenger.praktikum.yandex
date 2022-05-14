@@ -158,7 +158,13 @@ class ChatsServiceClass {
     });
 
     socket.addEventListener('message', (event) => {
-      console.log('Получены данные', event.data);
+      const data = JSON.parse(event.data);
+      console.log('Получены данные', data);
+      if (data.type === 'message') {
+        const newMessage = data.content;
+        const prevMessages = window.store.getState().chatMessages;
+        dispatch({ chatMessages: prevMessages ? [...prevMessages, newMessage] : [newMessage] });
+      }
     });
 
     socket.addEventListener('error', (event: Event) => {
