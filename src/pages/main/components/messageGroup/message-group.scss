@@ -6,7 +6,7 @@
   gap: 8px;
 
   &_my {
-    align-items: flex-end;
+    align-items: flex-start;
 
     .message {
       background: var(--color-grey-light);
@@ -16,7 +16,7 @@
   }
 
   &_companion {
-    align-items: flex-start;
+    align-items: flex-end;
 
     .message {
       background: var(--color-grey-light);

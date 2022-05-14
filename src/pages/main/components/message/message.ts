@@ -1,35 +1,31 @@
 import Block from '../../../../core/Block';
 import './message.scss';
 import { IconName } from '../../../../components/icon/icon';
-
-enum MessageStatus {
-  Sent = 'sent',
-  Delivered = 'delivered'
-}
+import { getTime } from '../../../../utils/date-formatter';
 
 export interface IMessageProps {
   text: string,
-  meta: {
-    status: MessageStatus,
-    time: string
-  }
+  isRead: boolean,
+  date: Date
 }
 
 class Message extends Block<IMessageProps> {
   constructor(props: IMessageProps) {
-    super({ ...props });
+    super({ ...props, date: new Date(props.date) });
   }
 
   render() {
+    const { date, isRead, text } = this.props;
+
     // language=hbs
     return `
       <li class="message">
-        <span class="message__text">{{text}}</span>
+        <span class="message__text">${text}</span>
         <div class="message-meta">
-            {{#if ${this.props.meta.status === MessageStatus.Sent} }}
+            {{#if ${isRead} }}
                 {{{ Icon name=${IconName.Checkmark} }}}
             {{/if}}
-            <span class="message-meta__text">{{meta.time}}</span>
+            <span class="message-meta__text">${getTime(date)}</span>
         </div>
       </li>
     `;

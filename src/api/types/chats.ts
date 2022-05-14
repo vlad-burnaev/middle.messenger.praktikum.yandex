@@ -88,7 +88,7 @@ export type MessageDTO = {
   file: Nullable<string>,
   id: number,
   is_read: boolean,
-  time: Date,
+  time: string,
   type: MessageType,
   user_id: number,
 }

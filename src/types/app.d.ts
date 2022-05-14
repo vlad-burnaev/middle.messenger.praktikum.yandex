@@ -47,6 +47,7 @@ declare global {
 
   export type Interlocutor = Omit<User, 'id' | 'displayName'>
 
+  // todo - переделать на emum
   type MessageType = 'message' | 'ping'
 
   export type Message = {

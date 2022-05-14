@@ -47,7 +47,8 @@
         "array-callback-return": "off",
         "max-len": ["error", { "code": 120 }],
         "no-return-assign": "off",
-        "arrow-body-style": "off"
+        "arrow-body-style": "off",
+        "no-irregular-whitespace": "off"
     },
     "settings": {
         "import/resolver": {

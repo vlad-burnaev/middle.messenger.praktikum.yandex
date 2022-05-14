@@ -1,29 +1,31 @@
 import Block from '../../../../core/Block';
 import './message-group.scss';
-import { IMessageProps } from '../message/message';
 import classnames from '../../../../helpers/classnames';
+import { getMonth } from '../../../../utils/date-formatter';
+import { IMessageProps } from '../message/message';
 
-enum MessageGroupTypes {
-  My = 'My',
-  Companion = 'Companion'
-}
+// todo - переделать на emum
+type MessageGroupTypes = 'my' | 'companion'
 
 export interface IMessageGroupProps {
-  date: string,
+  date: Date,
   type: MessageGroupTypes,
-  messages: IMessageProps[]
+  messages: IMessageProps
 }
 
 class MessageGroup extends Block<IMessageGroupProps> {
   constructor(props: IMessageGroupProps) {
-    super({ ...props, messages: JSON.parse(props.messages) });
+    super({ ...props, date: new Date(props.date), messages: JSON.parse(props.messages) });
   }
 
   render() {
+    const { date } = this.props;
+
     const className = classnames('message-group', {
-      'message-group_my': this.props.type === MessageGroupTypes.My,
-      'message-group_companion': this.props.type === MessageGroupTypes.Companion,
+      'message-group_my': this.props.type === 'my',
+      'message-group_companion': this.props.type === 'companion',
     });
+
     // language=hbs
     return `
         <li>
@@ -31,10 +33,11 @@ class MessageGroup extends Block<IMessageGroupProps> {
                 {{#each messages}}
                     {{{ Message
                           text=text
-                          meta=meta
+                          isRead=isRead
+                          date=date
                     }}}
                 {{/each}}
-                <div class="message-group__date">{{date}}</div>
+                <div class="message-group__date">${date.getDate()} ${getMonth(date)}</div>
             </ul>
         </li>
     `;

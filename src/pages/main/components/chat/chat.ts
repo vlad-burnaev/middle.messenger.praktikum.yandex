@@ -9,6 +9,7 @@ import { ChatMenuButton } from './chatMenuButton';
 registerComponent(ChatMenuButton, 'ChatMenuButton');
 
 export interface IChatProps {
+  userId: Nullable<number>,
   users: User[],
   avatarSrc: string,
   name: string,
@@ -80,11 +81,12 @@ class Chat extends Block<IChatProps> {
       let result = '';
 
       const data = this.props.messages.map((message) => {
+        const { time: date, userId, isRead } = message;
         return {
-          date: '26 марта',
-          type: 'My',
+          date,
+          type: userId === this.props.userId ? 'my' : 'companion',
           messages: [
-            { text: message.content, meta: { status: 'delivered', time: '15:00' } },
+            { text: message.content, isRead, date },
           ],
         };
       });

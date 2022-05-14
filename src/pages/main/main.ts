@@ -208,6 +208,8 @@ class Main extends Block<IMainProps> {
           }}}`;
       }).join('');
     };
+
+    const userId = this.props?.user?.id ?? null;
     // language=hbs
     return `
         <main data-id="main-page">
@@ -232,6 +234,7 @@ class Main extends Block<IMainProps> {
             <div class="chat">
               {{#if activeChatId}}
                 {{{ Chat
+                      userId=${userId}
                       users=chatUsers
                       avatarSrc=chat.avatar
                       name=chat.name
