@@ -51,6 +51,7 @@ class Chat extends Block<IChatProps> {
     this.props.onChangeMessage(newValue);
   }
 
+  // todo - заменить div на form (new-message-panel)
   render() {
     const getUsers = () => {
       if (!this.props.users) {
@@ -82,7 +83,7 @@ class Chat extends Block<IChatProps> {
                 }}}
             {{/each}}
         </ul>
-        <form class="new-message-panel">
+        <div class="new-message-panel">
             <button class="new-message-panel__attach">
                 {{{ Icon name=${IconName.Clip} }}}
             </button>
@@ -96,7 +97,7 @@ class Chat extends Block<IChatProps> {
                   onBlur=onBlur
             }}}
             {{{ Button label='Отправить' onClick=handleSubmit className="new-message-panel__enter-button" }}}
-        </form>
+        </div>
       </article>
     `;
   }
