@@ -23,7 +23,7 @@ declare global {
     chats: Nullable<Chat[]>,
     activeChatId: Nullable<number>,
     chatUsers: Nullable<User[]>,
-    chatMessages: string[],
+    chatMessages: Message[],
     searchResult: Nullable<User[]>,
     user: Nullable<User>,
     ws: Nullable<WebSocket>
@@ -46,6 +46,19 @@ declare global {
   }
 
   export type Interlocutor = Omit<User, 'id' | 'displayName'>
+
+  type MessageType = 'message' | 'ping'
+
+  export type Message = {
+    chatId: number,
+    content: string,
+    file: Nullable<string>,
+    id: number,
+    isRead: boolean,
+    time: Date,
+    type: MessageType,
+    userId: number,
+  }
 
   type ChatLastMessage = {
     user: Interlocutor,

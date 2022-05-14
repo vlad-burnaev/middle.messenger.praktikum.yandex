@@ -27,7 +27,7 @@ interface IMainProps {
   user: Nullable<User>,
   chats: Nullable<Chat[]>,
   chatUsers: Nullable<User[]>,
-  chatMessages: string[],
+  chatMessages: Message[],
   searchResult: Nullable<User[]>,
   isLoading: boolean
 }

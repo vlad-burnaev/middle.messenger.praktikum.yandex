@@ -14,7 +14,7 @@ export interface IChatProps {
   name: string,
   messageGroups: IMessageGroupProps[],
   message: string,
-  messages: string[],
+  messages: Message[],
   onChangeMessage: (value: string) => void,
   onSubmit: () => void,
   onMenuButtonClick: () => void
@@ -84,7 +84,7 @@ class Chat extends Block<IChatProps> {
           date: '26 марта',
           type: 'My',
           messages: [
-            { text: message, meta: { status: 'delivered', time: '15:00' } },
+            { text: message.content, meta: { status: 'delivered', time: '15:00' } },
           ],
         };
       });

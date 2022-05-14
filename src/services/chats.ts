@@ -6,6 +6,7 @@ import {
   DeleteUserFromChatRequest,
   GetChatTokenRequest,
   mapChats,
+  MessageDTO,
   SearchUserRequest,
   SendMessageData,
 } from '../api/types/chats';
@@ -114,6 +115,7 @@ class ChatsServiceClass {
     dispatch(self.getChatUsers);
   }
 
+  // todo - вынести в отдельный файл, порефачить
   public async createWSConnection(dispatch: Dispatch<AppState>, state: AppState, action: GetChatTokenRequest) {
     dispatch({ isLoading: true });
 
@@ -134,6 +136,11 @@ class ChatsServiceClass {
     socket.addEventListener('open', () => {
       console.log('Соединение установлено');
 
+      socket.send(JSON.stringify({
+        content: '0',
+        type: 'get old',
+      }));
+
       // todo - убивать при смене чата
       setInterval(() => {
         socket.send(JSON.stringify({
@@ -153,8 +160,28 @@ class ChatsServiceClass {
     });
 
     socket.addEventListener('message', (event) => {
+      const mapMessage = (data: MessageDTO): Message => {
+        return {
+          chatId: data.chat_id,
+          content: data.content,
+          file: data.file,
+          id: data.id,
+          isRead: data.is_read,
+          time: new Date(data.time),
+          type: data.type,
+          userId: data.user_id,
+        };
+      };
+
       const data = JSON.parse(event.data);
       console.log('Получены данные', data);
+      if (Array.isArray(data)) {
+        const prevMessages = data.map((message) => {
+          return mapMessage(message);
+        });
+        dispatch({ chatMessages: prevMessages });
+      }
+
       if (data.type === 'message') {
         const newMessage = data.content;
         const prevMessages = window.store.getState().chatMessages;
@@ -168,10 +195,29 @@ class ChatsServiceClass {
   }
 
   public async sendMessage(dispatch: Dispatch<AppState>, state: AppState, action: SendMessageData) {
-    state.ws!.send(JSON.stringify({
+    if (!state.ws || !state.user) {
+      return;
+    }
+
+    state.ws.send(JSON.stringify({
       content: action.message,
       type: 'message',
     }));
+
+    const prevMessages = window.store.getState().chatMessages;
+
+    const newMessage: Message = {
+      chatId: state.activeChatId ?? 0,
+      content: action.message,
+      file: null,
+      id: prevMessages[0]?.id ? prevMessages[0]?.id - 1 : 0,
+      isRead: false,
+      time: new Date(),
+      type: 'message',
+      userId: state.user.id,
+    };
+
+    dispatch({ chatMessages: [newMessage, ...prevMessages] });
   }
 }
 

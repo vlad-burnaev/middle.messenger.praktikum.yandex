@@ -63,7 +63,7 @@
 
 .chat-main {
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
   height: calc(100vh - (var(--dialog-header-height) + var(--dialog-footer-height)));
 

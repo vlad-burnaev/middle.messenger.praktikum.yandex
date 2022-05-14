@@ -81,3 +81,14 @@ export type GetChatTokenResponse = {
 export type SendMessageData = {
   message: string
 }
+
+export type MessageDTO = {
+  chat_id: number,
+  content: string,
+  file: Nullable<string>,
+  id: number,
+  is_read: boolean,
+  time: Date,
+  type: MessageType,
+  user_id: number,
+}
