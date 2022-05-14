@@ -1,5 +1,6 @@
 import Block from './Block';
 import renderDOM from './renderDOM';
+import { Routes } from './routes';
 
 interface BlockConstructable<Props extends {}> {
   new(props: any): Block<Props>;
@@ -42,13 +43,28 @@ export default class Route {
     return pathname === this._pathname;
   }
 
+  // todo - придумать менее костыльный редирект
+  authRedirect() {
+    if ([Routes.Index, Routes.Profile].includes(location.pathname) && !window.store.getState().isAuth) {
+      console.log('redirect to SignIn');
+      window.router.go(Routes.SignIn);
+    }
+
+    if ([Routes.SignIn, Routes.SignUp].includes(location.pathname) && window.store.getState().isAuth) {
+      console.log('redirect to Index');
+      window.router.go(Routes.Index);
+    }
+  }
+
   render() {
     if (!this._block) {
       this._block = new this._blockClass(this._props);
       renderDOM(this._block, this._props.rootQuery);
+      this.authRedirect();
+
       return;
     }
-
     this._block.show();
+    this.authRedirect();
   }
 }
