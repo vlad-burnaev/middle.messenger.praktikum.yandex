@@ -4,7 +4,7 @@ import registerComponent from '../../core/registerComponent';
 import isValid from '../../helpers/formValidation';
 import Block from '../../core/Block';
 import classnames from '../../helpers/classnames';
-import { InputType } from '../input';
+import { InputType } from '../input/input';
 
 registerComponent(ProfileFormInput, 'ProfileFormInput');
 

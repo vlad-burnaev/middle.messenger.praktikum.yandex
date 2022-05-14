@@ -12,6 +12,7 @@ import { CreateChatPopup } from './components/createChatPopup';
 import { AddUserPopup } from './components/addUserPopup';
 import { ChatMenuPopup } from './components/chatMenuPopup';
 import { DeleteUserPopup } from './components/deleteUserPopup';
+import isValid from '../../helpers/formValidation';
 
 registerComponent(ChatMenuPopup, 'ChatMenuPopup');
 registerComponent(CreateChatPopup, 'CreateChatPopup');
@@ -138,6 +139,28 @@ class Main extends Block<IMainProps> {
       },
 
       onGoToProfileClick: this.handleGoToProfilePage.bind(this),
+      message: 'test',
+      onChangeMessage: (e: Event) => {
+        if (e.target) {
+          const element = e.target as HTMLInputElement;
+
+          this.state = {
+            ...this.state,
+            message: element.value,
+          };
+          console.log(this.state.message);
+        }
+      },
+      onSendMessage: () => {
+        if (isValid('message', this.state.message)) {
+          this.props.dispatch(ChatsService.sendMessage, { message: this.state.message });
+          this.setState({
+            ...this.state,
+            message: '',
+          });
+          console.log(this.state.message);
+        }
+      },
       chat: {
         avatarSrc: '',
         name: 'Василий Вакуленко',
@@ -217,6 +240,9 @@ class Main extends Block<IMainProps> {
                       avatarSrc=chat.avatar
                       name=chat.name
                       messageGroups=chat.messageGroups
+                      messageValue=message
+                      onChangeMessage=onChangeMessage
+                      onSubmit=onSendMessage
                       onMenuButtonClick=onToggleChatMenuPopup
                 }}}
               {{else}}

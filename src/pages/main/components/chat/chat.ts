@@ -13,6 +13,9 @@ export interface IChatProps {
   avatarSrc: string,
   name: string,
   messageGroups: IMessageGroupProps[],
+  messageValue: string,
+  onChangeMessage: (e: Event) => void,
+  onSubmit: () => void,
   onMenuButtonClick: () => void
 }
 
@@ -22,6 +25,7 @@ class Chat extends Block<IChatProps> {
   }
 
   render() {
+    console.log('messageValue', this.props.messageValue);
     const getUsers = () => {
       if (!this.props.users) {
         return '';
@@ -57,12 +61,12 @@ class Chat extends Block<IChatProps> {
                 {{{ Icon name=${IconName.Clip} }}}
             </button>
             {{{ Input
-                    type=${InputType.TEXT}
-                    name='message'
+                  value=messageValue
+                  type='${InputType.TEXT}'
+                  onChange=onChangeMessage
+                  name='message'
             }}}
-            <button class="new-message-panel__enter-button">
-                {{{ Icon name=${IconName.ArrowRight2} }}}
-            </button>
+            {{{ Button label='Отправить' onClick=onSubmit className="new-message-panel__enter-button" }}}
         </form>
       </article>
     `;
