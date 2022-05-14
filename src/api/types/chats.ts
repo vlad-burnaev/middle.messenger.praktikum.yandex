@@ -77,3 +77,7 @@ export type GetChatTokenRequest = {
 export type GetChatTokenResponse = {
   token: string
 }
+
+export type SendMessageData = {
+  message: string
+}

@@ -1,7 +1,13 @@
 import { Dispatch } from '../core/Store';
 import { apiHasError } from '../helpers/apiHasError';
 import {
-  AddUserToChatRequest, CreateChatRequest, DeleteUserFromChatRequest, GetChatTokenRequest, mapChats, SearchUserRequest,
+  AddUserToChatRequest,
+  CreateChatRequest,
+  DeleteUserFromChatRequest,
+  GetChatTokenRequest,
+  mapChats,
+  SearchUserRequest,
+  SendMessageData,
 } from '../api/types/chats';
 import { mapUser } from '../api/types/user';
 import { ChatsApi } from '../api/chats-api';
@@ -123,6 +129,8 @@ class ChatsServiceClass {
 
     const socket = new WebSocket(`${WS_API_BASE_URL}/chats/${userId}/${action.chatId}/${response.token}`);
 
+    dispatch({ ws: socket });
+
     socket.addEventListener('open', () => {
       console.log('Соединение установлено');
 
@@ -134,8 +142,7 @@ class ChatsServiceClass {
       // todo - убивать при смене чата
       setInterval(() => {
         socket.send(JSON.stringify({
-          content: 'ping',
-          type: 'message',
+          type: 'ping',
         }));
       }, 20000);
     });
@@ -157,6 +164,13 @@ class ChatsServiceClass {
     socket.addEventListener('error', (event: Event) => {
       console.log('Ошибка', event.message);
     });
+  }
+
+  public async sendMessage(dispatch: Dispatch<AppState>, state: AppState, action: SendMessageData) {
+    state.ws!.send(JSON.stringify({
+      content: action.message,
+      type: 'message',
+    }));
   }
 }
 

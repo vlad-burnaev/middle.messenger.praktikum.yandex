@@ -17,7 +17,6 @@ import { Chat } from './pages/main/components/chat';
 import { MessageGroup } from './pages/main/components/messageGroup';
 import { Icon } from './components/icon';
 import { Button } from './components/button';
-import { Navbar } from './components/navbar';
 import { ProfileForm } from './components/profileForm';
 import { Error404 } from './pages/404';
 import { Error500 } from './pages/500';
@@ -42,7 +41,6 @@ function registerComponents() {
   registerComponent(InputField, 'InputField');
   registerComponent(AuthForm, 'AuthForm');
   registerComponent(ProfileForm, 'ProfileForm');
-  registerComponent(Navbar, 'Navbar');
   registerComponent(Avatar, 'Avatar');
   registerComponent(GoBackLink, 'GoBackLink');
 }

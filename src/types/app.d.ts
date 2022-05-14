@@ -25,6 +25,7 @@ declare global {
     chatUsers: Nullable<User[]>,
     searchResult: Nullable<User[]>,
     user: Nullable<User>,
+    ws: Nullable<WebSocket>
   };
 
   interface Window {
