@@ -26,7 +26,7 @@ export default class EventBus<
 
   emit(event: E, ...args: M[E]) {
     if (!this.listeners[event]) {
-      throw new Error(`Event ${event} is not found`);
+      return;
     }
 
     this.listeners[event]!.forEach((listener) => listener(...args));
