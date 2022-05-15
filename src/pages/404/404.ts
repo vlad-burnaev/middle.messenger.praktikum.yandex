@@ -21,7 +21,7 @@ class NewError404 extends Block<INewError404Props> {
 
   render() {
     return `
-      <main data-id="404">
+      <main data-testid="404">
         <div class="root">
           <div class="content">
             <h1 class="content__title">404</h1>
