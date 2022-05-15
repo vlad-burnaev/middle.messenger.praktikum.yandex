@@ -1,0 +1,17 @@
+.navbar {
+  background: var(--color-grey-light);
+  position: fixed;
+  top: 0;
+  right: 70px;
+  padding: 10px;
+  opacity: 0.4;
+
+  &__links {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__link {
+    background-color: var(--color-grey-light);
+  }
+}

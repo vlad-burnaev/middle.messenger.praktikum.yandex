@@ -3,7 +3,7 @@
   "version": "1.2.1",
   "description": "",
   "scripts": {
-    "dev": "parcel src/index.html --no-cache",
+    "dev": "parcel src/index.html --no-cache -p 3000",
     "build": "parcel build src/index.html",
     "start": "node server.js",
     "lint:css": "stylelint **/*.pcss",
@@ -16,18 +16,36 @@
   "keywords": [],
   "author": "Vlad Burnaev <vlad.burn325@gmail.com>",
   "license": "ISC",
+  "alias": {
+    "components": "~/src/components",
+    "utils": "~/src/utils",
+    "helpers": "~/src/helpers",
+    "style": "~/src/style",
+    "pages": "~/src/pages",
+    "static": "~/static",
+    "api": "~/src/api",
+    "core": "~/src/core",
+    "services": "~/src/services",
+    "const": "~/src/const",
+    "store": "~/src/store"
+  },
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@typescript-eslint/eslint-plugin": "5.12.1",
-    "@typescript-eslint/parser": "5.12.1",
-    "eslint": "5.16.0",
+    "@parcel/config-default": "2.1.1",
+    "@parcel/transformer-sass": "2.1.1",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
+    "@typescript-eslint/parser": "5.10.1",
+    "eslint": "8.7.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
+    "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
-    "parcel": "*",
+    "parcel": "2.0.1",
     "postcss-modules": "4.3.1",
     "postcss-nested": "5.0.6",
+    "sass": "1.45.1",
     "stylelint": "14.5.1",
     "stylelint-config-standard": "17.0.0",
     "stylelint-order": "0.7.0",
@@ -37,6 +55,6 @@
   "dependencies": {
     "express": "4.17.2",
     "handlebars": "4.7.7",
-    "nanoid": "3.3.1"
+    "nanoid": "3.2.0"
   }
 }

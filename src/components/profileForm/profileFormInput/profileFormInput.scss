@@ -1,0 +1,18 @@
+.profile-form__input {
+  border: none;
+  outline: none;
+  width: 200px;
+  color: var(--color-grey);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 13px;
+  text-align: right;
+
+  &_readonly {
+    user-select: none;
+  }
+
+  &_invalid {
+    color: var(--color-red);
+  }
+}

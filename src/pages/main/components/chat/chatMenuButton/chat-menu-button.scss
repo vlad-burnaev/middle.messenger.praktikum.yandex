@@ -1,0 +1,10 @@
+.chat-menu-button {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 50%;
+
+  &_active {
+    background: var(--color-grey-light-2);
+  }
+}
