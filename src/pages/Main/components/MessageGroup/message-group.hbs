@@ -1,0 +1,19 @@
+{{#if (isMyMessages type)}}
+    <li>
+        <ul class="{{styles.message-group}} {{styles.message-group_my}}">
+            <div class="{{styles.message-group__date}}">{{date}}</div>
+            <li class="{{styles.message}}">{{{ message1 }}}</li>
+            <li class="{{styles.message}}">{{{ message2 }}}</li>
+            <li class="{{styles.message}}">{{{ message3 }}}</li>
+        </ul>
+    </li>
+    {{else}}
+    <li>
+        <ul class="{{styles.message-group}} {{styles.message-group_companion}}">
+            <div class="{{styles.message-group__date}}">{{date}}</div>
+            <li class="{{styles.message}}">{{{ message1 }}}</li>
+            <li class="{{styles.message}}">{{{ message2 }}}</li>
+            <li class="{{styles.message}}">{{{ message3 }}}</li>
+        </ul>
+    </li>
+{{/if}}

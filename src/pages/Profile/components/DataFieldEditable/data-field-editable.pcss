@@ -1,0 +1,33 @@
+.data-field_editable {
+  display: flex;
+
+  width: 100%;
+  padding: 10px 0;
+
+  justify-content: space-between;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-grey-light);
+  }
+
+  &__category {
+    flex-shrink: 0;
+
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+
+  &__data {
+    width: 100%;
+
+    outline: none;
+    text-align: right;
+
+    color: var(--color-grey);
+
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 13px;
+  }
+}
