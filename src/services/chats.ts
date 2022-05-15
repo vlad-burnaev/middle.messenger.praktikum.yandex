@@ -14,6 +14,19 @@ import { mapUser } from '../api/types/user';
 import { ChatsApi } from '../api/chats-api';
 import { WS_API_BASE_URL } from '../utils/constants';
 
+const mapPrevMessage = (data: MessageDTO): Message => {
+  return {
+    chatId: data.chat_id,
+    content: data.content,
+    file: data.file,
+    id: data.id,
+    isRead: data.is_read,
+    time: new Date(data.time),
+    type: data.type,
+    userId: data.user_id,
+  };
+};
+
 class ChatsServiceClass {
   public async getChats(dispatch: Dispatch<AppState>) {
     dispatch({ isLoading: true });
@@ -160,32 +173,29 @@ class ChatsServiceClass {
     });
 
     socket.addEventListener('message', (event) => {
-      const mapMessage = (data: MessageDTO): Message => {
-        return {
-          chatId: data.chat_id,
-          content: data.content,
-          file: data.file,
-          id: data.id,
-          isRead: data.is_read,
-          time: new Date(data.time),
-          type: data.type,
-          userId: data.user_id,
-        };
-      };
-
+      // todo - типизировать полученные сообщения (TypeGuard)
       const data = JSON.parse(event.data);
       console.log('Получены данные', data);
       if (Array.isArray(data)) {
         const prevMessages = data.map((message) => {
-          return mapMessage(message);
+          return mapPrevMessage(message);
         });
         dispatch({ chatMessages: prevMessages });
       }
 
+      const prevMessages = window.store.getState().chatMessages;
       if (data.type === 'message') {
-        const newMessage = data.content;
-        const prevMessages = window.store.getState().chatMessages;
-        dispatch({ chatMessages: prevMessages ? [...prevMessages, newMessage] : [newMessage] });
+        const newMessage: Message = {
+          chatId: state.activeChatId ?? 0,
+          content: data.content,
+          file: null,
+          id: prevMessages[0]?.id ? prevMessages[0]?.id - 1 : 0,
+          isRead: false,
+          time: new Date(data.time),
+          type: 'message',
+          userId: data.user_id,
+        };
+        dispatch({ chatMessages: prevMessages ? [newMessage, ...prevMessages] : [newMessage] });
       }
     });
 
@@ -203,21 +213,6 @@ class ChatsServiceClass {
       content: action.message,
       type: 'message',
     }));
-
-    const prevMessages = window.store.getState().chatMessages;
-
-    const newMessage: Message = {
-      chatId: state.activeChatId ?? 0,
-      content: action.message,
-      file: null,
-      id: prevMessages[0]?.id ? prevMessages[0]?.id - 1 : 0,
-      isRead: false,
-      time: new Date(),
-      type: 'message',
-      userId: state.user.id,
-    };
-
-    dispatch({ chatMessages: [newMessage, ...prevMessages] });
   }
 }
 
