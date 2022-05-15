@@ -78,6 +78,18 @@ class Chat extends Block<IChatProps> {
         return '';
       }
 
+      /**
+       * todo
+       * 1. Группировка по дате
+       * 2. Группировка по типу
+       *
+       * [1, 2, 3, 4, 5, 6]
+       * по дате
+       * [[1, 2], [3], [4, 5, 6]]
+       * по типу
+       * [[1, 2], [3], [4], [5, 6]]
+       */
+
       let result = '';
 
       const data = this.props.messages.map((message) => {
