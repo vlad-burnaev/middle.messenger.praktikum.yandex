@@ -30,6 +30,6 @@ export function renderComponent<T>({
   renderDOM(new Component(props));
 }
 
-export async function step(name: string, callback: () => void) {
+export async function step(_name: string, callback: () => void) {
   await callback();
 }

@@ -1,6 +1,6 @@
 import { prettyDOM } from '@testing-library/dom';
 import { renderComponent, step } from '../../../tests/renderUtils';
-import { Profile } from '../profile';
+import { Profile } from '../index';
 
 const USER_MOCK = {
   avatar: '/d66cf98f-05dc-49ba-8d2b-c1db0c5888c3/761d694b-39b5-4dee-ab15-78a2bf05461d_12.png',
@@ -16,7 +16,11 @@ const USER_MOCK = {
 describe('pages/profile', () => {
   it('should logout from profile and redirect to sign-in page', async () => {
     await step('render profile page to DOM', () => {
-      renderComponent({ Component: Profile, props: { user: USER_MOCK }, state: { appIsInited: true } });
+      renderComponent({
+        Component: Profile,
+        props: { user: USER_MOCK, dispatch: window.store.dispatch },
+        state: { appIsInited: true },
+      });
 
       console.log(prettyDOM(document.body));
     });
