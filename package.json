@@ -32,26 +32,27 @@
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
     "@anikin/parcel-transformer-handlebars-precompile": "1.0.1",
-    "@parcel/config-default": "2.1.1",
-    "@parcel/transformer-sass": "2.1.1",
-    "@typescript-eslint/eslint-plugin": "5.10.1",
-    "@typescript-eslint/parser": "5.10.1",
-    "@testing-library/dom": "8.13.0",
-    "@testing-library/jest-dom": "5.16.4",
-    "@types/jest": "27.4.1",
     "@babel/core": "7.17.8",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
-    "jest": "27.5.1",
+    "@parcel/babel-preset-env": "^2.5.0",
+    "@parcel/config-default": "2.1.1",
+    "@parcel/transformer-sass": "2.1.1",
+    "@testing-library/dom": "8.13.0",
+    "@testing-library/jest-dom": "5.16.4",
+    "@types/jest": "27.4.1",
+    "@typescript-eslint/eslint-plugin": "5.10.1",
+    "@typescript-eslint/parser": "5.10.1",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-stage-0": "6.24.1",
-    "identity-obj-proxy": "3.0.0",
     "eslint": "8.7.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-airbnb-base": "15.0.0",
     "eslint-import-resolver-typescript": "2.5.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
+    "identity-obj-proxy": "3.0.0",
+    "jest": "27.5.1",
     "parcel": "2.0.1",
     "postcss-modules": "4.3.1",
     "postcss-nested": "5.0.6",
@@ -74,7 +75,7 @@
       "<rootDir>/src/tests/setup.ts"
     ],
     "moduleNameMapper": {
-      "\\.(scss|svg)$": "identity-obj-proxy"
+      "\\.(scss|svg|png)$": "identity-obj-proxy"
     }
   }
 }

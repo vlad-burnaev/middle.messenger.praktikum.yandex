@@ -222,7 +222,7 @@ class Profile extends Block<IUserProfileProps> {
                 }}}
               </li>
               <li class='profile__actions-button-row'>
-                {{{ Link label="Выйти" size="medium" onClick=logout }}}
+                {{{ Link label="Выйти" size="medium" onClick=logout dataTestId="logout-btn" }}}
               </li>
             </ul>
           {{/ifEquals}}
