@@ -28,7 +28,7 @@ import { Avatar } from './components/avatar';
 import { APP_ROOT_PATH } from './utils/constants';
 import GoBackLink from './components/goBackLink/go-back-link';
 
-function registerComponents() {
+export function registerComponents() {
   registerComponent(Icon, 'Icon');
   registerComponent(Button, 'Button');
   registerComponent(Link, 'Link');
