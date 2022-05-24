@@ -1,4 +1,4 @@
-import { prettyDOM } from '@testing-library/dom';
+import { getByTestId, queryByTestId, waitFor } from '@testing-library/dom';
 import { renderComponent, step } from '../../../tests/renderUtils';
 import { Profile } from '../index';
 
@@ -18,17 +18,24 @@ describe('pages/profile', () => {
     await step('render profile page to DOM', () => {
       renderComponent({
         Component: Profile,
-        props: { user: USER_MOCK, dispatch: window.store.dispatch },
-        state: { appIsInited: true },
+        props: {},
+        state: { appIsInited: true, isAuth: true, user: USER_MOCK },
       });
-
-      console.log(prettyDOM(document.body));
     });
 
-    await step('click logout button', () => {});
+    await step('click logout button', () => {
+      const buttonElement = getByTestId(document.body, 'logout-btn');
+      buttonElement.click();
+    });
 
-    await step('wait logout request and redirect to sign-in page', () => {});
+    await step('wait logout request and redirect to sign-in page', async () => {
+      await waitFor(() => {
+        expect(queryByTestId(document.body, 'sign-in')).toBeInTheDocument();
+      });
+    });
 
-    await step('render sign-in page to DOM and check user', () => {});
+    await step('check user', () => {
+      expect(window.store.getState().isAuth).toEqual(false);
+    });
   });
 });

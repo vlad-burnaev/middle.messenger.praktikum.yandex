@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { Dispatch } from '../core/Store';
 import { apiHasError } from '../helpers/apiHasError';
 import {
@@ -199,12 +200,12 @@ class ChatsServiceClass {
       }
     });
 
-    socket.addEventListener('error', (event: Event) => {
+    socket.addEventListener('error', (event: any) => {
       console.log('Ошибка', event.message);
     });
   }
 
-  public async sendMessage(dispatch: Dispatch<AppState>, state: AppState, action: SendMessageData) {
+  public async sendMessage(_dispatch: Dispatch<AppState>, state: AppState, action: SendMessageData) {
     if (!state.ws || !state.user) {
       return;
     }

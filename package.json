@@ -84,7 +84,7 @@
       "^.+\\.(js|jsx)$": "babel-jest"
     },
     "moduleNameMapper": {
-      "\\.(scss|svg|png)$": "identity-obj-proxy",
+      "\\.(scss|png)$": "identity-obj-proxy",
       "^.+\\.svg$": "jest-svg-transformer"
     }
   }

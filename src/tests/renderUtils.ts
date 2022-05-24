@@ -3,12 +3,13 @@ import { defaultStoreState } from '../store';
 import { Store } from '../core/Store';
 import Router from '../core/Router';
 import { APP_ROOT_PATH } from '../utils/constants';
-import { registerComponents } from '../index';
+import { initRouter, registerComponents } from '../index';
 import renderDOM from '../core/renderDOM';
 
 type RenderBlockProps<T> = {
   Component: BlockConstructable<T>,
-  props: T;
+  // todo - поменять на Т (не запускались тесты с ним; траблы с HOC)
+  props: any;
   state?: Partial<AppState>
 }
 
@@ -28,6 +29,8 @@ export function renderComponent<T>({
   document.body.innerHTML = '<div id="app"></div>';
 
   renderDOM(new Component(props));
+
+  initRouter(router, store);
 }
 
 export async function step(_name: string, callback: () => void) {

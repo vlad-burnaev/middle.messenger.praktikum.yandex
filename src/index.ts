@@ -45,6 +45,22 @@ export function registerComponents() {
   registerComponent(GoBackLink, 'GoBackLink');
 }
 
+export function initRouter(router: Router, store: Store<AppState>) {
+  router
+    .use(Routes.Index, Main)
+    .use(Routes.SignIn, SignIn)
+    .use(Routes.SignUp, SignUp)
+    .use(Routes.Profile, Profile)
+    .use(Routes.Page404, Error404)
+    .use(Routes.Page500, Error500);
+
+  store.on('changed', (prevState, nextState) => {
+    if (!prevState.appIsInited && nextState.appIsInited) {
+      router.start();
+    }
+  });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   registerComponents();
 
@@ -65,17 +81,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   store.dispatch(initAppService.init);
 
-  router
-    .use(Routes.Index, Main)
-    .use(Routes.SignIn, SignIn)
-    .use(Routes.SignUp, SignUp)
-    .use(Routes.Profile, Profile)
-    .use(Routes.Page404, Error404)
-    .use(Routes.Page500, Error500);
-
-  store.on('changed', (prevState, nextState) => {
-    if (!prevState.appIsInited && nextState.appIsInited) {
-      router.start();
-    }
-  });
+  initRouter(router, store);
 });

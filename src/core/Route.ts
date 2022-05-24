@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import Block from './Block';
 import renderDOM from './renderDOM';
 import { Routes } from './routes';
@@ -45,12 +46,12 @@ export default class Route {
 
   // todo - придумать менее костыльный редирект
   authRedirect() {
-    if ([Routes.Index, Routes.Profile].includes(location.pathname) && !window.store.getState().isAuth) {
+    if ([Routes.Index, Routes.Profile].includes(location.pathname as Routes) && !window.store.getState().isAuth) {
       console.log('redirect to SignIn');
       window.router.go(Routes.SignIn);
     }
 
-    if ([Routes.SignIn, Routes.SignUp].includes(location.pathname) && window.store.getState().isAuth) {
+    if ([Routes.SignIn, Routes.SignUp].includes(location.pathname as Routes) && window.store.getState().isAuth) {
       console.log('redirect to Index');
       window.router.go(Routes.Index);
     }

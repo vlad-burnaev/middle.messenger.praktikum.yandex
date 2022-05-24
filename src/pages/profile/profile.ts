@@ -12,7 +12,7 @@ import { AuthService } from '../../services/auth';
 import { UserService } from '../../services/user';
 import { Routes } from '../../core/routes';
 
-interface IUserProfileProps {
+export interface IUserProfileProps {
   dispatch: Dispatch<AppState>,
   view?: Views,
   user: Nullable<User>,
@@ -177,7 +177,7 @@ class Profile extends Block<IUserProfileProps> {
 
     // language=hbs
     return `
-      <main data-id="profile">
+      <main data-testId="profile">
         <div class='page-wrap profile'>
           {{{ Avatar 
             imageUrl="${avatarImg}"
