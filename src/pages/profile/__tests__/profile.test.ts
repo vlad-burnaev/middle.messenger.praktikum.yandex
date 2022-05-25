@@ -36,6 +36,7 @@ describe('pages/profile', () => {
 
     await step('check user', () => {
       expect(window.store.getState().isAuth).toEqual(false);
+      expect(window.store.getState().user).toEqual(null);
     });
   });
 });

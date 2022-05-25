@@ -83,8 +83,9 @@ class Input extends Block<IInputPropsWithEvents> {
           accept="{{accept}}"
         {{/if}}
         class="input ${className}"
-        type={{type}} 
-        name={{name}} 
+        type={{type}}
+        name={{name}}
+        id={{name}}
         placeholder={{placeholder}}
         {{#if readonly}} readonly {{/if}}>
   `;

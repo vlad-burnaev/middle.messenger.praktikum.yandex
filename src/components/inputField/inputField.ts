@@ -32,6 +32,7 @@ class InputField extends Block<IInputFieldProps> {
       'input__error-message_hidden': !this.props.errorMessage,
     });
 
+    // language=hbs
     return `
       <div class='{{containerClassName}}' >
         <div class='floating-input-container' >
@@ -46,7 +47,7 @@ class InputField extends Block<IInputFieldProps> {
               onBlur=onBlur
               invalid=${!!this.props.errorMessage}
           }}}
-          <span class='input__label'>{{label}}</span>
+          <label class='input__label' for={{name}}>{{label}}</label>
         </div>
       <span class="${errorClassName}">{{errorMessage}}</span>
     </div>

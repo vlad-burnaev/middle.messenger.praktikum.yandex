@@ -97,7 +97,7 @@ class AuthForm extends Block<AuthFormProps> {
 
     // language=hbs
     return `
-      <form id={{id}} class="form {{className}}">
+      <form id="form-{{id}}" class="form {{className}}">
         <div class='form__container'>
           {{#if title}}
             <h3 class='form__title'>{{title}}</h3>

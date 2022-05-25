@@ -212,7 +212,7 @@ class Main extends Block<IMainProps> {
     const userId = this.props?.user?.id ?? null;
     // language=hbs
     return `
-        <main data-id="main-page">
+        <main data-id="main">
           <div class="main-page">
             <div class="chats-preview-block">
                 <nav class="chats-preview-block-header">
