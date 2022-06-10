@@ -1,4 +1,5 @@
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -7,7 +8,7 @@ module.exports = {
   entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'messenger.bundle.js',
+    filename: 'bundle-[hash].js',
   },
   devServer: {
     static: {
@@ -62,6 +63,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
