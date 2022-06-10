@@ -1,4 +1,4 @@
-import { InputType } from '../../../components/input';
+import { InputType } from '../../../components/authForm/types';
 
 type IFormData = {
   name: string,

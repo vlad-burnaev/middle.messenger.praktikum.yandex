@@ -10,9 +10,7 @@
 Макет в [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1) 🖼
 
 ## Запуск
-1. `npm install`
-2. `npm run build`
-3. `npm run start`
+`yarn start`
 
 ## Ход работы над проектом
 ### Первый спринт
