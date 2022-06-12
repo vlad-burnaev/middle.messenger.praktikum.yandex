@@ -30,7 +30,7 @@
     "lint:js": "eslint --ext .js,.ts,.tsx src/",
     "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
     "lint:fix": "npm-run-all --parallel lint:css:fix lint:js:fix",
-    "check": "npm-run-all --parallel lint test",
+    "precommit": "npm-run-all --parallel lint test",
     "prepare": "husky install"
   },
   "devDependencies": {
