@@ -91,6 +91,9 @@
     "handlebars": "4.7.7",
     "nanoid": "3.2.0"
   },
+  "resolutions": {
+    "glob-parent": "5.1.2"
+  },
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
