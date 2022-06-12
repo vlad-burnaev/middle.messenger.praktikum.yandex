@@ -40,12 +40,9 @@ export class UserService {
   public async changePassword(dispatch: Dispatch<AppState>, _: any, action: ProfileChangePasswordRequest) {
     dispatch({ isLoading: true });
 
-    const response = await userAPI.changePassword(action);
+    await userAPI.changePassword(action);
 
     dispatch({ isLoading: false });
-
-    if (apiHasError(response)) {
-    }
   }
 
   public async changeAvatar(dispatch: Dispatch<AppState>, _:any, action: ChangeAvatarRequest) {

@@ -1,9 +1,10 @@
 .navbar {
-  background: var(--color-grey-light);
   position: fixed;
   top: 0;
   right: 70px;
+
   padding: 10px;
+  background: var(--color-grey-light);
   opacity: 0.4;
 
   &__links {

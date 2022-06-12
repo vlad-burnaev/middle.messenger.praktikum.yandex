@@ -17,18 +17,18 @@
 
   &__subtitle {
     margin-top: 20px;
+
+    margin-bottom: 20px;
     font-size: 20px;
     line-height: 20px;
     font-weight: 500;
-
-    margin-bottom: 20px;
   }
 
   &__link {
     display: inline-block;
-    color: var(--color-blue);
 
     margin-top: 69px;
+    color: var(--color-blue);
 
     font-size: 11px;
     line-height: 11px;
