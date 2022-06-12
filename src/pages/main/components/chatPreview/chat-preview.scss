@@ -8,18 +8,6 @@
 
   border-bottom: 1px solid var(--color-grey-light);
 
-  &:hover {
-    background: var(--color-blue-light-2);
-  }
-
-  &_active {
-    background: var(--color-blue-light);
-  }
-
-  &_active &__avatar {
-    background: var(--color-grey);
-  }
-
   &__avatar {
     width: 34px;
     height: 34px;
@@ -30,6 +18,18 @@
 
     border-radius: 50%;
     background: var(--color-grey-light);
+  }
+
+  &:hover {
+    background: var(--color-blue-light-2);
+  }
+
+  &_active {
+    background: var(--color-blue-light);
+  }
+
+  &_active &__avatar {
+    background: var(--color-grey);
   }
 }
 

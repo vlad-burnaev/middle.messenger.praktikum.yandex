@@ -3,7 +3,7 @@
     "dist/*",
     "scss/normalize.scss"
   ],
-  "extends": "stylelint-config-standard",
+  "extends": ["stylelint-config-standard-scss", "stylelint-config-standard"],
   "plugins": [
     "stylelint-order"
   ],
@@ -25,7 +25,9 @@
         "hasBlock": true
       }
     ],
+    "selector-class-pattern": null,
     "selector-pseudo-class-no-unknown": null,
+    "value-no-vendor-prefix": null,
     "order/properties-order": [[
       {
         "emptyLineBefore": "always",
