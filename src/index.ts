@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
   store.on('changed', (_, nextState) => {
     // eslint-disable-next-line no-console
     console.log(
-      '%cstore updated!',
+      '%cstore updated',
       'background: #222; color: #bada55',
       nextState,
     );

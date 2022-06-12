@@ -30,12 +30,13 @@
     "lint:js": "eslint --ext .js,.ts,.tsx src/",
     "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
     "lint:fix": "npm-run-all --parallel lint:css:fix lint:js:fix",
-    "check": "npm-run-all --parallel lint test"
+    "check": "npm-run-all --parallel lint test",
+    "precommit": "yarn check"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn check",
-      "pre-push": "yarn check"
+      "pre-commit": "npm run check",
+      "pre-push": "npm run check"
     }
   },
   "devDependencies": {
