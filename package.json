@@ -2,19 +2,6 @@
   "name": "messenger",
   "version": "1.2.1",
   "description": "",
-  "scripts": {
-    "dev": "webpack serve --mode=development --progress",
-    "build": "webpack",
-    "build:prod": "webpack --config webpack.config.prod.js",
-    "test": "jest",
-    "start": "node server.js",
-    "lint": "npm-run-all --parallel lint:css lint:js",
-    "lint:css": "stylelint **/*.scss",
-    "lint:css:fix": "stylelint **/*.scss --fix",
-    "lint:js": "eslint --ext .js,.ts,.tsx src/",
-    "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
-    "lint:fix": "npm-run-all --parallel lint:css:fix lint:js:fix"
-  },
   "keywords": [],
   "author": "Vlad Burnaev <vlad.burn325@gmail.com>",
   "license": "ISC",
@@ -30,6 +17,25 @@
     "services": "~/src/services",
     "const": "~/src/const",
     "store": "~/src/store"
+  },
+  "scripts": {
+    "dev": "webpack serve --mode=development --progress",
+    "start": "node server.js",
+    "build": "webpack",
+    "build:prod": "webpack --config webpack.config.prod.js",
+    "test": "jest",
+    "lint": "npm-run-all --parallel lint:css lint:js",
+    "lint:css": "stylelint **/*.scss",
+    "lint:css:fix": "stylelint **/*.scss --fix",
+    "lint:js": "eslint --ext .js,.ts,.tsx src/",
+    "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
+    "lint:fix": "npm-run-all --parallel lint:css:fix lint:js:fix",
+    "check": "npm-run-all --parallel lint test"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run check"
+    }
   },
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
