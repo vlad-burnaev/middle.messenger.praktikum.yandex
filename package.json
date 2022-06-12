@@ -1,6 +1,6 @@
 {
   "name": "messenger",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "",
   "keywords": [],
   "author": "Vlad Burnaev <vlad.burn325@gmail.com>",
@@ -30,9 +30,7 @@
     "lint:js": "eslint --ext .js,.ts,.tsx src/",
     "lint:js:fix": "eslint --ext .js,.ts,.tsx src/ --fix",
     "lint:fix": "npm-run-all --parallel lint:css:fix lint:js:fix",
-    "check": "npm-run-all --parallel lint test",
-    "precommit": "echo asdasd",
-    "prepush": "echo asdasd"
+    "check": "npm-run-all --parallel lint test"
   },
   "devDependencies": {
     "@anikin/parcel-transformer-handlebars": "1.0.9",
