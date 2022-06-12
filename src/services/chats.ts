@@ -1,4 +1,4 @@
-/* eslint-disable no-restricted-globals */
+/* eslint-disable no-restricted-globals,no-console */
 import { Dispatch } from '../core/Store';
 import { apiHasError } from '../helpers/apiHasError';
 import {

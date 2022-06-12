@@ -20,6 +20,7 @@ export class InitAppService {
 
       dispatch({ appIsInited: true, isAuth: true, user: mapUser(response) });
     } catch (e) {
+      // eslint-disable-next-line no-console
       console.error(e);
     } finally {
       dispatch({ appIsInited: true });
