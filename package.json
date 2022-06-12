@@ -34,7 +34,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn check"
+      "pre-commit": "yarn check",
+      "pre-push": "yarn check"
     }
   },
   "devDependencies": {
