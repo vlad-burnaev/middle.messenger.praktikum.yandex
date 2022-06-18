@@ -1,5 +1,5 @@
-FROM ubuntu:22.04
-RUN apt update && apt install -y nodejs && apt install -y npm
+FROM node:latest
+RUN apt update
 WORKDIR /var/www
 COPY . .
 CMD npm i && npm run start
