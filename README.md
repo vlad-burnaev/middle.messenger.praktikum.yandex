@@ -1,6 +1,5 @@
 # Месседжер
-[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/4) на PR Sprint 3
-
+[Ссылка](https://github.com/vlad-burnaev/middle.messenger.praktikum.yandex/pull/5) на PR Sprint 4
 ## Общая информация
 
 Статус: в разработке 👨🏻‍💻
