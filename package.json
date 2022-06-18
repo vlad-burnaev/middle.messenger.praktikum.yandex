@@ -20,7 +20,7 @@
   },
   "scripts": {
     "dev": "webpack serve --mode=development --progress",
-    "start": "node server.js",
+    "start": "npm run build && ts-node src/server.js",
     "build": "webpack",
     "build:prod": "webpack --config webpack.config.prod.js",
     "test": "jest",
