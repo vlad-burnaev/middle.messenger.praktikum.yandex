@@ -5,6 +5,7 @@
 Статус: в разработке 👨🏻‍💻
 
 Проект на [Heroku](https://practicum-messenger.herokuapp.com/) 🖥
+
 Проект на [Netlify](https://neon-quokka-new.netlify.app/) 💻
 
 Макет в [Figma](https://www.figma.com/file/24EUnEHGEDNLdOcxg7ULwV/Chat?node-id=0%3A1) 🖼
