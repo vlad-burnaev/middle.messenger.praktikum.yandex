@@ -7,6 +7,7 @@ interface ILinkProps {
   to?: string,
   className?: string;
   onClick: () => void;
+  dataTestId?: string;
 }
 
 interface ILinkPropsWithEvents extends Omit<ILinkProps, 'onClick'>{
@@ -18,7 +19,7 @@ interface ILinkPropsWithEvents extends Omit<ILinkProps, 'onClick'>{
 class Link extends Block<ILinkPropsWithEvents> {
   constructor(props: ILinkProps) {
     const {
-      label, to, className, onClick,
+      label, to, className, onClick, dataTestId,
     } = props;
 
     const classNames = [];
@@ -30,6 +31,7 @@ class Link extends Block<ILinkPropsWithEvents> {
       label,
       to,
       className: classnames('link', ...classNames),
+      dataTestId,
       events: {
         click: onClick,
       },
@@ -37,16 +39,18 @@ class Link extends Block<ILinkPropsWithEvents> {
   }
 
   render() {
+    // language=hbs
     return `
       {{#if to}}
         <a 
           href={{to}} 
           class='{{className}}'
+          {{#if dataTestId}}data-testid={{dataTestId}}{{/if}}
         >
           {{label}}
         </a>
       {{else}}
-        <div class='{{className}}'>
+        <div class='{{className}}' {{#if dataTestId}}data-testid={{dataTestId}}{{/if}}>
           {{label}}
         </div>
       {{/if}}

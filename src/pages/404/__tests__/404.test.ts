@@ -1,15 +1,10 @@
 import { getByTestId, getByText } from '@testing-library/dom';
-import renderDOM from '../../../core/renderDOM';
 import { Error404 } from '../index';
-import Router from '../../../core/Router';
-import registerComponent from '../../../core/registerComponent';
-import { Link } from '../../../components/link';
+import { renderComponent } from '../../../tests/renderUtils';
 
 describe('pages/404', () => {
   it('should render 404 page', () => {
-    document.body.innerHTML = '<div id="app"></div>';
-
-    renderDOM(new Error404({ router: new Router('#app') }));
+    renderComponent({ Component: Error404, props: { router: window.router } });
 
     const page404Element = getByTestId(document.body, '404');
 
@@ -17,10 +12,7 @@ describe('pages/404', () => {
   });
 
   it('should render error link', () => {
-    document.body.innerHTML = '<div id="app"></div>';
-    registerComponent(Link, 'Link');
-
-    renderDOM(new Error404({ router: new Router('#app') }));
+    renderComponent({ Component: Error404, props: { router: window.router } });
 
     const linkElement = getByText(document.body, 'Назад к чатам');
 

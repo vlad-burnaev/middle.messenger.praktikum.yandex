@@ -1,24 +1,25 @@
 .floating-input-container {
   position: relative;
+
   width: 100%;
 }
 
 .input {
   &__label {
-    font-size: 13px;
-    color: var(--color-grey);
     position: absolute;
-    pointer-events: none;
     top: 9px;
     left: 4px;
+    font-size: 13px;
+    color: var(--color-grey);
+    pointer-events: none;
     transition: all 0.1s ease;
   }
 
   &__error-message {
+    padding-left: 4px;
     color: var(--color-red);
     font-size: 8px;
     line-height: 8px;
-    padding-left: 4px;
 
     &_hidden {
       visibility: hidden;

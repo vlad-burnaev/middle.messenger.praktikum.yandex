@@ -28,7 +28,7 @@ import { Avatar } from './components/avatar';
 import { APP_ROOT_PATH } from './utils/constants';
 import GoBackLink from './components/goBackLink/go-back-link';
 
-function registerComponents() {
+export function registerComponents() {
   registerComponent(Icon, 'Icon');
   registerComponent(Button, 'Button');
   registerComponent(Link, 'Link');
@@ -45,26 +45,7 @@ function registerComponents() {
   registerComponent(GoBackLink, 'GoBackLink');
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  registerComponents();
-
-  const initAppService = new InitAppService();
-
-  const store = new Store<AppState>(defaultStoreState);
-  const router = new Router(APP_ROOT_PATH);
-  window.router = router;
-  window.store = store;
-
-  store.on('changed', (_, nextState) => {
-    console.log(
-      '%cstore updated',
-      'background: #222; color: #bada55',
-      nextState,
-    );
-  });
-
-  store.dispatch(initAppService.init);
-
+export function initRouter(router: Router, store: Store<AppState>) {
   router
     .use(Routes.Index, Main)
     .use(Routes.SignIn, SignIn)
@@ -78,4 +59,28 @@ document.addEventListener('DOMContentLoaded', () => {
       router.start();
     }
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  registerComponents();
+
+  const initAppService = new InitAppService();
+
+  const store = new Store<AppState>(defaultStoreState);
+  const router = new Router(APP_ROOT_PATH);
+  window.router = router;
+  window.store = store;
+
+  store.on('changed', (_, nextState) => {
+    // eslint-disable-next-line no-console
+    console.log(
+      '%cstore updated',
+      'background: #222; color: #bada55',
+      nextState,
+    );
+  });
+
+  store.dispatch(initAppService.init);
+
+  initRouter(router, store);
 });

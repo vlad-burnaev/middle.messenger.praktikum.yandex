@@ -71,8 +71,7 @@ export class AuthService {
       user: mapUser(getUserResponse),
     });
 
-    // todo - сделать через router.go (хак, из-за корявого Auth-редиректа)
-    window.location.pathname = Routes.Index;
+    window.router.go(Routes.Index);
   }
 
   public async logout(dispatch: Dispatch<AppState>) {
@@ -82,7 +81,6 @@ export class AuthService {
 
     dispatch({ ...defaultStoreState });
 
-    // todo - сделать через router.go (хак, из-за корявого Auth-редиректа)
-    window.location.pathname = Routes.SignIn;
+    window.router.go(Routes.SignIn);
   }
 }

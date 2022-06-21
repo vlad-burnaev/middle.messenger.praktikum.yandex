@@ -2,7 +2,6 @@ import Block from '../../../../core/Block';
 import './message-group.scss';
 import classnames from '../../../../helpers/classnames';
 import { getMonth } from '../../../../utils/date-formatter';
-import { IMessageProps } from '../message/message';
 
 // todo - переделать на emum
 type MessageGroupTypes = 'my' | 'companion'
@@ -10,7 +9,7 @@ type MessageGroupTypes = 'my' | 'companion'
 export interface IMessageGroupProps {
   date: Date,
   type: MessageGroupTypes,
-  messages: IMessageProps
+  messages: string
 }
 
 class MessageGroup extends Block<IMessageGroupProps> {

@@ -7,9 +7,10 @@
 
   &__rows {
     display: flex;
-    flex-direction: column;
     width: 50%;
     margin: 60px auto 0;
+
+    flex-direction: column;
 
     @media only screen and (max-width: 1024px) {
       width: 100%;
@@ -18,9 +19,10 @@
 
   &__row {
     display: flex;
+    padding: 12px 0 4px;
+
     flex-direction: row;
     justify-content: space-between;
-    padding: 12px 0 4px;
     border-bottom: 1px solid var(--color-grey-light);
 
     &_invalid {
@@ -35,8 +37,8 @@
   }
 
   &__submit-button-wrap {
-    margin: 60px auto 0;
     width: 280px;
+    margin: 60px auto 0;
 
     @media only screen and (max-width: 600px) {
       width: 100%;

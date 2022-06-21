@@ -20,7 +20,8 @@ interface IButtonProps {
   label: string,
   disabled: boolean,
   onClick: () => void,
-  dataId: string
+  dataId?: string,
+  dataTestId?: string,
 }
 
 interface IButtonPropsWithEvents extends Omit<IButtonProps, 'onClick'> {
@@ -33,7 +34,7 @@ class Button extends Block<IButtonPropsWithEvents> {
   constructor(props: IButtonProps) {
     const {
       onClick, variant, className, id, label, type, disabled,
-      dataId,
+      dataId, dataTestId,
     } = props;
 
     const buttonVariant = variant ?? ButtonVariants.CLASSIC;
@@ -47,6 +48,7 @@ class Button extends Block<IButtonPropsWithEvents> {
       label,
       disabled,
       dataId,
+      dataTestId,
       type: type ?? ButtonTypes.BUTTON,
       variant: buttonVariant,
       className: classnames(...classNames, {
@@ -70,6 +72,9 @@ class Button extends Block<IButtonPropsWithEvents> {
         {{/if}}
         {{#if dataId}}
           data-id="{{dataId}}"
+        {{/if}}
+        {{#if dataTestId}}
+          data-testid="{{dataTestId}}"
         {{/if}}
       >
         {{ label }}  

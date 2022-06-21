@@ -42,10 +42,11 @@
 
 .create-chat-block {
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   padding: 12px;
+
+  justify-content: center;
+  align-items: center;
 }
 
 .chats-preview {
@@ -59,17 +60,17 @@
 
 .no-active-chat {
   display: flex;
-  justify-content: center;
-  align-items: center;
 
   height: 100%;
+
+  justify-content: center;
+  align-items: center;
 
   font-weight: 500;
   font-size: 12px;
   line-height: 12px;
 
   color: var(--color-grey);
-
 }
 
 .profile-link {

@@ -17,9 +17,9 @@
 .message-meta {
   display: flex;
 
-  flex-direction: row;
-
   margin-left: 10px;
+
+  flex-direction: row;
 
   align-items: flex-end;
 
@@ -33,10 +33,10 @@
   }
 
   &__text {
+
+    margin-left: 4px;
     font-weight: 500;
     font-size: 9px;
     line-height: 9px;
-
-    margin-left: 4px;
   }
 }

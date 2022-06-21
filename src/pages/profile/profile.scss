@@ -1,24 +1,26 @@
 .profile {
-  padding: 60px 40px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 60px 40px;
+
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &__user-name {
+    display: block;
+    margin-top: 21px;
     font-weight: 600;
     size: 16px;
     line-height: 16px;
     color: var(--color-black);
-    margin-top: 21px;
-    display: block;
   }
 
   &__actions-buttons {
     display: flex;
-    flex-direction: column;
     width: 50%;
     margin: 60px auto 0;
+
+    flex-direction: column;
 
     @media only screen and (max-width: 1024px) {
       width: 100%;
@@ -31,9 +33,10 @@
 
   &__actions-button-row {
     display: flex;
+    padding: 12px 0 4px;
+
     flex-direction: row;
     justify-content: space-between;
-    padding: 12px 0 4px;
     border-bottom: 1px solid var(--color-grey-light);
   }
 }

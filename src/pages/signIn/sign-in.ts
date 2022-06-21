@@ -84,7 +84,7 @@ class SignIn extends Block<ILoginProps> {
 
     // language=hbs
     return `
-      <main data-id="sign-in">
+      <main data-testid="sign-in">
         {{{AuthForm
             id='login'
             name='login-form'

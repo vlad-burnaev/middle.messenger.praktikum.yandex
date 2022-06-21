@@ -3,9 +3,6 @@ import Handlebars from 'handlebars';
 import EventBus from './EventBus';
 import { isEqual } from '../utils/isEqual';
 
-interface BlockMeta<P = any> {
-  props: P;
-}
 export interface BlockConstructable<Props extends {}> {
   new(props: any): Block<Props>;
 }
@@ -23,8 +20,6 @@ class Block<Props extends {}> {
 
   public id = nanoid(6);
 
-  private readonly _meta: BlockMeta;
-
   protected _element: Nullable<HTMLElement> = null;
 
   protected readonly props: Props;
@@ -39,10 +34,6 @@ class Block<Props extends {}> {
 
   public constructor(props?: Props) {
     const eventBus = new EventBus<Events>();
-
-    this._meta = {
-      props,
-    };
 
     this.getStateFromProps(props);
 
@@ -69,7 +60,7 @@ class Block<Props extends {}> {
     this._element = this._createDocumentElement('div');
   }
 
-  protected getStateFromProps(props?: Props): void {
+  protected getStateFromProps(_props?: Props): void {
     this.state = {};
   }
 
@@ -82,8 +73,7 @@ class Block<Props extends {}> {
     this.componentDidMount(props);
   }
 
-  componentDidMount(props: Props) {
-  }
+  componentDidMount(_props: Props) {}
 
   private _componentDidUpdate(oldProps: Props, newProps: Props) {
     if (this._element && this._element.style.display === 'none') {

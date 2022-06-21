@@ -63,18 +63,16 @@
 
 .chat-main {
   display: flex;
-  flex-direction: column-reverse;
 
   height: calc(100vh - (var(--dialog-header-height) + var(--dialog-footer-height)));
 
   padding: 30px 20px;
 
   overflow-y: auto;
+
+  flex-direction: column-reverse;
 }
 
-:root {
-  --dialog-footer-height: 55px;
-}
 .new-message-panel {
   display: flex;
 
